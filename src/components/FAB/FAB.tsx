@@ -1,16 +1,16 @@
 import React from "react";
-import BriefcaseSvg from "../../assets/briefcase.svg";
 import {
   StyledFABButton,
   StyledFABContainer,
   StyledFABMessage,
 } from "./FAB.styles";
+import { BriefcaseIcon } from "../Icons/BriefcaseIcon";
 
 export default function FAB() {
   return (
     <StyledFABContainer>
       <StyledFABButton>
-        <img src={BriefcaseSvg} alt="work icon" />
+        <BriefcaseIcon />
       </StyledFABButton>
     </StyledFABContainer>
   );
