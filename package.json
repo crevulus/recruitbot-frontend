@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:parcel": "parcel build src/index.tsx --no-source-maps --dist-dir cloud-files"
+    "parcel:build": "parcel build src/index.tsx --no-source-maps --dist-dir docs"
   },
   "eslintConfig": {
     "extends": [
