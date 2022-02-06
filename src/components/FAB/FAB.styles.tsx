@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StyledFABContainer = styled.div``;
+export const StyledFABContainer = styled.div`
+  z-index: 1000000;
+`;
 
 export const StyledFABButton = styled.button`
   position: fixed;
@@ -9,7 +11,7 @@ export const StyledFABButton = styled.button`
   z-index: 2000000;
   border: none;
   border-radius: 50%;
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.secondary};
 
   &:hover {
     cursor: pointer;
