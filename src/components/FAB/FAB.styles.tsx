@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledFABContainer = styled.div``;
 
 export const StyledFABButton = styled.button`
-  position: absolute;
+  position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 2000000;
