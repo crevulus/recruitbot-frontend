@@ -2,7 +2,8 @@ import React from "react";
 
 export const BriefcaseIcon = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="76.333" height="73.417">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+      <title>Work with us</title>
       <defs>
         <filter
           id="a"
@@ -14,7 +15,7 @@ export const BriefcaseIcon = () => {
         >
           <feOffset dy="3" />
           <feGaussianBlur stdDeviation="3" result="blur" />
-          <feFlood flood-opacity=".161" />
+          <feFlood floodOpacity=".161" />
           <feComposite operator="in" in2="blur" />
           <feComposite in="SourceGraphic" />
         </filter>
