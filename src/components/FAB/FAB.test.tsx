@@ -1,5 +1,6 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import ReactDOM from "react-dom";
+import { act, render, screen } from "@testing-library/react";
 import FAB from "./FAB";
 
 afterEach(() => {
@@ -18,7 +19,7 @@ describe("beginning call to action/FAB logic", () => {
     const messageSpan = screen.queryByText(
       "Considering a career in nursing? Join our team!"
     );
-    expect(messageSpan).toBeNull();
+    expect(messageSpan).not.toBeInTheDocument();
   });
 
   it("setTimeout to be called, set to 5 seconds", () => {
