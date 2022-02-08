@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 export const StyledFABContainer = styled.div`
+  z-index: 100000;
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 3rem;
+  right: 3rem;
 `;
 
 export const StyledFABButton = styled.button`
   z-index: 1000;
   border: none;
   border-radius: 50%;
-  height: 75px;
-  width: 75px;
+  height: 7.5rem;
+  width: 7.5rem;
   background-color: ${(props) => props.theme.primary};
 
   &:hover {
@@ -25,12 +26,13 @@ export const StyledFABButton = styled.button`
 
 export const StyledFABMessageWrapper = styled.div`
   display: inline-block;
-  border-radius: 20px;
-  height: 20px;
+  border-radius: 2rem;
+  height: 2rem;
   width: auto;
-  padding: 10px;
+  padding: 1rem;
   background-color: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.white};
+  font-size: ${(props) => props.theme.fontRegular};
 `;
 
 export const StyledFABMessageContents = styled.div`
