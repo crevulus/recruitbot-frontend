@@ -20,7 +20,7 @@ export default function FAB() {
       <StyledFABMessageWrapper>
         <StyledFABMessageContents>
           <StyledFABMessage $visible={showMessage}>
-            Considering a career in nursing? Join our team!&lrm;
+            TEST a career in nursing? Join our team!&lrm;
           </StyledFABMessage>
         </StyledFABMessageContents>
       </StyledFABMessageWrapper>
