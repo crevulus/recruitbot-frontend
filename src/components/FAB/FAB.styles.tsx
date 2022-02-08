@@ -30,7 +30,8 @@ export const StyledFABMessageWrapper = styled.div`
   height: 2rem;
   width: auto;
   padding: 1rem;
-  background-color: ${(props) => props.theme.primary};
+  /* background-color: ${(props) => props.theme.primary}; */
+  background-color: red;
   color: ${(props) => props.theme.white};
   font-size: ${(props) => props.theme.fontRegular};
 `;
