@@ -1,18 +1,22 @@
 import React from "react";
 
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "./styledComponentUtilities";
+import {
+  theme,
+  StyledApplication,
+  GlobalStyles,
+} from "./styles/styledComponentUtilities";
 
 import FAB from "./components/FAB/FAB";
 
 function App() {
   return (
-    <div className="App">
-      <GlobalStyle />
+    <StyledApplication>
+      <GlobalStyles />
       <ThemeProvider theme={theme}>
         <FAB />
       </ThemeProvider>
-    </div>
+    </StyledApplication>
   );
 }
 

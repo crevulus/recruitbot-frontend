@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   StyledFABButton,
   StyledFABContainer,
+  StyledIconWrapper,
   StyledFABMessageWrapper,
   StyledFABMessageContents,
   StyledFABMessage,
@@ -20,12 +21,14 @@ export default function FAB() {
       <StyledFABMessageWrapper>
         <StyledFABMessageContents>
           <StyledFABMessage $visible={showMessage}>
-            TEST a career in nursing? Join our team!&lrm;
+            Considering a career in nursing? Join our team!&lrm;
           </StyledFABMessage>
         </StyledFABMessageContents>
       </StyledFABMessageWrapper>
       <StyledFABButton>
-        <BriefcaseIcon />
+        <StyledIconWrapper>
+          <BriefcaseIcon />
+        </StyledIconWrapper>
       </StyledFABButton>
     </StyledFABContainer>
   );

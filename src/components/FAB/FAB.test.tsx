@@ -1,6 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import FAB from "./FAB";
 
 afterEach(() => {
