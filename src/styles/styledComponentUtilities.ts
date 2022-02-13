@@ -11,29 +11,30 @@ export const theme = {
 };
 
 export const GlobalStyles = createGlobalStyle`
-  ${cleanSlateRules}
-
-  * {
-    border: 5px solid black;
+  .recruitbot-widget {
+    ${cleanSlateRules}
   }
 `;
 
 // can't use createGlobalStyle to protect client sites
 export const StyledApplication = styled.main`
-  margin: 0;
-  padding: 0;
-  font-family: Open-Sans, Helvetica, Sans-Serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: Open-Sans, Helvetica, Sans-Serif !important;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
 
   input,
   button,
   textarea,
   select {
-    font: inherit;
+    font: inherit !important;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html:focus-within {
-      scroll-behavior: auto;
+      scroll-behavior: auto !important;
     }
 
     *,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ThemeProvider } from "styled-components";
 import {
@@ -8,13 +8,20 @@ import {
 } from "./styles/styledComponentUtilities";
 
 import FAB from "./components/FAB/FAB";
+import ChatWindow from "./components/ChatWindow/ChatWindow";
+import { AppContext } from "./store/AppContext";
 
 function App() {
+  const [showChat, setShowChat] = useState(false);
+
   return (
     <StyledApplication>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <FAB />
+        <AppContext.Provider value={{ showChat, setShowChat }}>
+          <FAB />
+          <ChatWindow />
+        </AppContext.Provider>
       </ThemeProvider>
     </StyledApplication>
   );
