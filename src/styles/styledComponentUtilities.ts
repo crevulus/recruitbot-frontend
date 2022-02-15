@@ -4,6 +4,7 @@ import { cleanSlateRules } from "./cleanslate";
 export const theme = {
   primary: "#31c04d",
   white: "#fff",
+  grey: "#EBEBEB",
 
   fontRegular: "16px",
 
