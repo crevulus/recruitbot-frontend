@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const widgetDivs = document.querySelectorAll(".test-widget");
+const widgetDivs = document.querySelectorAll(".recruitbot-widget");
 
 // Inject our React App into each
 widgetDivs.forEach((div) => {

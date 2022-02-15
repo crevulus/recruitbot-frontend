@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "./styledComponentUtilities";
+import {
+  theme,
+  StyledApplication,
+  GlobalStyles,
+} from "./styles/styledComponentUtilities";
 
 import FAB from "./components/FAB/FAB";
+import ChatWindow from "./components/ChatLayout/ChatWindow";
+import { AppContext } from "./store/AppContext";
 
 function App() {
+  const openWidget =
+    new URLSearchParams(window.location.search)
+      .get("openWidget")
+      ?.toLowerCase() === "true";
+  const [showChat, setShowChat] = useState(openWidget);
+
   return (
-    <div className="App">
-      <GlobalStyle />
+    <StyledApplication>
+      <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <FAB />
+        <AppContext.Provider value={{ showChat, setShowChat }}>
+          <FAB />
+          <ChatWindow />
+        </AppContext.Provider>
       </ThemeProvider>
-    </div>
+    </StyledApplication>
   );
 }
 

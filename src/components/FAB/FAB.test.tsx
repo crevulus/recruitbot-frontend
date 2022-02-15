@@ -1,6 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import FAB from "./FAB";
 
 afterEach(() => {
@@ -27,5 +25,13 @@ describe("beginning call to action/FAB logic", () => {
     jest.spyOn(global, "setTimeout");
     render(<FAB />);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
+  });
+
+  it("should show message after setTimeout", () => {
+    jest.useFakeTimers();
+    jest.advanceTimersByTime(5000);
+    render(<FAB />);
+    const message = screen.getByTestId("fab-message-wrapper");
+    expect(message).toHaveStyle("opacity: 100%");
   });
 });
