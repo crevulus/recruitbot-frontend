@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
+import { AppContext } from "../../store/AppContext";
+import { BriefcaseIcon } from "../Icons/BriefcaseIcon";
+
 import {
   StyledFABButton,
   StyledFABContainer,
@@ -7,8 +10,8 @@ import {
   StyledFABMessageContents,
   StyledFABMessage,
 } from "./FAB.styles";
-import { BriefcaseIcon } from "../Icons/BriefcaseIcon";
-import { AppContext } from "../../store/AppContext";
+
+import mockConversationData from "../../mockConversationData.json";
 
 export default function FAB() {
   const [showMessage, setShowMessage] = useState(false);
@@ -42,7 +45,7 @@ export default function FAB() {
       >
         <StyledFABMessageContents>
           <StyledFABMessage $visible={showMessage}>
-            Considering a career in nursing? Join our team!&lrm;
+            {mockConversationData.cta}&lrm;
           </StyledFABMessage>
         </StyledFABMessageContents>
       </StyledFABMessageWrapper>

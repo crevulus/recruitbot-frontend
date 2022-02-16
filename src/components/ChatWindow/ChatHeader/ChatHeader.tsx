@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../store/AppContext";
+
 import { StyledIconWrapper } from "../../FAB/FAB.styles";
 import { CrossIcon } from "../../Icons/CrossIcon";
 
@@ -9,13 +10,13 @@ import {
   StyledCloseButton,
 } from "./ChatHeader.styles";
 
+import mockConversationData from "../../../mockConversationData.json";
+
 function ChatHeader() {
   const { showChat, setShowChat } = useContext(AppContext);
   return (
     <StyledChatHeaderContainer>
-      <StyledChatHeader>
-        Considering a career in nursing? Join our team!
-      </StyledChatHeader>
+      <StyledChatHeader>{mockConversationData.cta}</StyledChatHeader>
       <StyledCloseButton
         onClick={() => setShowChat(!showChat)}
         aria-label="close recruitbot"
