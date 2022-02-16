@@ -74,7 +74,7 @@ export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
   color: ${(props) => props.theme.white} !important;
   font-size: ${(props) => props.theme.fontRegular} !important;
   opacity: ${(props) => (props.$visible ? "100%" : "0%")} !important;
-  transition: opacity 1s ease-in !important; ;
+  transition: opacity 1s ease-in !important;
 `;
 
 export const StyledFABMessageContents = styled.div`
