@@ -3,6 +3,7 @@ import { cleanSlateRules } from "./cleanslate";
 
 export const theme = {
   primary: "#31c04d",
+  secondary: "#304857",
   white: "#fff",
   grey: "#EBEBEB",
 
