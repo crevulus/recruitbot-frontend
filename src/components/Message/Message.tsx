@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "..";
 
 function Message({ showNext, message, index }: any) {
   const [showMessage, setShowMessage] = useState(false);
@@ -33,9 +34,9 @@ function Message({ showNext, message, index }: any) {
       <div onClick={handleNext}>{message.text}</div>
       {hasAnswers &&
         message.answers.map((answer: any) => (
-          <button key={answer.id} onClick={handleNext}>
+          <Button key={answer.id} onClick={handleNext}>
             {answer.text}
-          </button>
+          </Button>
         ))}
     </>
   );

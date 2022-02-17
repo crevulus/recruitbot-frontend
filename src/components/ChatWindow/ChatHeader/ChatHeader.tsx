@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../store/AppContext";
 
-import { StyledIconWrapper } from "../../FAB/FAB.styles";
-import { CrossIcon } from "../../Icons/CrossIcon";
+import { CrossIcon } from "../../Icons";
 
+import { StyledIconWrapper } from "../../FAB/FAB.styles"; // TODO: Create own icon wrapper
 import {
   StyledChatHeader,
   StyledChatHeaderContainer,

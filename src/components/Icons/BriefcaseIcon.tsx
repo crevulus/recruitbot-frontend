@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BriefcaseIcon = () => {
+export default function BriefcaseIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75 68">
       <title>Work with us</title>
@@ -30,4 +30,4 @@ export const BriefcaseIcon = () => {
       </g>
     </svg>
   );
-};
+}

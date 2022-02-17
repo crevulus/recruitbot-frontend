@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Perks from "../../Perks/Perks";
 
-import { StyledChatBody } from "./ChatBody.styles";
+import { Message } from "../../";
 
 import mockConversationData from "../../../mockConversationData.json";
-import Message from "../../Message/Message";
+
+import { StyledChatBody } from "./ChatBody.styles";
 
 type AnswersType = {
   id: number;
