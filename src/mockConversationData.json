@@ -40,6 +40,24 @@
           "text": "4+ years"
         }
       ]
+    },
+    {
+      "id": 3,
+      "text": "TEST, can you tell us: how many years of experience do you have in patient care?",
+      "answers": [
+        {
+          "id": 1,
+          "text": "0 - 2 years"
+        },
+        {
+          "id": 2,
+          "text": "2 - 4 years"
+        },
+        {
+          "id": 3,
+          "text": "4+ years"
+        }
+      ]
     }
   ]
 }

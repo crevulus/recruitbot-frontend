@@ -10,6 +10,6 @@ const mockMessage = {
 
 it("should test message display", () => {
   render(<Message message={mockMessage} />);
-  const perk = screen.getByText(/this is a message/i);
+  const perk = screen.getByText(/loading.../i);
   expect(perk).toBeInTheDocument();
 });

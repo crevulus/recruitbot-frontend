@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Perks from "../../Perks/Perks";
 
 import { StyledChatBody } from "./ChatBody.styles";
@@ -18,11 +18,21 @@ type MessageType = {
 };
 
 function ChatBody() {
-  const [showMessages, setShowMessages] = useState<{ [key: string]: boolean }>({
-    msg0: true,
-    msg1: false,
-    msg2: false,
-  });
+  const [showMessages, setShowMessages] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
+  useEffect(() => {
+    // iterate over conversation; reduce to object; set to true if msg0, else false.
+    const messageVisibilityArray = mockConversationData.conversation.reduce(
+      (acc, _, index) => {
+        const key = `msg${index}`;
+        return { ...acc, [key]: index ? false : true };
+      },
+      {}
+    );
+    setShowMessages(messageVisibilityArray);
+  }, []);
 
   const renderNextMessage = (index: number) => {
     const next = index + 1;
