@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { lighten } from "polished";
 import { zIndex } from "../../styles/zIndex";
 
 export const StyledFABContainer = styled.div<{ $hidden: boolean }>`
@@ -39,7 +40,7 @@ export const StyledFABButton = styled.button`
       cursor: pointer !important;
     }
 
-    /*  TODO: Bring back lighten */
+    background: ${(props) => lighten(0.1, props.theme.primary)} !important;
     transition: background 0.25s !important;
 
     figure {

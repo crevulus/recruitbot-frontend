@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
+import { customRender } from "../../test-utils";
 import FAB from "./FAB";
 
 afterEach(() => {
@@ -7,13 +8,13 @@ afterEach(() => {
 
 describe("beginning call to action/FAB logic", () => {
   it("renders briefcase icon", () => {
-    render(<FAB />);
+    customRender(<FAB />);
     const linkElement = screen.getByTitle(/Work with us/i);
     expect(linkElement).toBeInTheDocument();
   });
 
   it("doesn't show cta message at first", () => {
-    render(<FAB />);
+    customRender(<FAB />);
     const messageSpan = screen.queryByText(
       "Considering a career in nursing? Join our team!"
     );
@@ -23,14 +24,14 @@ describe("beginning call to action/FAB logic", () => {
   it("setTimeout to be called, set to 5 seconds", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setTimeout");
-    render(<FAB />);
+    customRender(<FAB />);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 5000);
   });
 
   it("should show message after setTimeout", () => {
     jest.useFakeTimers();
     jest.advanceTimersByTime(5000);
-    render(<FAB />);
+    customRender(<FAB />);
     const message = screen.getByTestId("fab-message-wrapper");
     expect(message).toHaveStyle("opacity: 100%");
   });
