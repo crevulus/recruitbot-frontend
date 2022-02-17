@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 
 import { AppContext } from "../../store/AppContext";
-import ChatBody from "./ChatBody/ChatBody";
-import ChatFooter from "./ChatFooter/ChatFooter";
-import ChatHeader from "./ChatHeader/ChatHeader";
+import { ChatBody, ChatHeader, ChatFooter } from "../";
 
 import { StyledChatWindow } from "./ChatWindow.styles";
 

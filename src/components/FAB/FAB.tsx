@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../store/AppContext";
-import { BriefcaseIcon } from "../Icons/BriefcaseIcon";
+
+import { BriefcaseIcon } from "../Icons";
 
 import {
   StyledFABButton,

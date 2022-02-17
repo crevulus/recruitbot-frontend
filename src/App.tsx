@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-
 import { ThemeProvider } from "styled-components";
 
-import FAB from "./components/FAB/FAB";
-import ChatWindow from "./components/ChatWindow/ChatWindow";
 import { AppContext } from "./store/AppContext";
+
+import { FAB, ChatWindow } from "./components";
 
 import {
   theme,
