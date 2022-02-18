@@ -8,7 +8,7 @@ function Message({ showNext, message, index }: any) {
 
   useEffect(() => {
     const CTATimer = setTimeout(() => {
-      setShowMessage((prevState) => !prevState);
+      setShowMessage(true);
       if (!hasAnswers) {
         handleNext();
       }
@@ -18,8 +18,6 @@ function Message({ showNext, message, index }: any) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {}, []);
 
   const handleNext = () => {
     showNext(index);

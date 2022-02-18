@@ -21,7 +21,7 @@ describe("beginning call to action/FAB logic", () => {
     expect(messageSpan).not.toBeInTheDocument();
   });
 
-  it("setTimeout to be called, set to 5 seconds", () => {
+  it("should call setTimeout after 5000 ms", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setTimeout");
     customRender(<FAB />);
