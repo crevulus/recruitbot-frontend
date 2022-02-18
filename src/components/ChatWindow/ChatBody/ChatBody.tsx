@@ -51,7 +51,7 @@ function ChatBody() {
   const renderNextMessage = (index: number) => {
     const next = index + 1;
     setShowMessages((prevState) => ({ ...prevState, [`msg${next}`]: true }));
-    setCurrentStep((prevState) => prevState + 1);
+    setCurrentStep(next);
   };
 
   return (

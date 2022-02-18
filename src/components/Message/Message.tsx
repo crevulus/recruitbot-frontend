@@ -1,21 +1,34 @@
 import React, { useEffect, useState, MouseEvent, useContext } from "react";
 import { Button } from "..";
 import { AppContext } from "../../store/AppContext";
+import {
+  StyledChatbotMessage,
+  StyledMessgeContainer,
+  StyledUserMessage,
+} from "./Message.styles";
+
+export enum ANSWERS_TYPE {
+  FreeForm = "input",
+}
 
 function Message({ showNext, message, index, sender }: any) {
   const { needsInputIndexes, replies } = useContext(AppContext);
   const [showMessage, setShowMessage] = useState(false);
   const [answer, setAnswer] = useState("");
 
-  const hasAnswers =
+  const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
+  const isFreeForm = message.answers === ANSWERS_TYPE.FreeForm;
 
   const inputIndex = needsInputIndexes.indexOf(index);
 
   useEffect(() => {
     const CTATimer = setTimeout(() => {
       setShowMessage(true);
-      if (!hasAnswers) {
+      if (isFreeForm && !replies[inputIndex]) {
+        return;
+      }
+      if (!isMultipleChoice) {
         handleNext();
       }
     }, 1500);
@@ -23,7 +36,7 @@ function Message({ showNext, message, index, sender }: any) {
       clearTimeout(CTATimer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [replies]);
 
   const handleNext = (event?: MouseEvent) => {
     showNext(index);
@@ -37,9 +50,12 @@ function Message({ showNext, message, index, sender }: any) {
   }
 
   return (
-    <>
-      <p onClick={handleNext}>{message.text}</p>
-      {hasAnswers &&
+    <StyledMessgeContainer>
+      <StyledChatbotMessage onClick={handleNext}>
+        {message.text}
+      </StyledChatbotMessage>
+      {isMultipleChoice &&
+        !answer &&
         message.answers.map((answer: any) => (
           <Button
             key={`button-${answer.id}`}
@@ -49,9 +65,11 @@ function Message({ showNext, message, index, sender }: any) {
             {answer.text}
           </Button>
         ))}
-      {answer && <p>{answer}</p>}
-      {replies[inputIndex] && replies[inputIndex]}
-    </>
+      {answer && <StyledUserMessage>{answer}</StyledUserMessage>}
+      {replies[inputIndex] && (
+        <StyledUserMessage>{replies[inputIndex]}</StyledUserMessage>
+      )}
+    </StyledMessgeContainer>
   );
 }
 

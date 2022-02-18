@@ -1,4 +1,5 @@
 import React, { FormEvent, useContext, useState } from "react";
+import { Button } from "../..";
 import { AppContext } from "../../../store/AppContext";
 import { StyledChatFooter } from "./ChatFooter.styles";
 
@@ -9,7 +10,10 @@ function ChatFooter() {
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
     setReplies((prevState) => [...prevState, value]);
+    setValue("");
   };
+
+  const disabled = !needsInputIndexes.includes(currentStep);
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
@@ -19,11 +23,12 @@ function ChatFooter() {
         id="chat-footer"
         placeholder="type your answer here"
         value={value}
+        disabled={disabled}
         onChange={(event) => setValue(event.target.value)}
       />
-      <button type="submit" disabled={!needsInputIndexes.includes(currentStep)}>
+      <Button type="submit" disabled={disabled}>
         Submit
-      </button>
+      </Button>
     </StyledChatFooter>
   );
 }
