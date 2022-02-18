@@ -17,12 +17,26 @@ function App() {
       .get("openWidget")
       ?.toLowerCase() === "true";
   const [showChat, setShowChat] = useState(openWidget);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [replies, setReplies] = useState<string[]>([]);
+  const [needsInputIndexes, setNeedsInputIndexes] = useState<number[]>([]);
 
   return (
     <StyledApplication>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
-        <AppContext.Provider value={{ showChat, setShowChat }}>
+        <AppContext.Provider
+          value={{
+            showChat,
+            setShowChat,
+            currentStep,
+            setCurrentStep,
+            replies,
+            setReplies,
+            needsInputIndexes,
+            setNeedsInputIndexes,
+          }}
+        >
           <FAB />
           <ChatWindow />
         </AppContext.Provider>

@@ -24,6 +24,11 @@
       "answers": []
     },
     {
+      "id": 90,
+      "text": "U kunt aangiftebrief inkomstenbelasting 2021 voor uw eigen administratie hier opslaan en afdrukken?",
+      "answers": "input"
+    },
+    {
       "id": 2,
       "text": "To kick off, can you tell us: how many years of experience do you have in patient care?",
       "answers": [
@@ -58,6 +63,11 @@
           "text": "4+ years"
         }
       ]
+    },
+    {
+      "id": 99,
+      "text": "The community is here to help you with specific coding, algorithm, or language problems?",
+      "answers": "input"
     }
   ]
 }
