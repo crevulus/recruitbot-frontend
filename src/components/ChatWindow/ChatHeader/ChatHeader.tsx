@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+
 import { AppContext } from "../../../data/AppContext";
+import isEmpty from "../../../utils/isEmpty";
 
 import { CrossIcon } from "../../Icons";
 
@@ -9,7 +11,6 @@ import {
   StyledChatHeaderContainer,
   StyledCloseButton,
 } from "./ChatHeader.styles";
-import isEmpty from "../../../utils/isEmpty";
 
 function ChatHeader() {
   const { showChat, setShowChat, fetchResults } = useContext(AppContext);

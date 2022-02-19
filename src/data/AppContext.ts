@@ -10,6 +10,8 @@ type AppContextType = {
   setCurrentStep: Dispatch<SetStateAction<number>>;
   replies: string[];
   setReplies: Dispatch<SetStateAction<string[]>>;
+  payload: { [key: string]: unknown };
+  setPayload: Dispatch<SetStateAction<{ [key: string]: unknown }>>;
   needsInputIndexes: number[];
   setNeedsInputIndexes: Dispatch<SetStateAction<number[]>>;
   fetchResults: FetchResultsType;

@@ -1,18 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import Perks from "../../Perks/Perks";
-
-import { Message } from "../../";
 
 import { AppContext } from "../../../data/AppContext";
 import { ConversationType } from "../../../data/types";
 import isEmpty from "../../../utils/isEmpty";
 
-import { StyledChatBody } from "./ChatBody.styles";
+import { Perks } from "../../";
+import { Message } from "../../";
 
-export enum SENDERS {
-  Chatbot = "chatbot",
-  User = "user",
-}
+import { StyledChatBody } from "./ChatBody.styles";
 
 function ChatBody() {
   const { setNeedsInputIndexes, setCurrentStep, showChat, fetchResults } =
@@ -73,7 +68,6 @@ function ChatBody() {
                 showNext={renderNextMessage}
                 message={item}
                 index={index}
-                sender={SENDERS.Chatbot}
               />
             )
           );

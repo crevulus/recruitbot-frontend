@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "parcel:build": "parcel build src/index.tsx --no-source-maps --dist-dir docs",
-    "generate": "plop"
+    "generate": "plop",
+    "mockserver": "json-server --watch mockConversationData.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +48,7 @@
   "devDependencies": {
     "@parcel/transformer-svg-react": "^2.2.1",
     "@types/styled-components": "^5.1.21",
+    "json-server": "^0.17.0",
     "parcel": "^2.2.1",
     "plop": "^3.0.5"
   }

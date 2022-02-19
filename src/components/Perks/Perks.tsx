@@ -1,4 +1,5 @@
 import React from "react";
+
 import { PerksType } from "../../data/types";
 
 import { StyledPerk, StyledPerksContainer } from "./Perks.styles";

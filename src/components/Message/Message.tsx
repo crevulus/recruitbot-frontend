@@ -1,6 +1,11 @@
-import React, { useEffect, useState, MouseEvent, useContext } from "react";
-import { Button } from "..";
+import React, { useEffect, useState, useContext } from "react";
+
 import { AppContext } from "../../data/AppContext";
+import { AnswersType } from "../../data/types";
+import isEmpty from "../../utils/isEmpty";
+
+import { Button } from "..";
+
 import {
   StyledButtonsContainer,
   StyledChatbotMessage,
@@ -12,11 +17,16 @@ export enum ANSWERS_TYPE {
   FreeForm = "input",
 }
 
-function Message({ showNext, message, index, sender }: any) {
-  const { needsInputIndexes, replies, setIsLoadingMessage } =
-    useContext(AppContext);
+function Message({ showNext, message, index }: any) {
+  const {
+    needsInputIndexes,
+    replies,
+    setIsLoadingMessage,
+    setPayload,
+    payload,
+  } = useContext(AppContext);
   const [showMessage, setShowMessage] = useState(false);
-  const [answer, setAnswer] = useState("");
+  const [answer, setAnswer] = useState<AnswersType>({} as AnswersType);
 
   const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
@@ -42,10 +52,14 @@ function Message({ showNext, message, index, sender }: any) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [replies]);
 
-  const handleNext = (event?: MouseEvent) => {
+  const handleNext = (answer?: AnswersType) => {
     showNext(index);
-    if (event) {
-      setAnswer((event.target as HTMLButtonElement).value);
+    if (answer) {
+      setAnswer(answer);
+      setPayload({
+        ...payload,
+        [message.key]: answer.key,
+      });
     }
   };
 
@@ -55,23 +69,20 @@ function Message({ showNext, message, index, sender }: any) {
 
   return (
     <StyledMessgeContainer>
-      <StyledChatbotMessage onClick={handleNext}>
-        {message.text}
-      </StyledChatbotMessage>
-      {isMultipleChoice && !answer && (
+      <StyledChatbotMessage>{message.text}</StyledChatbotMessage>
+      {isMultipleChoice && isEmpty(answer) && (
         <StyledButtonsContainer>
           {message.answers.map((answer: any) => (
             <Button
               key={`button-${answer.id}`}
-              onClick={handleNext}
-              value={answer.text}
+              onClick={() => handleNext(answer)}
             >
               {answer.text}
             </Button>
           ))}
         </StyledButtonsContainer>
       )}
-      {answer && <StyledUserMessage>{answer}</StyledUserMessage>}
+      {!isEmpty(answer) && <StyledUserMessage>{answer.text}</StyledUserMessage>}
       {replies[inputIndex] && (
         <StyledUserMessage>{replies[inputIndex]}</StyledUserMessage>
       )}
