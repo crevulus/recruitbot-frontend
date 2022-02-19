@@ -3,22 +3,11 @@ import Perks from "../../Perks/Perks";
 
 import { Message } from "../../";
 
-import mockConversationData from "../../../mockConversationData.json";
-import { AppContext } from "../../../store/AppContext";
-
-import { StyledChatBody } from "./ChatBody.styles";
+import { AppContext } from "../../../data/AppContext";
+import { ConversationType } from "../../../data/types";
 import isEmpty from "../../../utils/isEmpty";
 
-type AnswersType = {
-  id: number;
-  text: string;
-};
-
-type MessageType = {
-  id: number;
-  text: string;
-  answers: AnswersType[] | string;
-};
+import { StyledChatBody } from "./ChatBody.styles";
 
 export enum SENDERS {
   Chatbot = "chatbot",
@@ -26,18 +15,23 @@ export enum SENDERS {
 }
 
 function ChatBody() {
-  const { setNeedsInputIndexes, setCurrentStep, showChat } =
+  const { setNeedsInputIndexes, setCurrentStep, showChat, fetchResults } =
     useContext(AppContext);
   const [showMessages, setShowMessages] = useState<{ [key: string]: boolean }>(
     {}
   );
 
+  const { data, isLoading, error, errorMsg } = fetchResults;
+
   useEffect(() => {
+    if (isEmpty(data)) {
+      return;
+    }
     // check if chat is open and if showMessages has already been calc'd; if not, run the operation
     if (showChat && isEmpty(showMessages)) {
       const needsInput: number[] = [];
       // iterate over conversation; reduce to object; set to true if msg0, else false.
-      const messageVisibilityTree = mockConversationData.conversation.reduce(
+      const messageVisibilityTree = data.conversation.reduce(
         (acc, item, index) => {
           if (typeof item.answers === "string") {
             needsInput.push(index);
@@ -51,7 +45,7 @@ function ChatBody() {
       setShowMessages(messageVisibilityTree);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showChat]);
+  }, [showChat, data]);
 
   const renderNextMessage = (index: number) => {
     const next = index + 1;
@@ -59,22 +53,31 @@ function ChatBody() {
     setCurrentStep(next);
   };
 
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>{errorMsg}</h1>;
+  }
+
   return (
     <StyledChatBody>
-      <Perks />
-      {mockConversationData.conversation.map((item: MessageType, index) => {
-        return (
-          showMessages[`msg${index}`] && (
-            <Message
-              key={`message-${item.id}`}
-              showNext={renderNextMessage}
-              message={item}
-              index={index}
-              sender={SENDERS.Chatbot}
-            />
-          )
-        );
-      })}
+      {!isEmpty(fetchResults) && <Perks perks={data.perks} />}
+      {!isEmpty(data) &&
+        data.conversation.map((item: ConversationType, index) => {
+          return (
+            showMessages[`msg${index}`] && (
+              <Message
+                key={`message-${item.id}`}
+                showNext={renderNextMessage}
+                message={item}
+                index={index}
+                sender={SENDERS.Chatbot}
+              />
+            )
+          );
+        })}
     </StyledChatBody>
   );
 }

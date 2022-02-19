@@ -1,6 +1,6 @@
 import React, { useEffect, useState, MouseEvent, useContext } from "react";
 import { Button } from "..";
-import { AppContext } from "../../store/AppContext";
+import { AppContext } from "../../data/AppContext";
 import {
   StyledButtonsContainer,
   StyledChatbotMessage,

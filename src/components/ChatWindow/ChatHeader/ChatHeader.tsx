@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../../store/AppContext";
+import { AppContext } from "../../../data/AppContext";
 
 import { CrossIcon } from "../../Icons";
 
@@ -9,14 +9,15 @@ import {
   StyledChatHeaderContainer,
   StyledCloseButton,
 } from "./ChatHeader.styles";
-
-import mockConversationData from "../../../mockConversationData.json";
+import isEmpty from "../../../utils/isEmpty";
 
 function ChatHeader() {
-  const { showChat, setShowChat } = useContext(AppContext);
+  const { showChat, setShowChat, fetchResults } = useContext(AppContext);
   return (
     <StyledChatHeaderContainer>
-      <StyledChatHeader>{mockConversationData.cta}</StyledChatHeader>
+      {!isEmpty(fetchResults) && (
+        <StyledChatHeader>{fetchResults.data.cta}</StyledChatHeader>
+      )}
       <StyledCloseButton
         onClick={() => setShowChat(!showChat)}
         aria-label="close recruitbot"

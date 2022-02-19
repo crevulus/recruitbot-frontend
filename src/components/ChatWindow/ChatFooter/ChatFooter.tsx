@@ -1,6 +1,6 @@
 import React, { FormEvent, useContext, useState } from "react";
 import { Button } from "../..";
-import { AppContext } from "../../../store/AppContext";
+import { AppContext } from "../../../data/AppContext";
 import { StyledChatFooter, StyledInput } from "./ChatFooter.styles";
 
 function ChatFooter() {

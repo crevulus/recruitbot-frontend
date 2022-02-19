@@ -1,4 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react";
+import { FetchResultsType } from "./types";
 
 type AppContextType = {
   showChat: boolean;
@@ -11,6 +12,8 @@ type AppContextType = {
   setReplies: Dispatch<SetStateAction<string[]>>;
   needsInputIndexes: number[];
   setNeedsInputIndexes: Dispatch<SetStateAction<number[]>>;
+  fetchResults: FetchResultsType;
+  setFetchResults: Dispatch<SetStateAction<FetchResultsType>>;
 };
 
 export const AppContext = createContext({} as AppContextType);
