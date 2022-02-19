@@ -1,10 +1,11 @@
 import React, { FormEvent, useContext, useState } from "react";
 import { Button } from "../..";
 import { AppContext } from "../../../store/AppContext";
-import { StyledChatFooter } from "./ChatFooter.styles";
+import { StyledChatFooter, StyledInput } from "./ChatFooter.styles";
 
 function ChatFooter() {
-  const { setReplies, currentStep, needsInputIndexes } = useContext(AppContext);
+  const { setReplies, currentStep, needsInputIndexes, isLoadingMessage } =
+    useContext(AppContext);
   const [value, setValue] = useState("");
 
   const submitAnswer = (event: FormEvent) => {
@@ -13,11 +14,11 @@ function ChatFooter() {
     setValue("");
   };
 
-  const disabled = !needsInputIndexes.includes(currentStep);
+  const disabled = isLoadingMessage || !needsInputIndexes.includes(currentStep);
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
-      <input
+      <StyledInput
         type="text"
         name="chatFooter"
         id="chat-footer"

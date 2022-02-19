@@ -7,6 +7,7 @@ import mockConversationData from "../../../mockConversationData.json";
 import { AppContext } from "../../../store/AppContext";
 
 import { StyledChatBody } from "./ChatBody.styles";
+import isEmpty from "../../../utils/isEmpty";
 
 type AnswersType = {
   id: number;
@@ -25,28 +26,32 @@ export enum SENDERS {
 }
 
 function ChatBody() {
-  const { setNeedsInputIndexes, setCurrentStep } = useContext(AppContext);
+  const { setNeedsInputIndexes, setCurrentStep, showChat } =
+    useContext(AppContext);
   const [showMessages, setShowMessages] = useState<{ [key: string]: boolean }>(
     {}
   );
 
   useEffect(() => {
-    const needsInput: number[] = [];
-    // iterate over conversation; reduce to object; set to true if msg0, else false.
-    const messageVisibilityArray = mockConversationData.conversation.reduce(
-      (acc, item, index) => {
-        if (typeof item.answers === "string") {
-          needsInput.push(index);
-        }
-        const key = `msg${index}`;
-        return { ...acc, [key]: index ? false : true };
-      },
-      {}
-    );
-    setNeedsInputIndexes(needsInput);
-    setShowMessages(messageVisibilityArray);
+    // check if chat is open and if showMessages has already been calc'd; if not, run the operation
+    if (showChat && isEmpty(showMessages)) {
+      const needsInput: number[] = [];
+      // iterate over conversation; reduce to object; set to true if msg0, else false.
+      const messageVisibilityTree = mockConversationData.conversation.reduce(
+        (acc, item, index) => {
+          if (typeof item.answers === "string") {
+            needsInput.push(index);
+          }
+          const key = `msg${index}`;
+          return { ...acc, [key]: index ? false : true };
+        },
+        {}
+      );
+      setNeedsInputIndexes(needsInput);
+      setShowMessages(messageVisibilityTree);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [showChat]);
 
   const renderNextMessage = (index: number) => {
     const next = index + 1;

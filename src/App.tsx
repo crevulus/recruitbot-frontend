@@ -8,7 +8,7 @@ import { FAB, ChatWindow } from "./components";
 import {
   theme,
   StyledApplication,
-  GlobalStyles,
+  // GlobalStyles,
 } from "./styles/styledComponentUtilities";
 
 function App() {
@@ -16,19 +16,23 @@ function App() {
     new URLSearchParams(window.location.search)
       .get("openWidget")
       ?.toLowerCase() === "true";
+
   const [showChat, setShowChat] = useState(openWidget);
+  const [isLoadingMessage, setIsLoadingMessage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [replies, setReplies] = useState<string[]>([]);
   const [needsInputIndexes, setNeedsInputIndexes] = useState<number[]>([]);
 
   return (
     <StyledApplication>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
       <ThemeProvider theme={theme}>
         <AppContext.Provider
           value={{
             showChat,
             setShowChat,
+            isLoadingMessage,
+            setIsLoadingMessage,
             currentStep,
             setCurrentStep,
             replies,

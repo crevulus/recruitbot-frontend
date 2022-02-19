@@ -1,7 +1,7 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 import Message from "./Message";
-import { customRender } from "../../test-utils";
+import { customRender } from "../../utils/test-utils";
 
 const mockMessage = {
   text: "this is a message",

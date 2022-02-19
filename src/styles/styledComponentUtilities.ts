@@ -13,12 +13,6 @@ export const theme = {
   lightShadow: "1px 1px 4px #777",
 };
 
-export const GlobalStyles = createGlobalStyle`
-  .recruitbot-widget {
-    ${cleanSlateRules}
-  }
-`;
-
 // can't use createGlobalStyle to protect client sites
 export const StyledApplication = styled.main`
   margin: 0 !important;

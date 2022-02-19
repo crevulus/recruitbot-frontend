@@ -22,3 +22,9 @@ export const StyledUserMessage = styled(StyledMessage)`
   align-self: flex-end !important;
   background: ${(props) => props.theme.darkGrey} !important;
 `;
+
+export const StyledButtonsContainer = styled.div`
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+`;

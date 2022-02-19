@@ -3,6 +3,8 @@ import { createContext, Dispatch, SetStateAction } from "react";
 type AppContextType = {
   showChat: boolean;
   setShowChat: Dispatch<SetStateAction<boolean>>;
+  isLoadingMessage: boolean;
+  setIsLoadingMessage: Dispatch<SetStateAction<boolean>>;
   currentStep: number;
   setCurrentStep: Dispatch<SetStateAction<number>>;
   replies: string[];

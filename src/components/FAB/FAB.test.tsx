@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { customRender } from "../../test-utils";
+import { customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
 
 afterEach(() => {

@@ -2,6 +2,7 @@ import React, { useEffect, useState, MouseEvent, useContext } from "react";
 import { Button } from "..";
 import { AppContext } from "../../store/AppContext";
 import {
+  StyledButtonsContainer,
   StyledChatbotMessage,
   StyledMessgeContainer,
   StyledUserMessage,
@@ -12,7 +13,8 @@ export enum ANSWERS_TYPE {
 }
 
 function Message({ showNext, message, index, sender }: any) {
-  const { needsInputIndexes, replies } = useContext(AppContext);
+  const { needsInputIndexes, replies, setIsLoadingMessage } =
+    useContext(AppContext);
   const [showMessage, setShowMessage] = useState(false);
   const [answer, setAnswer] = useState("");
 
@@ -23,7 +25,9 @@ function Message({ showNext, message, index, sender }: any) {
   const inputIndex = needsInputIndexes.indexOf(index);
 
   useEffect(() => {
+    setIsLoadingMessage(true);
     const CTATimer = setTimeout(() => {
+      setIsLoadingMessage(false);
       setShowMessage(true);
       if (isFreeForm && !replies[inputIndex]) {
         return;
@@ -54,17 +58,19 @@ function Message({ showNext, message, index, sender }: any) {
       <StyledChatbotMessage onClick={handleNext}>
         {message.text}
       </StyledChatbotMessage>
-      {isMultipleChoice &&
-        !answer &&
-        message.answers.map((answer: any) => (
-          <Button
-            key={`button-${answer.id}`}
-            onClick={handleNext}
-            value={answer.text}
-          >
-            {answer.text}
-          </Button>
-        ))}
+      {isMultipleChoice && !answer && (
+        <StyledButtonsContainer>
+          {message.answers.map((answer: any) => (
+            <Button
+              key={`button-${answer.id}`}
+              onClick={handleNext}
+              value={answer.text}
+            >
+              {answer.text}
+            </Button>
+          ))}
+        </StyledButtonsContainer>
+      )}
       {answer && <StyledUserMessage>{answer}</StyledUserMessage>}
       {replies[inputIndex] && (
         <StyledUserMessage>{replies[inputIndex]}</StyledUserMessage>

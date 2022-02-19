@@ -1,6 +1,6 @@
 import React from "react";
 import { screen } from "@testing-library/react";
-import { customRender } from "../../test-utils";
+import { customRender } from "../../utils/test-utils";
 import Button from "./Button";
 import { CrossIcon } from "../Icons";
 
