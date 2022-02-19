@@ -42,7 +42,6 @@ export default function FAB() {
       {!isEmpty(fetchResults) && (
         <StyledFABMessageWrapper
           $visible={showMessage}
-          aria-label="Open Recruitbot"
           data-testid="fab-message-wrapper"
         >
           <StyledFABMessageContents>
@@ -52,7 +51,7 @@ export default function FAB() {
           </StyledFABMessageContents>
         </StyledFABMessageWrapper>
       )}
-      <StyledFABButton onClick={handleClickFAB}>
+      <StyledFABButton aria-label="Open Recruitbot" onClick={handleClickFAB}>
         <StyledIconWrapper>
           <BriefcaseIcon />
         </StyledIconWrapper>

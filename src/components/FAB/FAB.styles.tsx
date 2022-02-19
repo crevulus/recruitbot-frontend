@@ -27,7 +27,7 @@ export const StyledFABButton = styled.button`
   border: none !important;
   border-radius: 50% !important;
   box-shadow: ${(props) => props.theme.lightShadow} !important;
-  background: ${(props) => props.theme.primary} !important;
+  background: papayawhip !important;
   transition: background 0.25s !important;
 
   figure {

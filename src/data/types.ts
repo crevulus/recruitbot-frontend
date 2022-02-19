@@ -1,7 +1,7 @@
 export type PerksType = {
   id: number;
   text: string;
-  emoji: string;
+  emoji?: string;
 };
 
 export type AnswersType = {
