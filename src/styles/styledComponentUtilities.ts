@@ -1,11 +1,13 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { cleanSlateRules } from "./cleanslate";
+import { zIndex } from "./zIndex";
 
 export const theme = {
   primary: "#31c04d",
   secondary: "#304857",
   white: "#fff",
   grey: "#EBEBEB",
+  darkGrey: "#A1A1A1",
 
   fontRegular: "16px",
 
@@ -20,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
 
 // can't use createGlobalStyle to protect client sites
 export const StyledApplication = styled.main`
+  z-index: ${zIndex("default")} !important;
   margin: 0 !important;
   padding: 0 !important;
   font-family: Open-Sans, Helvetica, Sans-Serif !important;
