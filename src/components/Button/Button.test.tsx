@@ -9,7 +9,8 @@ describe("Button", () => {
     customRender(
       <Button>
         <p>Test</p>
-      </Button>
+      </Button>,
+      {}
     );
     const span = screen.getByText(/test/i);
     expect(span).toBeInTheDocument();
@@ -20,7 +21,8 @@ describe("Button", () => {
     customRender(
       <Button>
         <CrossIcon />
-      </Button>
+      </Button>,
+      {}
     );
     const icon = screen.getByTitle(/close/i);
     expect(icon).toBeInTheDocument();

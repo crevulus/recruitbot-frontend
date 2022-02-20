@@ -5,7 +5,7 @@ import ChatFooter from "./ChatFooter";
 
 describe("ChatFooter: Starting state", () => {
   it("should show basic elements", () => {
-    customRender(<ChatFooter />, { contextProps: baseMockContext });
+    customRender(<ChatFooter />, {});
     const input = screen.getByRole("textbox");
     expect(input).toBeInTheDocument();
     const submit = screen.getByRole("button", {

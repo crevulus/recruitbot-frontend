@@ -24,7 +24,7 @@ export const baseMockContext = {
 
 export const customRender = (
   ui: any,
-  { contextProps, ...renderOptions }: any
+  { contextProps = baseMockContext, ...renderOptions }: any
 ) => {
   return render(
     <ThemeProvider theme={theme}>
