@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import App from "../../App";
+import { baseMockContext, customRender } from "../../utils/test-utils";
 
 describe("main chat window logic", () => {
   it("should load elements", () => {
-    render(<App />);
+    customRender(<App />, { contextProps: baseMockContext });
     const chatCloseButton = screen.getByRole("button", {
       name: /close recruitbot/i,
     });
@@ -16,7 +17,7 @@ describe("main chat window logic", () => {
         search: "",
       },
     });
-    render(<App />);
+    customRender(<App />, { contextProps: baseMockContext });
     const chatWindow = screen.getByTestId("chat-window");
     expect(chatWindow).toHaveStyle("max-height: 0px");
   });

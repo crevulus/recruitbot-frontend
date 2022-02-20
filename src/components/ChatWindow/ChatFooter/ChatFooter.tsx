@@ -5,7 +5,14 @@ import useFetch, { FetchTypes } from "../../../hooks/useFetch";
 
 import { Button } from "../..";
 
-import { StyledChatFooter, StyledInput } from "./ChatFooter.styles";
+import {
+  StyledChatFooter,
+  StyledInput,
+  StyledInputWrapper,
+  StyledLogoWrapper,
+  StyledLogo,
+} from "./ChatFooter.styles";
+import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
 
 function ChatFooter() {
   const {
@@ -52,16 +59,27 @@ function ChatFooter() {
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
-      <StyledInput
-        required
-        type="text"
-        name="chatFooter"
-        id="chat-footer"
-        placeholder="type your answer here"
-        value={value}
-        disabled={disabled}
-        onChange={(event) => setValue(event.target.value)}
-      />
+      <StyledInputWrapper>
+        <StyledInput
+          required
+          type="text"
+          name="chatFooter"
+          id="chat-footer"
+          placeholder={disabled ? "" : "Type your answer here"}
+          value={value}
+          disabled={disabled}
+          onChange={(event) => setValue(event.target.value)}
+        />
+        <a
+          href="https://recruitbot.framer.website"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <StyledLogoWrapper>
+            <StyledLogo src={RecruitbotLogoPng} alt="Recruitbot" />
+          </StyledLogoWrapper>
+        </a>
+      </StyledInputWrapper>
       <Button type="submit" disabled={disabled}>
         Submit
       </Button>

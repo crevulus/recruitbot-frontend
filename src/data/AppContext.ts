@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 import { FetchResultsType } from "./types";
 
-type AppContextType = {
+export type AppContextType = {
   showChat: boolean;
   setShowChat: Dispatch<SetStateAction<boolean>>;
   isLoadingMessage: boolean;

@@ -1,7 +1,7 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 import Message from "./Message";
-import { customRender } from "../../utils/test-utils";
+import { baseMockContext, customRender } from "../../utils/test-utils";
 
 const mockMessage = {
   text: "this is a message",
@@ -15,7 +15,9 @@ afterEach(() => {
 
 describe("Message", () => {
   it("should display the loader", () => {
-    customRender(<Message message={mockMessage} />);
+    customRender(<Message message={mockMessage} />, {
+      contextProps: baseMockContext,
+    });
     const message = screen.getByText(/loading.../i);
     expect(message).toBeInTheDocument();
   });
@@ -23,7 +25,9 @@ describe("Message", () => {
   it("should call setTimeout after 1500 ms", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setTimeout");
-    customRender(<Message message={mockMessage} />);
+    customRender(<Message message={mockMessage} />, {
+      contextProps: baseMockContext,
+    });
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1500);
   });
 
