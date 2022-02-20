@@ -8,9 +8,7 @@ describe("ChatFooter: Starting state", () => {
     customRender(<ChatFooter />, {});
     const input = screen.getByRole("textbox");
     expect(input).toBeInTheDocument();
-    const submit = screen.getByRole("button", {
-      name: /submit/i,
-    });
+    const submit = screen.getByLabelText(/submit/i);
     expect(submit).toBeInTheDocument();
     const img = screen.getByRole("img", {
       name: /recruitbot/i,
@@ -27,9 +25,7 @@ describe("ChatFooter: Starting state", () => {
     customRender(<ChatFooter />, { contextProps: amendedMockContext });
     const input = screen.getByRole("textbox");
     expect(input).toBeDisabled();
-    const submit = screen.getByRole("button", {
-      name: /submit/i,
-    });
+    const submit = screen.getByLabelText(/submit/i);
     expect(submit).toBeDisabled();
   });
 
@@ -43,9 +39,7 @@ describe("ChatFooter: Starting state", () => {
     customRender(<ChatFooter />, { contextProps: amendedMockContext });
     const input = screen.getByRole("textbox");
     expect(input).toBeDisabled();
-    const submit = screen.getByRole("button", {
-      name: /submit/i,
-    });
+    const submit = screen.getByLabelText(/submit/i);
     expect(submit).toBeDisabled();
   });
 });
@@ -82,9 +76,7 @@ describe("Chat Footer: Events", () => {
     expect(input).not.toBeDisabled();
     fireEvent.change(input, { target: { value: "hello" } });
     expect(input.value).toBe("hello");
-    const submit = screen.getByRole("button", {
-      name: /submit/i,
-    });
+    const submit = screen.getByLabelText(/submit/i);
     fireEvent.click(submit);
     expect(input.value).toBe("");
   });

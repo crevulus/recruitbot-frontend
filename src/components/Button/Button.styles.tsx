@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
+  border: none !important;
   box-shadow: ${(props) => props.theme.lightShadow} !important;
   background: ${(props) => props.theme.white} !important;
   color: ${(props) => props.theme.primary} !important;
@@ -25,9 +26,11 @@ export const StyledButton = styled.button`
     background: ${(props) => props.theme.white} !important;
   }
 
-  &:disabled {
-    background: grey !important;
-    color: darkgrey !important;
+  &:disabled,
+  &:disabled * {
+    background: ${(props) => props.theme.grey} !important;
+    color: ${(props) => props.theme.darkGrey} !important;
+    box-shadow: none !important;
     &:hover {
       cursor: not-allowed !important;
     }

@@ -3,16 +3,17 @@ import React, { FormEvent, useContext, useState } from "react";
 import { AppContext } from "../../../data/AppContext";
 import useFetch, { FetchTypes } from "../../../hooks/useFetch";
 
-import { Button } from "../..";
+import { SendIcon } from "../../Icons";
+import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
 
 import {
   StyledChatFooter,
   StyledInput,
-  StyledInputWrapper,
+  StyledButtonsContainer,
+  StyledButton,
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
-import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
 
 function ChatFooter() {
   const {
@@ -59,17 +60,20 @@ function ChatFooter() {
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
-      <StyledInputWrapper>
-        <StyledInput
-          required
-          type="text"
-          name="chatFooter"
-          id="chat-footer"
-          placeholder={disabled ? "" : "Type your answer here"}
-          value={value}
-          disabled={disabled}
-          onChange={(event) => setValue(event.target.value)}
-        />
+      <StyledInput
+        required
+        type="text"
+        name="chatFooter"
+        id="chat-footer"
+        placeholder={disabled ? "" : "Type your answer here"}
+        value={value}
+        disabled={disabled}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <StyledButtonsContainer>
+        <StyledButton type="submit" disabled={disabled} aria-label="Submit">
+          <SendIcon />
+        </StyledButton>
         <a
           href="https://recruitbot.framer.website"
           target="_blank"
@@ -79,10 +83,7 @@ function ChatFooter() {
             <StyledLogo src={RecruitbotLogoPng} alt="Recruitbot" />
           </StyledLogoWrapper>
         </a>
-      </StyledInputWrapper>
-      <Button type="submit" disabled={disabled}>
-        Submit
-      </Button>
+      </StyledButtonsContainer>
     </StyledChatFooter>
   );
 }
