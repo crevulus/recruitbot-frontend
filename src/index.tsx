@@ -9,7 +9,7 @@ const widgetDivs = document.querySelectorAll(".recruitbot-widget");
 widgetDivs.forEach((div) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <App domElement={div} />
     </React.StrictMode>,
     div
   );
