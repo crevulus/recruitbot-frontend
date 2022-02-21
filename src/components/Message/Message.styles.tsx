@@ -10,7 +10,7 @@ export const StyledMessgeContainer = styled.div`
 const StyledMessage = styled.p`
   display: inline-block !important;
   border-radius: 20px !important;
-  padding: 5px 15px !important;
+  padding: 10px 15px !important;
   box-shadow: ${(props) => props.theme.lightShadow} !important;
   color: ${(props) => props.theme.white} !important;
 `;
