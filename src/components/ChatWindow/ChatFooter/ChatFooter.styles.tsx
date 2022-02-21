@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Button } from "../..";
 import { lighten } from "polished";
+import Button from "../../extendable/Button";
 
 export const StyledChatFooter = styled.form`
   display: grid !important;
@@ -30,18 +30,20 @@ export const StyledButton = styled(Button)`
   padding: 0 !important;
   width: 50px !important;
   height: 50px !important;
+  border: 2px solid ${(props) => props.theme.primary} !important;
   border-radius: 50% !important;
-  background: ${(props) => props.theme.primary} !important;
-  color: ${(props) => props.theme.white} !important;
+  background: ${(props) => props.theme.white} !important;
   transition: all 0.25s ease !important;
 
   &:hover,
   &:focus {
     background: ${(props) => lighten(0.1, props.theme.primary)} !important;
+    border: 2px solid ${(props) => lighten(0.1, props.theme.primary)} !important;
+    transform: scale(1.1) !important;
 
     svg {
       path {
-        transform: translate(-5%, -5%) scale(1.1) !important;
+        fill: ${(props) => props.theme.white} !important;
       }
     }
   }
@@ -51,14 +53,18 @@ export const StyledButton = styled(Button)`
     height: 16px !important;
 
     path {
-      fill: ${(props) => props.theme.white} !important;
+      fill: ${(props) => props.theme.primary} !important;
     }
   }
 
   &:disabled {
+    border: none !important;
+    background: ${(props) => props.theme.grey} !important;
+
     svg {
       path {
         fill: ${(props) => props.theme.darkGrey} !important;
+        transform: none !important;
       }
     }
   }
@@ -66,16 +72,15 @@ export const StyledButton = styled(Button)`
 
 export const StyledLogoWrapper = styled.div`
   max-height: 25px !important;
-  max-width: 100px !important;
-  opacity: 0.7 !important;
-  transition: opacity 0.25s !important;
+  width: 100% !important;
+  text-align: center !important;
+  background: ${(props) => props.theme.secondary} !important;
 
   &:hover {
     cursor: pointer !important;
-    opacity: 1 !important;
   }
 `;
 
 export const StyledLogo = styled.img`
-  width: 100% !important;
+  max-width: 95% !important;
 `;
