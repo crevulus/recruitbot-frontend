@@ -49,7 +49,7 @@ describe("main chat window logic", () => {
     //         cta: "this is a trick",
     //         conversation: [
     //           {
-    //             id: 7,
+    //             id: 1,
     //             text: "Thanks for your response! We will get back to you shortly.",
     //             answers: [],
     //           },
