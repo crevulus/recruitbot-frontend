@@ -44,15 +44,18 @@ function ChatBody() {
   }, [showChat, data]);
 
   const renderNextMessage = (index: number) => {
-    if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTo({
-        top: chatBodyRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
     const next = index + 1;
     setShowMessages((prevState) => ({ ...prevState, [`msg${next}`]: true }));
     setCurrentStep(next);
+    // first setTimeout to show loader; second setTimeout to show chat message
+    setTimeout(() => {
+      if (chatBodyRef.current) {
+        chatBodyRef.current.scrollTo({
+          top: chatBodyRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
     setTimeout(() => {
       if (chatBodyRef.current) {
         chatBodyRef.current.scrollTo({
