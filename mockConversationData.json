@@ -113,14 +113,5 @@
       ]
     }
   ],
-  "submissions": [
-    {
-      "exp": "2-4yrs",
-      "lorem": "sed",
-      "ipsum": "unde",
-      "name": "Test",
-      "email": "test@test.com",
-      "id": 1
-    }
-  ]
+  "submissions": []
 }

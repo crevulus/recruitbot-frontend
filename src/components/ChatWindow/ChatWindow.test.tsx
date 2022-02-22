@@ -5,7 +5,8 @@ import { baseMockContext, customRender } from "../../utils/test-utils";
 
 describe("main chat window logic", () => {
   it("should show loading before fetchResults are made", () => {
-    customRender(<App />, {});
+    const element = document.createElement("div");
+    customRender(<App domElement={element} />, {});
     const chatWindow = screen.getByText(/the data is loading/i);
     expect(chatWindow).toBeInTheDocument();
   });
@@ -49,7 +50,7 @@ describe("main chat window logic", () => {
     //         cta: "this is a trick",
     //         conversation: [
     //           {
-    //             id: 7,
+    //             id: 1,
     //             text: "Thanks for your response! We will get back to you shortly.",
     //             answers: [],
     //           },

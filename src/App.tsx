@@ -13,13 +13,21 @@ import {
   GlobalStyles,
 } from "./styles/styledComponentUtilities";
 
-function App() {
+type AppPropsType = {
+  domElement: Element;
+};
+
+function App({ domElement }: AppPropsType) {
+  const accountNumber = domElement.getAttribute(
+    "data-recruitbot-account-number"
+  );
+
   const openWidget =
     new URLSearchParams(window.location.search)
       .get("openWidget")
       ?.toLowerCase() === "true";
   const response = useFetch({
-    url: "http://localhost:8000/accounts/1",
+    url: `http://localhost:8000/accounts/${accountNumber}`,
     type: FetchTypes.Get,
   });
 

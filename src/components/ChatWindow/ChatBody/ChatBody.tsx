@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 
 import { AppContext } from "../../../data/AppContext";
 import { ConversationType } from "../../../data/types";
@@ -15,6 +15,7 @@ function ChatBody() {
   const [showMessages, setShowMessages] = useState<{ [key: string]: boolean }>(
     {}
   );
+  const chatBodyRef = useRef<HTMLDivElement>(null);
 
   const { data, isLoading, error, errorMsg } = fetchResults;
 
@@ -46,6 +47,23 @@ function ChatBody() {
     const next = index + 1;
     setShowMessages((prevState) => ({ ...prevState, [`msg${next}`]: true }));
     setCurrentStep(next);
+    // first setTimeout to show loader; second setTimeout to show chat message
+    setTimeout(() => {
+      if (chatBodyRef.current) {
+        chatBodyRef.current.scrollTo({
+          top: chatBodyRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+    setTimeout(() => {
+      if (chatBodyRef.current) {
+        chatBodyRef.current.scrollTo({
+          top: chatBodyRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }, 1600);
   };
 
   if (isLoading) {
@@ -57,7 +75,8 @@ function ChatBody() {
   }
 
   return (
-    <StyledChatBody>
+    //@ts-ignore
+    <StyledChatBody ref={chatBodyRef}>
       {!isEmpty(fetchResults) && <Perks perks={data.perks} />}
       {!isEmpty(data) &&
         data.conversation.map((item: ConversationType, index) => {

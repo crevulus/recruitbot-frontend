@@ -4,13 +4,12 @@ import { AppContext } from "../../data/AppContext";
 import { AnswersType } from "../../data/types";
 import isEmpty from "../../utils/isEmpty";
 
-import { Button } from "..";
-
 import {
   StyledButtonsContainer,
   StyledChatbotMessage,
   StyledMessgeContainer,
   StyledUserMessage,
+  StyledAnswerButton,
 } from "./Message.styles";
 
 export enum ANSWERS_TYPE {
@@ -73,12 +72,12 @@ function Message({ showNext, message, index }: any) {
       {isMultipleChoice && isEmpty(answer) && (
         <StyledButtonsContainer>
           {message.answers.map((answer: any) => (
-            <Button
+            <StyledAnswerButton
               key={`button-${answer.id}`}
               onClick={() => handleNext(answer)}
             >
               {answer.text}
-            </Button>
+            </StyledAnswerButton>
           ))}
         </StyledButtonsContainer>
       )}

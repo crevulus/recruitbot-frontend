@@ -1,8 +1,8 @@
 import React from "react";
 import { screen } from "@testing-library/react";
-import { customRender } from "../../utils/test-utils";
+import { customRender } from "../../../utils/test-utils";
 import Button from "./Button";
-import { CrossIcon } from "../Icons";
+import { CrossIcon } from "../../Icons";
 
 describe("Button", () => {
   it("Button renders text children", () => {

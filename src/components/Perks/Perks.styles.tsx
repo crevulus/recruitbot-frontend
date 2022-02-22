@@ -4,6 +4,7 @@ export const StyledPerksContainer = styled.div`
   display: flex !important;
   flex-wrap: wrap !important;
   gap: 10px !important;
+  margin: 10px 0 !important;
 `;
 
 export const StyledPerk = styled.span`

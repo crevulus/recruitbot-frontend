@@ -26,6 +26,7 @@ export const StyledApplication = styled.main`
   margin: 0 !important;
   padding: 0 !important;
   font-family: Open-Sans, Helvetica, Sans-Serif !important;
+  font-size: 18px !important;
   position: fixed !important;
   bottom: 20px !important;
   right: 20px !important;

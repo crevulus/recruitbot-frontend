@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { lighten } from "polished";
 import { zIndex } from "../../styles/zIndex";
+import Button from "../extendable/Button";
 
 export const StyledFABContainer = styled.div<{ $hidden: boolean }>`
   z-index: ${zIndex("default")} !important;
@@ -15,7 +16,7 @@ export const StyledFABContainer = styled.div<{ $hidden: boolean }>`
   transition: bottom 0.25s !important;
 `;
 
-export const StyledFABButton = styled.button`
+export const StyledFABButton = styled(Button)`
   z-index: ${zIndex("default")} !important;
   display: flex !important;
   align-items: center !important;
