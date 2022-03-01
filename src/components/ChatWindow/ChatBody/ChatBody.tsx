@@ -4,10 +4,9 @@ import { AppContext } from "../../../data/AppContext";
 import { ConversationType } from "../../../data/types";
 import isEmpty from "../../../utils/isEmpty";
 
-import { Perks } from "../../";
-import { Message } from "../../";
+import { Perks, Message, LoadingSpinner } from "../../";
 
-import { StyledChatBody } from "./ChatBody.styles";
+import { StyledChatBody, StyledLoaderContainer } from "./ChatBody.styles";
 
 function ChatBody() {
   const { setNeedsInputIndexes, setCurrentStep, showChat, fetchResults } =
@@ -67,11 +66,17 @@ function ChatBody() {
   };
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <StyledChatBody>
+        <StyledLoaderContainer>
+          <LoadingSpinner variant="fetching" />
+        </StyledLoaderContainer>
+      </StyledChatBody>
+    );
   }
 
   if (error) {
-    return <h1>{errorMsg}</h1>;
+    return <StyledChatBody>{errorMsg}</StyledChatBody>;
   }
 
   return (

@@ -2,17 +2,21 @@ import { lighten } from "polished";
 import styled from "styled-components";
 import Button from "../extendable/Button";
 
-export const StyledMessgeContainer = styled.div`
+export const StyledMessageContainer = styled.div`
   display: flex !important;
   flex-direction: column !important;
 `;
 
-const StyledMessage = styled.p`
+const StyledMessage = styled.span`
   display: inline-block !important;
   border-radius: 20px !important;
   padding: 10px 15px !important;
   box-shadow: ${(props) => props.theme.lightShadow} !important;
   color: ${(props) => props.theme.white} !important;
+`;
+
+export const StyledLoaderContainer = styled(StyledMessage)`
+  background: ${(props) => props.theme.primary} !important;
 `;
 
 export const StyledChatbotMessage = styled(StyledMessage)`

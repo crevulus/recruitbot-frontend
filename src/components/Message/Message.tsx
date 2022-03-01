@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { LoadingSpinner } from "..";
 
 import { AppContext } from "../../data/AppContext";
 import { AnswersType } from "../../data/types";
@@ -7,9 +8,10 @@ import isEmpty from "../../utils/isEmpty";
 import {
   StyledButtonsContainer,
   StyledChatbotMessage,
-  StyledMessgeContainer,
+  StyledMessageContainer,
   StyledUserMessage,
   StyledAnswerButton,
+  StyledLoaderContainer,
 } from "./Message.styles";
 
 export enum ANSWERS_TYPE {
@@ -63,11 +65,15 @@ function Message({ showNext, message, index }: any) {
   };
 
   if (!showMessage) {
-    return <p>Loading...</p>;
+    return (
+      <StyledLoaderContainer>
+        <LoadingSpinner variant="message" />
+      </StyledLoaderContainer>
+    );
   }
 
   return (
-    <StyledMessgeContainer>
+    <StyledMessageContainer>
       <StyledChatbotMessage>{message.text}</StyledChatbotMessage>
       {isMultipleChoice && isEmpty(answer) && (
         <StyledButtonsContainer>
@@ -85,7 +91,7 @@ function Message({ showNext, message, index }: any) {
       {replies[inputIndex] && (
         <StyledUserMessage>{replies[inputIndex]}</StyledUserMessage>
       )}
-    </StyledMessgeContainer>
+    </StyledMessageContainer>
   );
 }
 
