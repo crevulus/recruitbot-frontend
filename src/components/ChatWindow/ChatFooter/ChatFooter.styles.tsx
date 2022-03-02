@@ -9,16 +9,20 @@ export const StyledChatFooter = styled.form`
 
 export const StyledInput = styled.input`
   height: 100% !important;
+  border: none !important;
+  padding: 0 10px !important;
   &:disabled {
     cursor: not-allowed !important;
   }
 `;
 
-export const StyledButtonsContainer = styled.div`
+export const StyledButtonsContainer = styled.div<{ $disabled: boolean }>`
   display: grid !important;
   grid-template-rows: 80% 20% !important;
   align-items: center !important;
   justify-content: center !important;
+  background: ${(props) =>
+    !props.$disabled && props.theme.secondary} !important;
 `;
 
 export const StyledButton = styled(Button)`

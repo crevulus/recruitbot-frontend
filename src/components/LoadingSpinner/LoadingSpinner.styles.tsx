@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { size } from "polished";
+import { LoadingSpinnerTypes } from "../../data/enums";
 
 export const StyledLoadingSpinner = styled.div<{ $variant: string }>`
   &&& {
@@ -12,9 +13,10 @@ export const StyledLoadingSpinner = styled.div<{ $variant: string }>`
     padding: 5px;
 
     div:after {
-      ${(props) => size(props.$variant === "message" ? "10px" : "20px")}
+      ${(props) =>
+        size(props.$variant === LoadingSpinnerTypes.Writing ? "10px" : "20px")}
       background: ${(props) =>
-        props.$variant === "message"
+        props.$variant === LoadingSpinnerTypes.Writing
           ? props.theme.white
           : props.theme.secondary};
     }

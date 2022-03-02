@@ -7,6 +7,7 @@ import isEmpty from "../../../utils/isEmpty";
 import { Perks, Message, LoadingSpinner } from "../../";
 
 import { StyledChatBody, StyledLoaderContainer } from "./ChatBody.styles";
+import { LoadingSpinnerTypes } from "../../../data/enums";
 
 function ChatBody() {
   const { setNeedsInputIndexes, setCurrentStep, showChat, fetchResults } =
@@ -69,7 +70,7 @@ function ChatBody() {
     return (
       <StyledChatBody>
         <StyledLoaderContainer>
-          <LoadingSpinner variant="fetching" />
+          <LoadingSpinner variant={LoadingSpinnerTypes.Fetching} />
         </StyledLoaderContainer>
       </StyledChatBody>
     );

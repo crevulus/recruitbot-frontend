@@ -5,7 +5,6 @@ import isEmpty from "../../../utils/isEmpty";
 
 import { CrossIcon } from "../../Icons";
 
-import { StyledIconWrapper } from "../../FAB/FAB.styles"; // TODO: Create own icon wrapper
 import {
   StyledChatHeader,
   StyledChatHeaderContainer,
@@ -23,9 +22,7 @@ function ChatHeader() {
         onClick={() => setShowChat(!showChat)}
         aria-label="close recruitbot"
       >
-        <StyledIconWrapper>
-          <CrossIcon />
-        </StyledIconWrapper>
+        <CrossIcon />
       </StyledCloseButton>
     </StyledChatHeaderContainer>
   );

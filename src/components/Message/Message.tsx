@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { LoadingSpinner } from "..";
 
 import { AppContext } from "../../data/AppContext";
+import { AnswerEntryTypes, LoadingSpinnerTypes } from "../../data/enums";
 import { AnswersType } from "../../data/types";
 import isEmpty from "../../utils/isEmpty";
 
@@ -13,10 +14,6 @@ import {
   StyledAnswerButton,
   StyledLoaderContainer,
 } from "./Message.styles";
-
-export enum ANSWERS_TYPE {
-  FreeForm = "input",
-}
 
 function Message({ showNext, message, index }: any) {
   const {
@@ -31,7 +28,7 @@ function Message({ showNext, message, index }: any) {
 
   const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
-  const isFreeForm = message.answers === ANSWERS_TYPE.FreeForm;
+  const isFreeForm = message.answers === AnswerEntryTypes.FreeForm;
 
   const inputIndex = needsInputIndexes.indexOf(index);
 
@@ -67,7 +64,7 @@ function Message({ showNext, message, index }: any) {
   if (!showMessage) {
     return (
       <StyledLoaderContainer>
-        <LoadingSpinner variant="message" />
+        <LoadingSpinner variant={LoadingSpinnerTypes.Writing} />
       </StyledLoaderContainer>
     );
   }

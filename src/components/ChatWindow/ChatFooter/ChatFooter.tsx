@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import useFetch, { FetchTypes } from "../../../hooks/useFetch";
+import useFetch from "../../../hooks/useFetch";
 
 import { SendIcon } from "../../Icons";
 import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
@@ -14,6 +14,7 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
+import { FetchTypes } from "../../../data/enums";
 
 function ChatFooter() {
   const {
@@ -70,7 +71,7 @@ function ChatFooter() {
         disabled={disabled}
         onChange={(event) => setValue(event.target.value)}
       />
-      <StyledButtonsContainer>
+      <StyledButtonsContainer $disabled={disabled}>
         <StyledButton type="submit" disabled={disabled} aria-label="Submit">
           <SendIcon />
         </StyledButton>
