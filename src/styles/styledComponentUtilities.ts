@@ -10,8 +10,10 @@ export const theme = {
   darkGrey: "#A1A1A1",
 
   fontRegular: "16px",
+  fontLarge: "20px",
 
   lightShadow: "1px 1px 4px #777",
+  lightTextShadow: "1px 1px 4px #999",
 };
 
 export const GlobalStyles = createGlobalStyle`

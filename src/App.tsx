@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { AppContext } from "./data/AppContext";
-import useFetch, { FetchTypes } from "./hooks/useFetch";
+import useFetch from "./hooks/useFetch";
 import { FetchResultsType } from "./data/types";
+import { FetchTypes } from "./data/enums";
 
 import { FAB, ChatWindow } from "./components";
 

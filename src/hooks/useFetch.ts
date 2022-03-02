@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
+import { FetchTypes } from "../data/enums";
 import { RootDataType } from "../data/types";
-
-export enum FetchTypes {
-  Post = "POST",
-  Get = "GET",
-}
 
 type FetchPropsType = {
   url: string;

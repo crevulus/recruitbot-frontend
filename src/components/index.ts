@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import LoadingSpinner from './LoadingSpinner';
 import Perks from "./Perks";
 import FAB from "./FAB";
 import Message from "./Message";
@@ -10,6 +11,7 @@ import ChatBody from "./ChatWindow/ChatBody";
 
 export {
   /* PLOP_INJECT_EXPORT */
+	LoadingSpinner,
   // Button,
   ChatBody,
   ChatFooter,

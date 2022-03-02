@@ -7,7 +7,7 @@ describe("main chat window logic", () => {
   it("should show loading before fetchResults are made", () => {
     const element = document.createElement("div");
     customRender(<App domElement={element} />, {});
-    const chatWindow = screen.getByText(/the data is loading/i);
+    const chatWindow = screen.getByTestId(/loading/i);
     expect(chatWindow).toBeInTheDocument();
   });
 

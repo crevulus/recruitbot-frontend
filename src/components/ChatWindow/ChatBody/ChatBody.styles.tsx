@@ -5,3 +5,8 @@ export const StyledChatBody = styled.div`
   background: ${(props) => props.theme.grey} !important;
   overflow: scroll !important;
 `;
+
+export const StyledLoaderContainer = styled.div`
+  height: 100% !important;
+  width: 100% !important;
+`;

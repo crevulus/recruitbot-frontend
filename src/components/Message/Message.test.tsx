@@ -18,7 +18,7 @@ afterEach(() => {
 describe("Message: Starting state", () => {
   it("should display the loader", () => {
     customRender(<Message message={mockMessage} />, {});
-    const message = screen.getByText(/loading.../i);
+    const message = screen.getByTestId(/loading/i);
     expect(message).toBeInTheDocument();
   });
 

@@ -1,20 +1,19 @@
 import React, { useEffect, useState, useContext } from "react";
+import { LoadingSpinner } from "..";
 
 import { AppContext } from "../../data/AppContext";
+import { AnswerEntryTypes, LoadingSpinnerTypes } from "../../data/enums";
 import { AnswersType } from "../../data/types";
 import isEmpty from "../../utils/isEmpty";
 
 import {
   StyledButtonsContainer,
   StyledChatbotMessage,
-  StyledMessgeContainer,
+  StyledMessageContainer,
   StyledUserMessage,
   StyledAnswerButton,
+  StyledLoaderContainer,
 } from "./Message.styles";
-
-export enum ANSWERS_TYPE {
-  FreeForm = "input",
-}
 
 function Message({ showNext, message, index }: any) {
   const {
@@ -29,7 +28,7 @@ function Message({ showNext, message, index }: any) {
 
   const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
-  const isFreeForm = message.answers === ANSWERS_TYPE.FreeForm;
+  const isFreeForm = message.answers === AnswerEntryTypes.FreeForm;
 
   const inputIndex = needsInputIndexes.indexOf(index);
 
@@ -63,11 +62,15 @@ function Message({ showNext, message, index }: any) {
   };
 
   if (!showMessage) {
-    return <p>Loading...</p>;
+    return (
+      <StyledLoaderContainer>
+        <LoadingSpinner variant={LoadingSpinnerTypes.Writing} />
+      </StyledLoaderContainer>
+    );
   }
 
   return (
-    <StyledMessgeContainer>
+    <StyledMessageContainer>
       <StyledChatbotMessage>{message.text}</StyledChatbotMessage>
       {isMultipleChoice && isEmpty(answer) && (
         <StyledButtonsContainer>
@@ -85,7 +88,7 @@ function Message({ showNext, message, index }: any) {
       {replies[inputIndex] && (
         <StyledUserMessage>{replies[inputIndex]}</StyledUserMessage>
       )}
-    </StyledMessgeContainer>
+    </StyledMessageContainer>
   );
 }
 
