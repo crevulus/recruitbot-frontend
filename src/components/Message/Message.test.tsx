@@ -17,7 +17,10 @@ afterEach(() => {
 
 describe("Message: Starting state", () => {
   it("should display the loader", () => {
-    customRender(<Message message={mockMessage} />, {});
+    customRender(
+      <Message message={mockMessage} showNext={() => jest.fn()} index={0} />,
+      {}
+    );
     const message = screen.getByTestId(/loading/i);
     expect(message).toBeInTheDocument();
   });
@@ -25,14 +28,20 @@ describe("Message: Starting state", () => {
   it("should call setTimeout after 1500 ms", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setTimeout");
-    customRender(<Message message={mockMessage} />, {});
+    customRender(
+      <Message message={mockMessage} showNext={() => jest.fn()} index={0} />,
+      {}
+    );
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1500);
   });
 
   it("should show message after setTimeout", () => {
     const mockShowNext = jest.fn();
     jest.useFakeTimers();
-    customRender(<Message message={mockMessage} showNext={mockShowNext} />, {});
+    customRender(
+      <Message message={mockMessage} showNext={mockShowNext} index={0} />,
+      {}
+    );
     act(() => {
       jest.advanceTimersByTime(1500);
     });
@@ -65,7 +74,11 @@ describe("Message: Starting state", () => {
     };
     jest.useFakeTimers();
     customRender(
-      <Message message={amendedMockMessage} showNext={mockShowNext} />,
+      <Message
+        message={amendedMockMessage}
+        showNext={mockShowNext}
+        index={0}
+      />,
       {}
     );
     act(() => {
@@ -83,7 +96,11 @@ describe("Message: Starting state", () => {
     };
     jest.useFakeTimers();
     customRender(
-      <Message message={amendedMockMessage} showNext={mockShowNext} />,
+      <Message
+        message={amendedMockMessage}
+        showNext={mockShowNext}
+        index={0}
+      />,
       {}
     );
     act(() => {
@@ -125,7 +142,11 @@ describe("Message: Events", () => {
 
   it("should trigger handleNext on answer click", () => {
     customRender(
-      <Message message={amendedMockMessage} showNext={mockShowNext} />,
+      <Message
+        message={amendedMockMessage}
+        showNext={mockShowNext}
+        index={0}
+      />,
       {}
     );
     act(() => {
@@ -138,7 +159,11 @@ describe("Message: Events", () => {
 
   it("should hide the buttons and show the reply when an answer is chosen", () => {
     customRender(
-      <Message message={amendedMockMessage} showNext={mockShowNext} />,
+      <Message
+        message={amendedMockMessage}
+        showNext={mockShowNext}
+        index={0}
+      />,
       {}
     );
     act(() => {

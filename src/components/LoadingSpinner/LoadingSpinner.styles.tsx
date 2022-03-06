@@ -36,16 +36,18 @@ const loading = keyframes`
 `;
 
 export const StyledCircle = styled.div<{ $start: number }>`
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  height: 100% !important;
+  &&& {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 
-  &:after {
-    content: "" !important;
-    opacity: 0.5 !important;
-    border-radius: 50% !important;
-    animation: ${loading} 0.8s ease-in-out infinite alternate !important;
-    animation-delay: ${(props) => props.$start}s !important;
+    &:after {
+      content: "";
+      opacity: 0.5;
+      border-radius: 50%;
+      animation: ${loading} 0.8s ease-in-out infinite alternate;
+      animation-delay: ${(props) => props.$start}s;
+    }
   }
 `;

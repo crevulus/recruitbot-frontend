@@ -3,88 +3,99 @@ import { lighten } from "polished";
 import Button from "../../extendable/Button";
 
 export const StyledChatFooter = styled.form`
-  display: grid !important;
-  grid-template-columns: 80% 20%;
+  &&& {
+    display: grid;
+    grid-template-columns: 80% 20%;
+  }
 `;
 
 export const StyledInput = styled.input`
-  height: 100% !important;
-  border: none !important;
-  padding: 0 10px !important;
-  &:disabled {
-    cursor: not-allowed !important;
+  &&& {
+    height: 100%;
+    border: none;
+    padding: 0 10px;
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 `;
 
 export const StyledButtonsContainer = styled.div<{ $disabled: boolean }>`
-  display: grid !important;
-  grid-template-rows: 80% 20% !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: ${(props) =>
-    !props.$disabled && props.theme.secondary} !important;
+  &&& {
+    display: grid;
+    grid-template-rows: 80% 20%;
+    align-items: center;
+    justify-content: center;
+    background: ${(props) => !props.$disabled && props.theme.secondary};
+  }
 `;
 
 export const StyledButton = styled(Button)`
-  justify-self: center !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 50px !important;
-  height: 50px !important;
-  border: 2px solid ${(props) => props.theme.primary} !important;
-  border-radius: 50% !important;
-  background: ${(props) => props.theme.white} !important;
-  transition: all 0.25s ease !important;
+  &&& {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    height: 50px;
+    border: 2px solid ${(props) => props.theme.primary};
+    border-radius: 50%;
+    background: ${(props) => props.theme.white};
+    transition: all 0.25s ease;
 
-  &:hover,
-  &:focus {
-    background: ${(props) => lighten(0.1, props.theme.primary)} !important;
-    border: 2px solid ${(props) => lighten(0.1, props.theme.primary)} !important;
-    transform: scale(1.1) !important;
+    &:hover,
+    &:focus {
+      background: ${(props) => lighten(0.1, props.theme.primary)};
+      border: 2px solid ${(props) => lighten(0.1, props.theme.primary)};
+      transform: scale(1.1);
 
-    svg {
-      path {
-        fill: ${(props) => props.theme.white} !important;
+      svg {
+        path {
+          fill: ${(props) => props.theme.white};
+        }
       }
     }
-  }
-
-  svg {
-    width: 16px !important;
-    height: 16px !important;
-
-    path {
-      fill: ${(props) => props.theme.primary} !important;
-    }
-  }
-
-  &:disabled {
-    border: none !important;
-    background: ${(props) => props.theme.grey} !important;
 
     svg {
+      width: 16px;
+      height: 16px;
+
       path {
-        fill: ${(props) => props.theme.darkGrey} !important;
-        transform: none !important;
+        fill: ${(props) => props.theme.primary};
+      }
+    }
+
+    &:disabled {
+      border: none;
+      background: ${(props) => props.theme.grey};
+
+      svg {
+        path {
+          fill: ${(props) => props.theme.darkGrey};
+          transform: none;
+        }
       }
     }
   }
 `;
 
 export const StyledLogoWrapper = styled.div`
-  max-height: 25px !important;
-  width: 100% !important;
-  text-align: center !important;
-  background: ${(props) => props.theme.secondary} !important;
+  &&& {
+    max-height: 25px;
+    width: 100%;
+    text-align: center;
+    background: ${(props) => props.theme.secondary};
 
-  &:hover {
-    cursor: pointer !important;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
 export const StyledLogo = styled.img`
-  max-width: 95% !important;
+  &&& {
+    max-width: 95%;
+  }
 `;

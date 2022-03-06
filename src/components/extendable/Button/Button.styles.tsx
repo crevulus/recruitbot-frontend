@@ -1,33 +1,35 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  border: none !important;
-  box-shadow: ${(props) => props.theme.lightShadow} !important;
-  background: ${(props) => props.theme.white} !important;
-  color: ${(props) => props.theme.primary} !important;
+  &&& {
+    border: none;
+    box-shadow: ${(props) => props.theme.lightShadow};
+    background: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.primary};
 
-  &:hover,
-  &:focus {
-    * {
-      cursor: pointer !important;
+    &:hover,
+    &:focus {
+      * {
+        cursor: pointer;
+      }
+
+      background: ${(props) => props.theme.primary};
+      color: ${(props) => props.theme.white};
+      transition: all 0.25s;
     }
 
-    background: ${(props) => props.theme.primary} !important;
-    color: ${(props) => props.theme.white} !important;
-    transition: all 0.25s !important;
-  }
+    &:active {
+      background: ${(props) => props.theme.white};
+    }
 
-  &:active {
-    background: ${(props) => props.theme.white} !important;
-  }
-
-  &:disabled,
-  &:disabled * {
-    background: ${(props) => props.theme.grey} !important;
-    color: ${(props) => props.theme.darkGrey} !important;
-    box-shadow: none !important;
-    &:hover {
-      cursor: not-allowed !important;
+    &:disabled,
+    &:disabled * {
+      background: ${(props) => props.theme.grey};
+      color: ${(props) => props.theme.darkGrey};
+      box-shadow: none;
+      &:hover {
+        cursor: not-allowed;
+      }
     }
   }
 `;

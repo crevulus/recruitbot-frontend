@@ -24,34 +24,36 @@ export const GlobalStyles = createGlobalStyle`
 
 // can't use createGlobalStyle to protect client sites
 export const StyledApplication = styled.main`
-  z-index: ${zIndex("default")} !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-family: Open-Sans, Helvetica, Sans-Serif !important;
-  font-size: 18px !important;
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
+  &&& {
+    z-index: ${zIndex("default")};
+    margin: 0;
+    padding: 0;
+    font-family: Open-Sans, Helvetica, Sans-Serif;
+    font-size: 18px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit !important;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-      scroll-behavior: auto !important;
+    input,
+    button,
+    textarea,
+    select {
+      font: inherit;
     }
 
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
+    @media (prefers-reduced-motion: reduce) {
+      html:focus-within {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms;
+        animation-iteration-count: 1;
+        transition-duration: 0.01ms;
+        scroll-behavior: auto;
+      }
     }
   }
 `;

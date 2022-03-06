@@ -3,7 +3,7 @@ import { LoadingSpinner } from "..";
 
 import { AppContext } from "../../data/AppContext";
 import { AnswerEntryTypes, LoadingSpinnerTypes } from "../../data/enums";
-import { AnswersType } from "../../data/types";
+import { AnswersType, ConversationType } from "../../data/types";
 import isEmpty from "../../utils/isEmpty";
 
 import {
@@ -15,7 +15,13 @@ import {
   StyledLoaderContainer,
 } from "./Message.styles";
 
-function Message({ showNext, message, index }: any) {
+type MessagePropsType = {
+  showNext: (index: number) => void;
+  message: ConversationType;
+  index: number;
+};
+
+function Message({ showNext, message, index }: MessagePropsType) {
   const {
     needsInputIndexes,
     replies,
@@ -74,14 +80,15 @@ function Message({ showNext, message, index }: any) {
       <StyledChatbotMessage>{message.text}</StyledChatbotMessage>
       {isMultipleChoice && isEmpty(answer) && (
         <StyledButtonsContainer>
-          {message.answers.map((answer: any) => (
-            <StyledAnswerButton
-              key={`button-${answer.id}`}
-              onClick={() => handleNext(answer)}
-            >
-              {answer.text}
-            </StyledAnswerButton>
-          ))}
+          {Array.isArray(message.answers) &&
+            message.answers.map((answer: AnswersType) => (
+              <StyledAnswerButton
+                key={`button-${answer.id}`}
+                onClick={() => handleNext(answer)}
+              >
+                {answer.text}
+              </StyledAnswerButton>
+            ))}
         </StyledButtonsContainer>
       )}
       {!isEmpty(answer) && <StyledUserMessage>{answer.text}</StyledUserMessage>}
