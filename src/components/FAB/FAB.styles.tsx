@@ -4,96 +4,108 @@ import { zIndex } from "../../styles/zIndex";
 import Button from "../extendable/Button";
 
 export const StyledFABContainer = styled.div<{ $hidden: boolean }>`
-  z-index: ${zIndex("default")} !important;
-  position: absolute !important;
-  bottom: ${(props) => (props.$hidden ? "-130px" : "0")} !important;
-  right: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  max-width: calc(100vw - 40px) !important; // 20px left and right
-  gap: 10px !important;
-  width: max-content !important;
-  transition: bottom 0.25s !important;
+  &&& {
+    z-index: ${zIndex("default")};
+    position: absolute;
+    bottom: ${(props) => (props.$hidden ? "-130px" : "0")};
+    right: 0;
+    display: flex;
+    align-items: center;
+    max-width: calc(100vw - 40px); // 20px left and right
+    gap: 10px;
+    width: max-content;
+    transition: bottom 0.25s;
+  }
 `;
 
 export const StyledFABButton = styled(Button)`
-  z-index: ${zIndex("default")} !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 !important;
-  padding: 5px !important;
-  min-height: 60px !important;
-  min-width: 60px !important;
-  border: none !important;
-  border-radius: 50% !important;
-  box-shadow: ${(props) => props.theme.lightShadow} !important;
-  background: ${(props) => props.theme.primary} !important;
-  transition: background 0.25s !important;
-
-  figure {
-    transition: transform 0.25s !important;
-  }
-
-  &:hover,
-  &:focus {
-    * {
-      cursor: pointer !important;
-    }
-
-    background: ${(props) => lighten(0.1, props.theme.primary)} !important;
-    transition: background 0.25s !important;
+  &&& {
+    z-index: ${zIndex("default")};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 5px;
+    min-height: 60px;
+    min-width: 60px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: ${(props) => props.theme.lightShadow};
+    background: ${(props) => props.theme.primary};
+    transition: background 0.25s;
 
     figure {
-      transform: scale(0.9) !important;
-      transition: transform 0.25s ease !important;
+      transition: transform 0.25s;
     }
-  }
 
-  &:active {
-    background: ${(props) => props.theme.primary} !important;
+    &:hover,
+    &:focus {
+      * {
+        cursor: pointer;
+      }
+
+      background: ${(props) => lighten(0.1, props.theme.primary)};
+      transition: background 0.25s;
+
+      figure {
+        transform: scale(0.9);
+        transition: transform 0.25s ease;
+      }
+    }
+
+    &:active {
+      background: ${(props) => props.theme.primary};
+    }
   }
 `;
 
 export const StyledIconWrapper = styled.figure`
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin: 0 !important;
-  padding: 5px !important;
-  height: 100% !important;
-  width: 100% !important;
+  &&& {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 5px;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
-  display: inline-block !important;
-  border-radius: 20px !important;
-  box-shadow: ${(props) => props.theme.lightShadow} !important;
-  max-height: 40px !important;
-  width: auto !important;
-  padding: 10px 20px !important;
-  background: ${(props) => props.theme.primary} !important;
-  color: ${(props) => props.theme.white} !important;
-  font-size: ${(props) => props.theme.fontRegular} !important;
-  opacity: ${(props) => (props.$visible ? "100%" : "0%")} !important;
-  transition: opacity 1s ease-in !important;
+  &&& {
+    display: inline-block;
+    border-radius: 20px;
+    box-shadow: ${(props) => props.theme.lightShadow};
+    max-height: 40px;
+    width: auto;
+    padding: 10px 20px;
+    background: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.white};
+    font-size: ${(props) => props.theme.fontRegular};
+    opacity: ${(props) => (props.$visible ? "100%" : "0%")};
+    transition: opacity 1s ease-in;
+  }
 `;
 
 export const StyledFABMessageContents = styled.div`
-  display: inline-block !important;
-  height: 100% !important;
-  margin-right: -1em !important;
-  padding-right: 1em !important;
-  text-align: right !important;
-  white-space: nowrap !important; ;
+  &&& {
+    display: inline-block;
+    height: 100%;
+    margin-right: -1em;
+    padding-right: 1em;
+    text-align: right;
+    white-space: nowrap;
+  }
 `;
 
 export const StyledFABMessage = styled.span<{ $visible?: boolean }>`
-  display: inline-block !important;
-  direction: rtl !important;
-  overflow: hidden !important;
-  height: 100% !important;
-  width: ${(props) => (props.$visible ? "100%" : "0%")} !important;
-  font-size: 18px !important;
-  transition: width 1s 1s !important;
+  &&& {
+    display: inline-block;
+    direction: rtl;
+    overflow: hidden;
+    height: 100%;
+    width: ${(props) => (props.$visible ? "100%" : "0%")};
+    font-size: 18px;
+    transition: width 1s 1s;
+  }
 `;

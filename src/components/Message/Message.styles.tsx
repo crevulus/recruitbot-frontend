@@ -3,51 +3,65 @@ import styled from "styled-components";
 import Button from "../extendable/Button";
 
 export const StyledMessageContainer = styled.div`
-  display: flex !important;
-  flex-direction: column !important;
+  &&& {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const StyledMessage = styled.span`
-  display: inline-block !important;
-  border-radius: 20px !important;
-  padding: 10px 15px !important;
-  box-shadow: ${(props) => props.theme.lightShadow} !important;
-  color: ${(props) => props.theme.white} !important;
+  &&& {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 10px 15px;
+    box-shadow: ${(props) => props.theme.lightShadow};
+    color: ${(props) => props.theme.white};
+  }
 `;
 
 export const StyledLoaderContainer = styled(StyledMessage)`
-  background: ${(props) => props.theme.primary} !important;
+  &&& {
+    background: ${(props) => props.theme.primary};
+  }
 `;
 
 export const StyledChatbotMessage = styled(StyledMessage)`
-  align-self: flex-start !important;
-  margin: 10px 0 !important;
-  background: ${(props) => props.theme.primary} !important;
+  &&& {
+    align-self: flex-start;
+    margin: 10px 0;
+    background: ${(props) => props.theme.primary};
+  }
 `;
 
 export const StyledUserMessage = styled(StyledMessage)`
-  align-self: flex-end !important;
-  margin: 20px 0 !important;
-  background: ${(props) => props.theme.darkGrey} !important;
+  &&& {
+    align-self: flex-end;
+    margin: 20px 0;
+    background: ${(props) => props.theme.darkGrey};
+  }
 `;
 
 export const StyledButtonsContainer = styled.div`
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
+  &&& {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 `;
 
 export const StyledAnswerButton = styled(Button)`
-  border: 2px solid ${(props) => props.theme.primary} !important;
-  border-radius: 20px !important;
-  padding: 5px 15px !important;
-  transition: all 0.25s ease !important;
+  &&& {
+    border: 2px solid ${(props) => props.theme.primary};
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.25s ease;
 
-  &:hover,
-  &:focus {
-    background: ${(props) => lighten(0.1, props.theme.primary)} !important;
-    border: 2px solid ${(props) => lighten(0.1, props.theme.primary)} !important;
-    color: ${(props) => props.theme.white} !important;
-    transform: scale(1.1) !important;
+    &:hover,
+    &:focus {
+      background: ${(props) => lighten(0.1, props.theme.primary)};
+      border: 2px solid ${(props) => lighten(0.1, props.theme.primary)};
+      color: ${(props) => props.theme.white};
+      transform: scale(1.1);
+    }
   }
 `;
