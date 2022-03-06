@@ -4,9 +4,9 @@ import { AppContext } from "../../../data/AppContext";
 import { ConversationType } from "../../../data/types";
 import isEmpty from "../../../utils/isEmpty";
 
-import { Perks, Message, LoadingSpinner } from "../../";
+import { Perks, Message, LoadingSpinner, ErrorPanel } from "../../";
 
-import { StyledChatBody, StyledLoaderContainer } from "./ChatBody.styles";
+import { StyledChatBody, StyledWarningContainer } from "./ChatBody.styles";
 import { LoadingSpinnerTypes } from "../../../data/enums";
 
 function ChatBody() {
@@ -66,12 +66,23 @@ function ChatBody() {
     }, 1600);
   };
 
+  if (error) {
+    return (
+      <StyledChatBody>
+        <StyledWarningContainer>
+          {/* @ts-ignore */}
+          <ErrorPanel>{errorMsg}</ErrorPanel>
+        </StyledWarningContainer>
+      </StyledChatBody>
+    );
+  }
+
   if (isLoading) {
     return (
       <StyledChatBody>
-        <StyledLoaderContainer>
+        <StyledWarningContainer>
           <LoadingSpinner variant={LoadingSpinnerTypes.Fetching} />
-        </StyledLoaderContainer>
+        </StyledWarningContainer>
       </StyledChatBody>
     );
   }
@@ -81,7 +92,6 @@ function ChatBody() {
   }
 
   return (
-    //@ts-ignore
     <StyledChatBody ref={chatBodyRef}>
       {!isEmpty(fetchResults) && <Perks perks={data.perks} />}
       {!isEmpty(data) &&

@@ -7,6 +7,9 @@ type FetchPropsType = {
   type: FetchTypes;
 };
 
+const ERROR_MESSAGE_COPY =
+  "Oops! Something went wrong. Hit the refresh button to try that again.";
+
 function useFetch({ url, type }: FetchPropsType) {
   const [data, setData] = useState<RootDataType>({} as RootDataType);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,13 +22,14 @@ function useFetch({ url, type }: FetchPropsType) {
     setError(false);
     const res = await fetch(url, options)
       .then((response) => {
+        console.log(response);
         setIsLoading(false);
         return response.json();
       })
       .catch((error) => {
         setIsLoading(false);
         setError(true);
-        setErrorMsg(error.message);
+        setErrorMsg(ERROR_MESSAGE_COPY);
       });
     setData(res);
   };
