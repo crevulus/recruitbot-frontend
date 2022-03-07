@@ -21,7 +21,7 @@ export default function FAB() {
   useEffect(() => {
     const CTATimer = setTimeout(
       () => setShowMessage((prevState) => !prevState),
-      100
+      5000
     );
     return () => {
       clearTimeout(CTATimer);
@@ -52,7 +52,7 @@ export default function FAB() {
         </StyledFABMessageWrapper>
       )}
       <StyledFABButton aria-label="Open Recruitbot" onClick={handleClickFAB}>
-        <StyledIconWrapper>
+        <StyledIconWrapper data-testid="breifcase-icon-wrapper">
           <BriefcaseIcon />
         </StyledIconWrapper>
       </StyledFABButton>

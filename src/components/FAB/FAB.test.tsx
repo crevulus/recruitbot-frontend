@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
+import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
 
@@ -50,5 +51,37 @@ describe("beginning call to action/FAB logic", () => {
     customRender(<FAB />, { contextProps: amendedMockContext });
     const message = screen.queryByTestId("fab-message-wrapper");
     expect(message).toHaveStyle("opacity: 100%");
+  });
+});
+
+describe("interactions with FAB", () => {
+  // it("should change button appearance if FAB is hovered", () => {
+  //   jest.useFakeTimers();
+  //   jest.spyOn(global, "setTimeout");
+  //   customRender(<FAB />, {});
+  //   const button = screen.getByLabelText(/Open Recruitbot/i);
+  //   fireEvent.mouseEnter(button);
+  //   expect(button).not.toHaveStyle("background: #31c04d");
+  // });
+
+  // it("should change icon appearance if FAB is hovered", () => {
+  //   jest.useFakeTimers();
+  //   jest.spyOn(global, "setTimeout");
+  //   customRender(<FAB />, {});
+  //   const button = screen.getByLabelText(/Open Recruitbot/i);
+  //   fireEvent.mouseEnter(button);
+  //   const iconWrapper = screen.getByTestId(/breifcase-icon-wrapper/i);
+  //   expect(iconWrapper).toHaveStyle("transform: scale(0.9)");
+  // });
+
+  it("should open ChatWindow if FAB is clicked", () => {
+    jest.useFakeTimers();
+    jest.spyOn(global, "setTimeout");
+    const element = document.createElement("div");
+    customRender(<App domElement={element} />, {});
+    const button = screen.getByLabelText(/Open Recruitbot/i);
+    fireEvent.click(button);
+    const chatWindow = screen.getByTestId(/chat-window/i);
+    expect(chatWindow).toHaveStyle("max-height: 100vh");
   });
 });
