@@ -16,8 +16,9 @@ export const StyledErrorMessage = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     ${size("70%")};
+    padding: 10px;
     border-radius: 10px;
     background: #ff5964;
     color: ${(props) => props.theme.white};
@@ -34,8 +35,6 @@ export const StyledIconContainer = styled.figure`
     height: 15px;
 
     svg {
-      width: 100%;
-      max-height: 100%;
       path {
         fill: ${(props) => props.theme.white};
       }

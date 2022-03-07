@@ -15,7 +15,7 @@ function ChatHeader() {
   const { showChat, setShowChat, fetchResults } = useContext(AppContext);
   return (
     <StyledChatHeaderContainer>
-      {!isEmpty(fetchResults) && (
+      {!isEmpty(fetchResults.data) && (
         <StyledChatHeader>{fetchResults.data.cta}</StyledChatHeader>
       )}
       <StyledCloseButton

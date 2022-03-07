@@ -32,6 +32,8 @@ function App({ domElement }: AppPropsType) {
     type: FetchTypes.Get,
   });
 
+  const { data, error, errorMsg, isLoading } = response;
+
   const [showChat, setShowChat] = useState(openWidget);
   const [isLoadingMessage, setIsLoadingMessage] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -44,7 +46,7 @@ function App({ domElement }: AppPropsType) {
     setFetchResults(response);
     // using a primitive (cta) to use as a flag to check for the whole data changing.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [response.data.cta]);
+  }, [data, error, errorMsg, isLoading]);
 
   return (
     <StyledApplication>

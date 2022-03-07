@@ -22,10 +22,14 @@ function useFetch({ url, type }: FetchPropsType) {
     setError(false);
     const res = await fetch(url, options)
       .then((response) => {
+        if (!response.ok) {
+          throw new Error(ERROR_MESSAGE_COPY);
+        }
         setIsLoading(false);
         return response.json();
       })
       .catch((error) => {
+        setData({} as RootDataType);
         setIsLoading(false);
         setError(true);
         setErrorMsg(ERROR_MESSAGE_COPY);

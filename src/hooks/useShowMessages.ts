@@ -13,7 +13,7 @@ export const useShowMessages = () => {
   }>({});
 
   useEffect(() => {
-    if (isEmpty(fetchResults)) {
+    if (isEmpty(data)) {
       return;
     }
     // check if chat is open and if showMessages has already been calc'd; if not, run the operation

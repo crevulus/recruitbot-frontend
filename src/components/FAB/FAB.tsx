@@ -39,7 +39,7 @@ export default function FAB() {
 
   return (
     <StyledFABContainer $hidden={showChat}>
-      {!isEmpty(fetchResults) && (
+      {!isEmpty(fetchResults.data) && (
         <StyledFABMessageWrapper
           $visible={showMessage}
           data-testid="fab-message-wrapper"

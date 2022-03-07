@@ -27,6 +27,7 @@ export const StyledChatHeader = styled.p`
 
 export const StyledCloseButton = styled(Button)`
   &&& {
+    grid-column-start: 2;
     justify-self: end;
     display: flex;
     align-items: center;
