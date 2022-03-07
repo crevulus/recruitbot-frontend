@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { lighten } from "polished";
 import Button from "../../extendable/Button";
+import { device } from "../../../styles/styledComponentUtilities";
 
 export const StyledChatFooter = styled.form`
   &&& {
@@ -17,13 +18,17 @@ export const StyledInput = styled.input`
     &:disabled {
       cursor: not-allowed;
     }
+
+    @media ${device.tablet} {
+      border-radius: 0 20px;
+    }
   }
 `;
 
 export const StyledButtonsContainer = styled.div<{ $disabled: boolean }>`
   &&& {
     display: grid;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 1fr 25%;
     align-items: center;
     justify-content: center;
     background: ${(props) => !props.$disabled && props.theme.secondary};
@@ -81,9 +86,18 @@ export const StyledButton = styled(Button)`
   }
 `;
 
+export const StyledLink = styled.a`
+  &&& {
+    height: 100%;
+  }
+`;
+
 export const StyledLogoWrapper = styled.div`
   &&& {
-    max-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     width: 100%;
     text-align: center;
     background: ${(props) => props.theme.secondary};

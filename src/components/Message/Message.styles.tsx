@@ -12,7 +12,6 @@ export const StyledMessageContainer = styled.div`
 const StyledMessage = styled.span`
   &&& {
     display: inline-block;
-    border-radius: 20px;
     padding: 10px 15px;
     box-shadow: ${(props) => props.theme.lightShadow};
     color: ${(props) => props.theme.white};
@@ -21,6 +20,7 @@ const StyledMessage = styled.span`
 
 export const StyledLoaderContainer = styled(StyledMessage)`
   &&& {
+    border-radius: 2px 20px 20px 20px;
     background: ${(props) => props.theme.primary};
   }
 `;
@@ -28,6 +28,7 @@ export const StyledLoaderContainer = styled(StyledMessage)`
 export const StyledChatbotMessage = styled(StyledMessage)`
   &&& {
     align-self: flex-start;
+    border-radius: 2px 20px 20px 20px;
     margin: 10px 0;
     background: ${(props) => props.theme.primary};
   }
@@ -36,6 +37,7 @@ export const StyledChatbotMessage = styled(StyledMessage)`
 export const StyledUserMessage = styled(StyledMessage)`
   &&& {
     align-self: flex-end;
+    border-radius: 20px 2px 20px 20px;
     margin: 20px 0;
     background: ${(props) => props.theme.darkGrey};
   }

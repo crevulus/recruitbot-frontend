@@ -11,6 +11,7 @@ import {
   StyledInput,
   StyledButtonsContainer,
   StyledButton,
+  StyledLink,
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
@@ -75,7 +76,7 @@ function ChatFooter() {
         <StyledButton type="submit" disabled={disabled} aria-label="Submit">
           <SendIcon />
         </StyledButton>
-        <a
+        <StyledLink
           href="https://recruitbot.framer.website"
           target="_blank"
           rel="noreferrer"
@@ -83,7 +84,7 @@ function ChatFooter() {
           <StyledLogoWrapper>
             <StyledLogo src={RecruitbotLogoPng} alt="Recruitbot" />
           </StyledLogoWrapper>
-        </a>
+        </StyledLink>
       </StyledButtonsContainer>
     </StyledChatFooter>
   );

@@ -39,7 +39,7 @@ export default function FAB() {
 
   return (
     <StyledFABContainer $hidden={showChat}>
-      {!isEmpty(fetchResults) && (
+      {!isEmpty(fetchResults.data) && (
         <StyledFABMessageWrapper
           $visible={showMessage}
           data-testid="fab-message-wrapper"
@@ -52,7 +52,7 @@ export default function FAB() {
         </StyledFABMessageWrapper>
       )}
       <StyledFABButton aria-label="Open Recruitbot" onClick={handleClickFAB}>
-        <StyledIconWrapper>
+        <StyledIconWrapper data-testid="breifcase-icon-wrapper">
           <BriefcaseIcon />
         </StyledIconWrapper>
       </StyledFABButton>

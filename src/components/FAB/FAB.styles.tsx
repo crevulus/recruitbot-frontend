@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { lighten } from "polished";
 import { zIndex } from "../../styles/zIndex";
 import Button from "../extendable/Button";
@@ -71,19 +71,27 @@ export const StyledIconWrapper = styled.figure`
   }
 `;
 
+const growIn = keyframes`
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+`;
+
 export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
   &&& {
-    display: inline-block;
+    float: right;
     border-radius: 20px;
     box-shadow: ${(props) => props.theme.lightShadow};
     max-height: 40px;
-    width: auto;
+    width: 100%;
     padding: 10px 20px;
     background: ${(props) => props.theme.primary};
     color: ${(props) => props.theme.white};
     font-size: ${(props) => props.theme.fontRegular};
-    opacity: ${(props) => (props.$visible ? "100%" : "0%")};
-    transition: opacity 1s ease-in;
+    animation: ${growIn} 3s ease;
   }
 `;
 
