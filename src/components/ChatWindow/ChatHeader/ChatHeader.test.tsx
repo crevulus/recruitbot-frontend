@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
 import React from "react";
+import { screen } from "@testing-library/react";
+import { customRender } from "../../../utils/test-utils";
 import ChatHeader from "./ChatHeader";
 
 it("should test chat header", () => {
-  render(<ChatHeader />);
+  customRender(<ChatHeader />, {});
   const button = screen.getByRole("button", { name: /close recruitbot/i });
   expect(button).toBeInTheDocument();
 });
