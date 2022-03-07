@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../../styles/styledComponentUtilities";
 import { zIndex } from "../../../styles/zIndex";
 import Button from "../../extendable/Button";
 
@@ -10,9 +11,13 @@ export const StyledChatHeaderContainer = styled.div`
     align-items: center;
     padding: 10px;
     max-width: 100%;
-    box-shadow: ${(props) => props.theme.lightShadow};
+    box-shadow: ${(props) => props.theme.verticalShadow};
     background: ${(props) => props.theme.primary};
     color: ${(props) => props.theme.white};
+
+    @media ${device.tablet} {
+      border-radius: 20px 20px 0 0;
+    }
   }
 `;
 
