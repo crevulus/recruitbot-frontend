@@ -21,7 +21,7 @@ export default function FAB() {
   useEffect(() => {
     const CTATimer = setTimeout(
       () => setShowMessage((prevState) => !prevState),
-      5000
+      100
     );
     return () => {
       clearTimeout(CTATimer);

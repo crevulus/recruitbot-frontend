@@ -22,7 +22,6 @@ function useFetch({ url, type }: FetchPropsType) {
     setError(false);
     const res = await fetch(url, options)
       .then((response) => {
-        console.log(response);
         setIsLoading(false);
         return response.json();
       })
