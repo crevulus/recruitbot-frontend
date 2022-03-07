@@ -87,7 +87,9 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledLink = styled.a`
-  height: 100%;
+  &&& {
+    height: 100%;
+  }
 `;
 
 export const StyledLogoWrapper = styled.div`
