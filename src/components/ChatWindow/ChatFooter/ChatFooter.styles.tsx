@@ -7,6 +7,10 @@ export const StyledChatFooter = styled.form`
   &&& {
     display: grid;
     grid-template-columns: 80% 20%;
+
+    @media ${device.tablet} {
+      border-radius: 0 0 2px 0;
+    }
   }
 `;
 
@@ -104,6 +108,10 @@ export const StyledLogoWrapper = styled.div`
 
     &:hover {
       cursor: pointer;
+    }
+
+    @media ${device.tablet} {
+      border-radius: 0 0 2px 0;
     }
   }
 `;

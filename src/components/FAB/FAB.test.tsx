@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
