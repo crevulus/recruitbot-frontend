@@ -16,6 +16,7 @@ import {
   StyledLogo,
 } from "./ChatFooter.styles";
 import { FetchTypes } from "../../../data/enums";
+import CookieBanner from "../../CookieBanner";
 
 function ChatFooter() {
   const {
@@ -86,6 +87,7 @@ function ChatFooter() {
           </StyledLogoWrapper>
         </StyledLink>
       </StyledButtonsContainer>
+      <CookieBanner />
     </StyledChatFooter>
   );
 }

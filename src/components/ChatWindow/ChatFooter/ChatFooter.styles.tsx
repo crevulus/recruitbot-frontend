@@ -5,6 +5,7 @@ import { device } from "../../../styles/styledComponentUtilities";
 
 export const StyledChatFooter = styled.form`
   &&& {
+    position: relative;
     display: grid;
     grid-template-columns: 80% 20%;
 
