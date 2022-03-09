@@ -8,8 +8,9 @@ export const StyledCookieBanner = styled.div<{ $showBanner: boolean }>`
   &&& {
     position: absolute;
     z-index: ${zIndex("overlay")};
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 66% 34%;
+    align-items: center;
     max-height: ${(props) => (props.$showBanner ? "100%" : "0")};
     height: 100%;
     width: 100%;
@@ -36,14 +37,9 @@ export const StyledCookieText = styled.p`
 
 export const StyledButtonsContainer = styled.div`
   &&& {
-    position: absolute;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 10px;
-    bottom: 10px;
-    right: 10px;
-    align-self: flex-end;
   }
 `;
 
@@ -77,14 +73,14 @@ export const StyledCookieReject = styled(Button)`
 
     svg {
       .cross-icon-path {
-        fill: ${(props) => props.theme.grey};
+        fill: ${(props) => props.theme.darkGrey};
       }
     }
 
     &:hover,
     &:focus {
       background: none;
-      border: 2px solid ${(props) => props.theme.grey};
+      border: 2px solid ${(props) => props.theme.darkGrey};
     }
   }
 `;
