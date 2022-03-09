@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { LocalStorageKeys } from "../../data/enums";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { CrossIcon } from "../Icons";
 
@@ -11,20 +13,22 @@ import {
 } from "./CookieBanner.styles";
 
 export default function CookieBanner() {
-  const [showBanner, setShowBanner] = useState(true);
+  const { valueIsPresent, handleAddBooleanToLocalStorage } = useLocalStorage(
+    LocalStorageKeys.Cookies
+  );
 
   const handleAccept = () => {
-    setShowBanner(false);
+    handleAddBooleanToLocalStorage(LocalStorageKeys.Cookies, true);
   };
 
   const handleReject = () => {
-    setShowBanner(false);
+    handleAddBooleanToLocalStorage(LocalStorageKeys.Cookies, false);
   };
 
   return (
-    <StyledCookieBanner $showBanner={showBanner}>
+    <StyledCookieBanner $showBanner={!valueIsPresent}>
       <StyledCookieText>
-        This website uses cookies to improve your experience.
+        This chatbot uses cookies to improve your experience.
       </StyledCookieText>
       <StyledButtonsContainer>
         <StyledCookieReject onClick={handleReject}>

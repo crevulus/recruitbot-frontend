@@ -64,6 +64,16 @@ export const StyledAnswerButton = styled(Button)`
       border: 2px solid ${(props) => lighten(0.1, props.theme.primary)};
       color: ${(props) => props.theme.white};
       transform: scale(1.1);
+
+      &:disabled {
+        background: none;
+        color: ${(props) => props.theme.darkGrey};
+        transform: none;
+      }
+    }
+
+    &:disabled {
+      border: 2px solid ${(props) => props.theme.darkGrey};
     }
   }
 `;

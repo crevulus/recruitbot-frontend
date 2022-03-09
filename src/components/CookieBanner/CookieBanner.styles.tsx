@@ -15,7 +15,7 @@ export const StyledCookieBanner = styled.div<{ $showBanner: boolean }>`
     width: 100%;
     background: ${(props) => props.theme.secondary};
     color: ${(props) => props.theme.white};
-    transition: max-height 0.5s 0.5s ease;
+    transition: max-height 0.5s ${(props) => !props.$showBanner && "0.5s"};
 
     @media ${device.tablet} {
       border-radius: 0 0 2px 20px;
@@ -23,7 +23,7 @@ export const StyledCookieBanner = styled.div<{ $showBanner: boolean }>`
 
     * {
       opacity: ${(props) => (props.$showBanner ? "100%" : "0%")};
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ${(props) => props.$showBanner && "0.5s"};
     }
   }
 `;
@@ -49,7 +49,8 @@ export const StyledButtonsContainer = styled.div`
 
 export const StyledCookieAccept = styled(Button)`
   &&& {
-    padding: 5px 10px;
+    border-radius: 20px;
+    padding: 5px 15px;
     background: ${(props) => props.theme.primary};
     color: ${(props) => props.theme.white};
 
@@ -68,7 +69,7 @@ export const StyledCookieReject = styled(Button)`
     justify-content: center;
     border: 2px solid rgb(255, 255, 255, 0);
     border-radius: 50%;
-    padding: 7px;
+    padding: 5px;
     box-shadow: none;
     background: none;
     width: 15px;

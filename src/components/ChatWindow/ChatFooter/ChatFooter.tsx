@@ -15,8 +15,9 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
-import { FetchTypes } from "../../../data/enums";
+import { FetchTypes, LocalStorageKeys } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 function ChatFooter() {
   const {
@@ -33,6 +34,7 @@ function ChatFooter() {
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");
+  const { valueIsPresent } = useLocalStorage(LocalStorageKeys.Cookies);
 
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
@@ -59,7 +61,10 @@ function ChatFooter() {
     return true;
   };
 
-  const disabled = isLoadingMessage || !needsInputIndexes.includes(currentStep);
+  const disabled =
+    isLoadingMessage ||
+    !needsInputIndexes.includes(currentStep) ||
+    !valueIsPresent;
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
@@ -87,7 +92,7 @@ function ChatFooter() {
           </StyledLogoWrapper>
         </StyledLink>
       </StyledButtonsContainer>
-      <CookieBanner />
+      {!valueIsPresent && <CookieBanner />}
     </StyledChatFooter>
   );
 }
