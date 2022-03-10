@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { lighten } from "polished";
 import { zIndex } from "../../styles/zIndex";
 import Button from "../extendable/Button";
@@ -71,37 +71,45 @@ export const StyledIconWrapper = styled.figure`
   }
 `;
 
-const growIn = keyframes`
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
-`;
-
 export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
   &&& {
+    position: relative;
     float: right;
     border-radius: 20px;
-    box-shadow: ${(props) => props.theme.lightShadow};
+    box-shadow: ${(props) =>
+      props.$visible ? props.theme.lightShadow : "none"};
     max-height: 40px;
     width: 100%;
     padding: 10px 20px;
-    background: ${(props) => props.theme.primary};
+    background: transparent;
     color: ${(props) => props.theme.white};
     font-size: ${(props) => props.theme.fontRegular};
-    animation: ${growIn} 3s ease;
+    overflow: hidden;
+    transition: box-shadow 0.25s ${(props) => props.$visible && "0.5s"};
+
+    &:before {
+      content: ""; // need that in order to see a pseudo-element
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: ${(props) => props.theme.primary};
+      height: 100%;
+      width: 100%;
+      z-index: -1; // don't want it to show until we animate it in
+      transform-origin: bottom left; // defines where transformation originates from (center by default)
+      transform: ${(props) =>
+        props.$visible ? "translateX(0)" : "translateX(35rem)"};
+      transition: transform 0.5s ${(props) => !props.$visible && "0.5s"}; // transform should take 0.5s
+    }
   }
 `;
 
 export const StyledFABMessageContents = styled.div`
   &&& {
-    display: inline-block;
+    display: inline-flex;
     height: 100%;
     margin-right: -1em;
     padding-right: 1em;
-    text-align: right;
     white-space: nowrap;
   }
 `;
@@ -109,11 +117,11 @@ export const StyledFABMessageContents = styled.div`
 export const StyledFABMessage = styled.span<{ $visible?: boolean }>`
   &&& {
     display: inline-block;
-    direction: rtl;
     overflow: hidden;
     height: 100%;
-    width: ${(props) => (props.$visible ? "100%" : "0%")};
     font-size: 18px;
-    transition: width 1s 1s;
+    transform: ${(props) =>
+      props.$visible ? "translateX(0)" : "translateX(35rem)"};
+    transition: transform 1s ease-in 0.75s;
   }
 `;
