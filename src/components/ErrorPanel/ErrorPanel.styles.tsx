@@ -31,10 +31,11 @@ export const StyledIconContainer = styled.figure`
     justify-self: end;
     align-items: center;
     justify-content: center;
-    width: 15px;
-    height: 15px;
+    width: 50px;
+    height: 50px;
 
     svg {
+      height: 100%;
       path {
         fill: ${(props) => props.theme.white};
       }

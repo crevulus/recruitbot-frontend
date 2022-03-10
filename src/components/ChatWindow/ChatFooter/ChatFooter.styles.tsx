@@ -5,8 +5,13 @@ import { device } from "../../../styles/styledComponentUtilities";
 
 export const StyledChatFooter = styled.form`
   &&& {
+    position: relative;
     display: grid;
     grid-template-columns: 80% 20%;
+
+    @media ${device.tablet} {
+      border-radius: 0 0 2px 0;
+    }
   }
 `;
 
@@ -104,6 +109,10 @@ export const StyledLogoWrapper = styled.div`
 
     &:hover {
       cursor: pointer;
+    }
+
+    @media ${device.tablet} {
+      border-radius: 0 0 2px 0;
     }
   }
 `;

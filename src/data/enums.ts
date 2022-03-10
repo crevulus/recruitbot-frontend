@@ -11,3 +11,7 @@ export enum LoadingSpinnerTypes {
   Fetching = "Fetching",
   Writing = "Writing",
 }
+
+export enum LocalStorageKeys {
+  Cookies = "allowCookies",
+}

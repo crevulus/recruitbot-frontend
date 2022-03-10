@@ -3,6 +3,7 @@ import { act, fireEvent, screen } from "@testing-library/react";
 import Message from "./Message";
 import { customRender } from "../../utils/test-utils";
 import { ConversationType } from "../../data/types";
+import * as hooks from "../../hooks/useLocalStorage";
 
 const mockMessage = {
   key: "test",
@@ -140,40 +141,73 @@ describe("Message: Events", () => {
     jest.useFakeTimers();
   });
 
-  it("should trigger handleNext on answer click", () => {
-    customRender(
-      <Message
-        message={amendedMockMessage}
-        showNext={mockShowNext}
-        index={0}
-      />,
-      {}
-    );
-    act(() => {
-      jest.advanceTimersByTime(1500);
+  describe("Cookie Banner Visible", () => {
+    it("should not allow users to click buttons if cookie banner is visible", () => {
+      jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
+        localStorageBooleanValue: undefined,
+        valueIsPresent: false,
+        handleAddBooleanToLocalStorage: () => jest.fn(),
+      }));
+      customRender(
+        <Message
+          message={amendedMockMessage}
+          showNext={mockShowNext}
+          index={0}
+        />,
+        {}
+      );
+      act(() => {
+        jest.advanceTimersByTime(1500);
+      });
+      const buttonTestOne = screen.getByRole("button", { name: /test-1/i });
+      expect(buttonTestOne).toBeDisabled();
     });
-    const buttonTestOne = screen.getByRole("button", { name: /test-1/i });
-    fireEvent.click(buttonTestOne);
-    expect(mockShowNext).toHaveBeenCalledTimes(1);
   });
 
-  it("should hide the buttons and show the reply when an answer is chosen", () => {
-    customRender(
-      <Message
-        message={amendedMockMessage}
-        showNext={mockShowNext}
-        index={0}
-      />,
-      {}
-    );
-    act(() => {
-      jest.advanceTimersByTime(1500);
+  describe("Cookie Banner Hidden", () => {
+    beforeEach(() => {
+      jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
+        localStorageBooleanValue: true,
+        valueIsPresent: true,
+        handleAddBooleanToLocalStorage: () => jest.fn(),
+      }));
     });
-    const buttonTestOne = screen.getByRole("button", { name: /test-1/i });
-    fireEvent.click(buttonTestOne);
-    const buttons = screen.queryAllByRole("button", { name: /test-/i });
-    expect(buttons.length).toBe(0);
-    const userReply = screen.getByText(/test-1/i);
-    expect(userReply).toBeInTheDocument();
+
+    it("should trigger handleNext on answer click", () => {
+      customRender(
+        <Message
+          message={amendedMockMessage}
+          showNext={mockShowNext}
+          index={0}
+        />,
+        {}
+      );
+      act(() => {
+        jest.advanceTimersByTime(1500);
+      });
+      const buttonTestOne = screen.getByRole("button", { name: /test-1/i });
+      fireEvent.click(buttonTestOne);
+      expect(mockShowNext).toHaveBeenCalledTimes(1);
+    });
+
+    it("should hide the buttons and show the reply when an answer is chosen", () => {
+      customRender(
+        <Message
+          message={amendedMockMessage}
+          showNext={mockShowNext}
+          index={0}
+        />,
+        {}
+      );
+      act(() => {
+        jest.advanceTimersByTime(1500);
+      });
+      const buttonTestOne = screen.getByRole("button", { name: /test-1/i });
+      fireEvent.click(buttonTestOne);
+      const buttons = screen.queryAllByRole("button", { name: /test-/i });
+      expect(buttons.length).toBe(0);
+      const userReply = screen.getByText(/test-1/i);
+      expect(userReply).toBeInTheDocument();
+    });
   });
 });

@@ -1,4 +1,5 @@
 /* PLOP_INJECT_IMPORT */
+import CookieBanner from './CookieBanner';
 import ErrorPanel from "./ErrorPanel";
 import LoadingSpinner from "./LoadingSpinner";
 import Perks from "./Perks";
@@ -11,6 +12,7 @@ import ChatBody from "./ChatWindow/ChatBody";
 
 export {
   /* PLOP_INJECT_EXPORT */
+	CookieBanner,
   ErrorPanel,
   LoadingSpinner,
   ChatBody,
