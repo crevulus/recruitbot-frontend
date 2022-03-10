@@ -18,8 +18,8 @@ export const StyledChatWindow = styled.div<{ $showChat: boolean }>`
       max-height 1s cubic-bezier(0, 0, 0.56, 1.3);
 
     @media ${device.tablet} {
-      bottom: ${(props) => (props.$showChat ? "20px" : "-100vh")};
-      right: 20px;
+      bottom: ${(props) => (props.$showChat ? "0" : "-100vh")};
+      right: 0;
       border-radius: 20px 20px 2px 20px;
       box-shadow: ${(props) => props.theme.mediumShadow};
       width: 400px;

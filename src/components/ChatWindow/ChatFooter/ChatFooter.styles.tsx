@@ -36,6 +36,7 @@ export const StyledButtonsContainer = styled.div<{ $disabled: boolean }>`
     grid-template-rows: 1fr 25%;
     align-items: center;
     justify-content: center;
+    border-radius: 0px 0px 2px 0px;
     background: ${(props) => !props.$disabled && props.theme.secondary};
   }
 `;

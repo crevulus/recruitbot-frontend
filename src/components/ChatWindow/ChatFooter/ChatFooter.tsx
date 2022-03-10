@@ -70,7 +70,6 @@ function ChatFooter() {
     <StyledChatFooter onSubmit={submitAnswer}>
       <StyledInput
         required
-        type="text"
         name="chatFooter"
         id="chat-footer"
         placeholder={disabled ? "" : "Type your answer here"}

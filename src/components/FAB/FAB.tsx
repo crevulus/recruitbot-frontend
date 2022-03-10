@@ -14,8 +14,10 @@ import {
   StyledFABMessage,
 } from "./FAB.styles";
 
+// a lot of timeout useEffects... Make it work, make it fast, make it right 🤷
 export default function FAB() {
   const [showMessage, setShowMessage] = useState(false);
+  const [mountMessage, setMountMessage] = useState(false);
   const { showChat, setShowChat, fetchResults } = useContext(AppContext);
 
   useEffect(() => {
@@ -29,7 +31,20 @@ export default function FAB() {
   }, []);
 
   useEffect(() => {
+    const mountCTATimer = setTimeout(() => setMountMessage(true), 4000);
+    return () => {
+      clearTimeout(mountCTATimer);
+    };
+  }, []);
+
+  useEffect(() => {
     setShowMessage(false);
+    if (showChat) {
+      const unmountCTATimer = setTimeout(() => setMountMessage(false), 2000);
+      return () => {
+        clearTimeout(unmountCTATimer);
+      };
+    }
   }, [showChat]);
 
   const handleClickFAB = () => {
@@ -38,15 +53,15 @@ export default function FAB() {
   };
 
   return (
-    <StyledFABContainer $hidden={showChat}>
-      {!isEmpty(fetchResults.data) && (
+    <StyledFABContainer $hidden={showChat} $ctaVisible={showMessage}>
+      {!isEmpty(fetchResults.data) && mountMessage && (
         <StyledFABMessageWrapper
           $visible={showMessage}
           data-testid="fab-message-wrapper"
         >
-          <StyledFABMessageContents>
+          <StyledFABMessageContents $visible={showMessage}>
             <StyledFABMessage $visible={showMessage}>
-              {fetchResults.data.cta}&lrm;
+              {fetchResults.data.cta}
             </StyledFABMessage>
           </StyledFABMessageContents>
         </StyledFABMessageWrapper>
