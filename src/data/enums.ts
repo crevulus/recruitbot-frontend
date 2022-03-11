@@ -15,3 +15,7 @@ export enum LoadingSpinnerTypes {
 export enum LocalStorageKeys {
   Cookies = "allowCookies",
 }
+
+export enum Hyperlinks {
+  RecruitbotHome = "https://recruitbot.framer.website",
+}

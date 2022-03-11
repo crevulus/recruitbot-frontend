@@ -3,6 +3,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import { customRender, baseMockContext } from "../../../utils/test-utils";
 import ChatFooter from "./ChatFooter";
 import * as hooks from "../../../hooks/useLocalStorage";
+import { Hyperlinks } from "../../../data/enums";
 
 describe("ChatFooter: Starting state", () => {
   afterEach(() => {
@@ -59,6 +60,12 @@ describe("ChatFooter: Starting state", () => {
     expect(input).toBeDisabled();
     const submit = screen.getByLabelText(/submit/i);
     expect(submit).toBeDisabled();
+  });
+
+  it("should contain an href in the Recruitbot watermark", () => {
+    customRender(<ChatFooter />, {});
+    const logo = screen.getByRole("link", { name: /recruitbot/i });
+    expect(logo).toHaveAttribute("href", Hyperlinks.RecruitbotHome);
   });
 });
 

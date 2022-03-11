@@ -3,6 +3,14 @@ import ChatWindow from ".";
 import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";
 
+function changeJSDOMURL(url: string) {
+  const newURL = new URL(url);
+  const href = `${window.origin}${newURL.pathname}${newURL.search}${newURL.hash}`;
+  console.log(href);
+  // eslint-disable-next-line no-restricted-globals
+  history.replaceState(history.state, "", href);
+}
+
 describe("main chat window logic", () => {
   it("should show loading before fetchResults are made", () => {
     const element = document.createElement("div");

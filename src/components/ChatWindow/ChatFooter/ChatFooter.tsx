@@ -15,7 +15,7 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
-import { FetchTypes, LocalStorageKeys } from "../../../data/enums";
+import { FetchTypes, Hyperlinks, LocalStorageKeys } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
@@ -82,7 +82,7 @@ function ChatFooter() {
           <SendIcon />
         </StyledButton>
         <StyledLink
-          href="https://recruitbot.framer.website"
+          href={Hyperlinks.RecruitbotHome}
           target="_blank"
           rel="noreferrer"
         >

@@ -7,7 +7,7 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-describe("beginning call to action/FAB logic", () => {
+describe("FAB: Starting State", () => {
   it("renders briefcase icon", () => {
     customRender(<FAB />, {});
     const linkElement = screen.getByTitle(/Work with us/i);
@@ -57,7 +57,7 @@ describe("beginning call to action/FAB logic", () => {
   );
 });
 
-describe("interactions with FAB", () => {
+describe("FAB: Events", () => {
   // it("should change button appearance if FAB is hovered", () => {
   //   jest.useFakeTimers();
   //   jest.spyOn(global, "setTimeout");
