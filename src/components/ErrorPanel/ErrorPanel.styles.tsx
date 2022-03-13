@@ -20,7 +20,7 @@ export const StyledErrorMessage = styled.div`
     ${size("70%")};
     padding: 10px;
     border-radius: 10px;
-    background: #ff5964;
+    background: ${(props) => props.theme.warning};
     color: ${(props) => props.theme.white};
   }
 `;

@@ -5,6 +5,7 @@ import { zIndex } from "./zIndex";
 export const theme = {
   primary: "#31c04d",
   secondary: "#304857",
+  warning: "ff5964",
   white: "#fff",
   grey: "#EBEBEB",
   darkGrey: "#A1A1A1",
