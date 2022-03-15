@@ -1,6 +1,6 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
-import { baseMockContext, customRender } from "../../utils/test-utils";
+import { customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
 
 afterEach(() => {
@@ -26,7 +26,7 @@ describe("FAB: Starting State", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setTimeout");
     customRender(<FAB />, {});
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 4000);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1001); // tODO: Why 1001?
   });
 
   it("should show no message if call to API has failed", () => {

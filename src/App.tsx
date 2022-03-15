@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { AppContext } from "./data/AppContext";
-import useFetch from "./hooks/useFetch";
+import useFetch, { ROOT_API_URL } from "./hooks/useFetch";
 import { FetchResultsType } from "./data/types";
-import { FetchTypes } from "./data/enums";
+import { Endpoints, FetchTypes } from "./data/enums";
 
 import { FAB, ChatWindow } from "./components";
 
@@ -15,11 +15,11 @@ import {
 } from "./styles/styledComponentUtilities";
 
 type AppPropsType = {
-  domElement: Element;
+  domElement?: Element;
 };
 
 function App({ domElement }: AppPropsType) {
-  const accountNumber = domElement.getAttribute(
+  const accountNumber = domElement?.getAttribute(
     "data-recruitbot-account-number"
   );
 
@@ -28,7 +28,7 @@ function App({ domElement }: AppPropsType) {
       .get("openWidget")
       ?.toLowerCase() === "true";
   const response = useFetch({
-    url: `http://localhost:8000/accounts/${accountNumber}`,
+    url: `${ROOT_API_URL}/${Endpoints.Accounts}/${accountNumber}`,
     type: FetchTypes.Get,
   });
 

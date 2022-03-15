@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import useFetch from "../../../hooks/useFetch";
+import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
 
 import { SendIcon } from "../../Icons";
 import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
@@ -15,7 +15,12 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
-import { FetchTypes, Hyperlinks, LocalStorageKeys } from "../../../data/enums";
+import {
+  Endpoints,
+  FetchTypes,
+  Hyperlinks,
+  LocalStorageKeys,
+} from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
@@ -30,7 +35,7 @@ function ChatFooter() {
     fetchResults,
   } = useContext(AppContext);
   const { executeFetch } = useFetch({
-    url: "http://localhost:8000/submissions",
+    url: `${ROOT_API_URL}/${Endpoints.Submissions}`,
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");

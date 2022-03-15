@@ -1,20 +1,7 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import ChatWindow from ".";
 import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";
-
-function changeJSDOMURL(
-  search: any,
-  url: string = "https://www.localhost:3000/"
-) {
-  const newURL = new URL(url);
-  // @ts-ignore
-  newURL.search = new URLSearchParams(search);
-  const href = `${window.origin}${newURL.pathname}${newURL.search}${newURL.hash}`;
-  console.log(newURL);
-  // eslint-disable-next-line no-restricted-globals
-  history.replaceState(history.state, "", href);
-}
 
 describe("main chat window logic", () => {
   it("should show loading before fetchResults are made", () => {

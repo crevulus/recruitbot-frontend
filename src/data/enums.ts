@@ -19,3 +19,13 @@ export enum LocalStorageKeys {
 export enum Hyperlinks {
   RecruitbotHome = "https://recruitbot.framer.website",
 }
+
+export enum Environments {
+  Dev = "development",
+  Prod = "production",
+}
+
+export enum Endpoints {
+  Accounts = "accounts",
+  Submissions = "submissions",
+}

@@ -1,0 +1,110 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "cta": "How about a demo?",
+      "perks": [
+        {
+          "id": 1,
+          "text": "Easy set up",
+          "emoji": "⏩"
+        },
+        {
+          "id": 2,
+          "text": "Inexpensive solution",
+          "emoji": "🤑"
+        },
+        {
+          "id": 3,
+          "text": "Increase your applications",
+          "emoji": "📈"
+        }
+      ],
+      "conversation": [
+        {
+          "id": 1,
+          "key": "open",
+          "text": "Recruitbot is ready to help you source more candidates for your open positions. You can add 3 screening questions and 2 contact questions to your Recruitbot and quickly see if applicants are right for your business.",
+          "answers": []
+        },
+        {
+          "id": 2,
+          "key": "hear",
+          "text": "For example, you might want to ask: What kind of working hours are you looking for?",
+          "answers": [
+            {
+              "id": 1,
+              "key": "full",
+              "text": "Full-time"
+            },
+            {
+              "id": 2,
+              "key": "part",
+              "text": "Part-time"
+            },
+            {
+              "id": 3,
+              "key": "freelance",
+              "text": "Freelance"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "key": "driver",
+          "text": "You might want a more open-ended question, such as: Do you hold any qualifications or certificates?",
+          "answers": "input"
+        },
+        {
+          "id": 4,
+          "key": "start",
+          "text": "Or maybe something about your job opening visibility?",
+          "answers": [
+            {
+              "id": 1,
+              "key": "socmed",
+              "text": "Social media"
+            },
+            {
+              "id": 2,
+              "key": "jobboard",
+              "text": "Job board"
+            },
+            {
+              "id": 3,
+              "key": "store",
+              "text": "In store"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "key": "name",
+          "text": "Now that we have all of the applicant's answers, we need to know how to get in contact. Let's start with: What's your first and last name?",
+          "answers": "input"
+        },
+        {
+          "id": 6,
+          "key": "phone",
+          "text": "And a contact phone number, perhaps?",
+          "answers": "input"
+        },
+        {
+          "id": 7,
+          "text": "And just like that, you've converted a visitor into a new applicant! Now that you know how it works, fill out the access form on this page and we'll get back to you about setting up your very own Recruitbot.",
+          "answers": []
+        }
+      ]
+    }
+  ],
+  "submissions": [
+    {
+      "hear": "full",
+      "driver": "GCSE",
+      "start": "socmed",
+      "name": "Test Test",
+      "phone": "123457",
+      "id": 1
+    }
+  ]
+}

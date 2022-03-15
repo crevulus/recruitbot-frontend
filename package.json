@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.21",
@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "parcel:build": "parcel build src/index.tsx --no-source-maps --dist-dir docs",
     "generate": "plop",
-    "mockserver": "json-server --watch mockConversationData.json --port 8000"
+    "mockserver": "json-server --watch db.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
