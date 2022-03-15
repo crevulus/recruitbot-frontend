@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import useFetch from "../../../hooks/useFetch";
+import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
 
 import { SendIcon } from "../../Icons";
 import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
@@ -15,7 +15,12 @@ import {
   StyledLogoWrapper,
   StyledLogo,
 } from "./ChatFooter.styles";
-import { FetchTypes, LocalStorageKeys } from "../../../data/enums";
+import {
+  Endpoints,
+  FetchTypes,
+  Hyperlinks,
+  LocalStorageKeys,
+} from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
@@ -30,7 +35,7 @@ function ChatFooter() {
     fetchResults,
   } = useContext(AppContext);
   const { executeFetch } = useFetch({
-    url: "http://localhost:8000/submissions",
+    url: `${ROOT_API_URL}/${Endpoints.Submissions}`,
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");
@@ -70,7 +75,6 @@ function ChatFooter() {
     <StyledChatFooter onSubmit={submitAnswer}>
       <StyledInput
         required
-        type="text"
         name="chatFooter"
         id="chat-footer"
         placeholder={disabled ? "" : "Type your answer here"}
@@ -83,7 +87,7 @@ function ChatFooter() {
           <SendIcon />
         </StyledButton>
         <StyledLink
-          href="https://recruitbot.framer.website"
+          href={Hyperlinks.RecruitbotHome}
           target="_blank"
           rel="noreferrer"
         >

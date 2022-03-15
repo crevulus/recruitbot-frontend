@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FetchTypes } from "../data/enums";
+import { Environments, FetchTypes } from "../data/enums";
 import { RootDataType } from "../data/types";
 
 type FetchPropsType = {
@@ -9,6 +9,11 @@ type FetchPropsType = {
 
 const ERROR_MESSAGE_COPY =
   "Oops! Something went wrong. Hit the refresh button to try that again.";
+
+export const ROOT_API_URL =
+  process.env.NODE_ENV === Environments.Dev
+    ? "http://localhost:8000"
+    : "https://my-json-server.typicode.com/crevulus/recruitbot-frontend";
 
 function useFetch({ url, type }: FetchPropsType) {
   const [data, setData] = useState<RootDataType>({} as RootDataType);

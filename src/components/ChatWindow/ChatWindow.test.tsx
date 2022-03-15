@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import ChatWindow from ".";
 import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";

@@ -14,14 +14,19 @@ import {
   StyledFABMessage,
 } from "./FAB.styles";
 
+const CTA_ANIMATION_TIME = 1000;
+const CTA_REVEAL_TIME = 5000;
+
+// a lot of timeout useEffects... Make it work, make it fast, make it right 🤷
 export default function FAB() {
-  const [showMessage, setShowMessage] = useState(false);
+  const [showCTA, setShowCTA] = useState(false);
+  const [mountCTA, setMountCTA] = useState(false);
   const { showChat, setShowChat, fetchResults } = useContext(AppContext);
 
   useEffect(() => {
     const CTATimer = setTimeout(
-      () => setShowMessage((prevState) => !prevState),
-      5000
+      () => setShowCTA((prevState) => !prevState),
+      CTA_REVEAL_TIME
     );
     return () => {
       clearTimeout(CTATimer);
@@ -29,24 +34,47 @@ export default function FAB() {
   }, []);
 
   useEffect(() => {
-    setShowMessage(false);
-  }, [showChat]);
+    // mount just before animating
+    const mountCTATimer = setTimeout(
+      () => setMountCTA(true),
+      CTA_REVEAL_TIME - 1000
+    );
+    return () => {
+      clearTimeout(mountCTATimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showChat) {
+      setShowCTA(false);
+    }
+    if (showChat || !showCTA) {
+      // unmount jsut after animating
+      const unmountCTATimer = setTimeout(
+        () => setMountCTA(false),
+        CTA_ANIMATION_TIME + 1
+      );
+      return () => {
+        clearTimeout(unmountCTATimer);
+      };
+    }
+  }, [showChat, showCTA]);
 
   const handleClickFAB = () => {
-    setShowMessage(false);
+    setShowCTA(false);
     setShowChat(!showChat);
   };
 
   return (
-    <StyledFABContainer $hidden={showChat}>
-      {!isEmpty(fetchResults.data) && (
+    <StyledFABContainer $hidden={showChat} $ctaVisible={showCTA}>
+      {!isEmpty(fetchResults.data) && mountCTA && (
         <StyledFABMessageWrapper
-          $visible={showMessage}
+          $visible={showCTA}
           data-testid="fab-message-wrapper"
         >
-          <StyledFABMessageContents>
-            <StyledFABMessage $visible={showMessage}>
-              {fetchResults.data.cta}&lrm;
+          <StyledFABMessageContents $visible={showCTA}>
+            <StyledFABMessage $visible={showCTA}>
+              {fetchResults.data.cta}
             </StyledFABMessage>
           </StyledFABMessageContents>
         </StyledFABMessageWrapper>

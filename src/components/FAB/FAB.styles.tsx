@@ -3,13 +3,17 @@ import { lighten } from "polished";
 import { zIndex } from "../../styles/zIndex";
 import Button from "../extendable/Button";
 
-export const StyledFABContainer = styled.div<{ $hidden: boolean }>`
+export const StyledFABContainer = styled.div<{
+  $hidden: boolean;
+  $ctaVisible: boolean;
+}>`
   &&& {
     z-index: ${zIndex("default")};
     position: absolute;
     bottom: ${(props) => (props.$hidden ? "-130px" : "0")};
     right: 0;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     max-width: calc(100vw - 40px); // 20px left and right
     gap: 10px;
@@ -95,16 +99,15 @@ export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
       background-color: ${(props) => props.theme.primary};
       height: 100%;
       width: 100%;
-      z-index: -1; // don't want it to show until we animate it in
       transform-origin: bottom left; // defines where transformation originates from (center by default)
       transform: ${(props) =>
         props.$visible ? "translateX(0)" : "translateX(35rem)"};
-      transition: transform 0.5s ${(props) => !props.$visible && "0.5s"}; // transform should take 0.5s
+      transition: transform 0.75s ${(props) => !props.$visible && "0.5s"}; // transform should take 0.5s
     }
   }
 `;
 
-export const StyledFABMessageContents = styled.div`
+export const StyledFABMessageContents = styled.div<{ $visible?: boolean }>`
   &&& {
     display: inline-flex;
     height: 100%;
@@ -122,6 +125,6 @@ export const StyledFABMessage = styled.span<{ $visible?: boolean }>`
     font-size: 18px;
     transform: ${(props) =>
       props.$visible ? "translateX(0)" : "translateX(35rem)"};
-    transition: transform 1s ease-in 0.75s;
+    transition: transform 1s ease-in 0.5s;
   }
 `;
