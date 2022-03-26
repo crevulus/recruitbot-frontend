@@ -49,8 +49,8 @@ describe("ChatWindow", () => {
     it("should show loading before fetchResults are made", async () => {
       const element = document.createElement("div");
       await customRender(<App domElement={element} />, {});
-      const chatWindow = screen.getByTestId(/loading/i);
-      await waitFor(() => expect(chatWindow).toBeInTheDocument());
+      const loadingSpinner = screen.getByTestId(/loading/i);
+      await waitFor(() => expect(loadingSpinner).toBeInTheDocument());
     });
   });
 

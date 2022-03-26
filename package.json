@@ -2,6 +2,9 @@
   "name": "recruitbot-frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=16.14.0"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
@@ -25,7 +28,7 @@
     "eject": "react-scripts eject",
     "parcel:build": "parcel build src/index.tsx --no-source-maps --dist-dir docs",
     "generate": "plop",
-    "mockserver": "json-server --watch db.json --port 8000"
+    "mockserver": "json-server --watch mockConversationData.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
@@ -47,10 +50,12 @@
   },
   "devDependencies": {
     "@parcel/transformer-svg-react": "^2.2.1",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/styled-components": "^5.1.21",
     "babel-plugin-styled-components": "^2.0.3",
     "json-server": "^0.17.0",
     "parcel": "^2.2.1",
-    "plop": "^3.0.5"
+    "plop": "^3.0.5",
+    "yarn-audit-fix": "^9.2.1"
   }
 }
