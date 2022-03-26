@@ -13,7 +13,7 @@ export enum LoadingSpinnerTypes {
 }
 
 export enum LocalStorageKeys {
-  Cookies = "allowCookies",
+  Cookies = "allowRecruitbotCookies",
 }
 
 export enum Hyperlinks {
