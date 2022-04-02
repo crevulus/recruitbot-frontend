@@ -65,6 +65,12 @@ export const StyledApplication = styled.main`
       font: inherit;
     }
 
+    svg {
+      // these two properties needed for Safari
+      height: 100%;
+      width: 100%;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html:focus-within {
         scroll-behavior: auto;

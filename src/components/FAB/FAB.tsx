@@ -15,7 +15,7 @@ import {
 } from "./FAB.styles";
 
 const CTA_ANIMATION_TIME = 1000;
-const CTA_REVEAL_TIME = 5000;
+const CTA_REVEAL_TIME = 2500;
 
 // a lot of timeout useEffects... Make it work, make it fast, make it right 🤷
 export default function FAB() {
