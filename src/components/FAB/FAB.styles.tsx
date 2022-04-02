@@ -30,8 +30,9 @@ export const StyledFABButton = styled(Button)`
     justify-content: center;
     margin: 0;
     padding: 5px;
-    min-height: 60px;
-    min-width: 60px;
+    height: 60px;
+    width: 60px;
+    min-width: 60px; // Chrome requires this; FF just needs a width property
     border: none;
     border-radius: 50%;
     box-shadow: ${(props) => props.theme.lightShadow};
@@ -96,9 +97,10 @@ export const StyledFABMessageWrapper = styled.div<{ $visible?: boolean }>`
       position: absolute;
       left: 0;
       top: 0;
-      background-color: ${(props) => props.theme.primary};
+      border-radius: 20px; // necessary for Safari
       height: 100%;
       width: 100%;
+      background-color: ${(props) => props.theme.primary};
       transform-origin: bottom left; // defines where transformation originates from (center by default)
       transform: ${(props) =>
         props.$visible ? "translateX(0)" : "translateX(35rem)"};

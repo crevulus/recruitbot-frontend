@@ -7,6 +7,10 @@ export const StyledButton = styled.button`
     background: ${(props) => props.theme.white};
     color: ${(props) => props.theme.primary};
 
+    &:last-of-type {
+      margin-right: 0; // override cleanslate
+    }
+
     &:hover,
     &:focus {
       * {
