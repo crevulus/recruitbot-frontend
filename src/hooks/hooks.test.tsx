@@ -67,7 +67,7 @@ describe("useShowMessages", () => {
     },
   };
   it.todo(
-    "should render something"
+    "should return a full visibility tree on first call"
     // , () => {
     //   const wrapper = ({ children }: any) => (
     //     <MockContext.Provider value={amendedMockContext}>
