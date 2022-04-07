@@ -17,7 +17,7 @@ export enum LocalStorageKeys {
 }
 
 export enum Hyperlinks {
-  RecruitbotHome = "https://recruitbot.framer.website",
+  RecruitbotHome = "http://34.134.178.79/",
 }
 
 export enum Environments {

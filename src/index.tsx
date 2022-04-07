@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 
 const widgetDivs = document.querySelectorAll(".recruitbot-widget");
 
-// Inject our React App into each
+// Inject the React App into each widget div
 widgetDivs.forEach((div) => {
   ReactDOM.render(
     <React.StrictMode>

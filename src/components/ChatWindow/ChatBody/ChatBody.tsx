@@ -10,6 +10,9 @@ import { StyledChatBody, StyledWarningContainer } from "./ChatBody.styles";
 import { LoadingSpinnerTypes } from "../../../data/enums";
 import { useShowMessages } from "../../../hooks/useShowMessages";
 
+const SHOW_LOADER_TIMEOUT = 100;
+const SHOW_MSG_TIMEOUT = 1600;
+
 function ChatBody() {
   const { fetchResults } = useContext(AppContext);
   const chatBodyRef = useRef<HTMLDivElement>(null);
@@ -28,7 +31,7 @@ function ChatBody() {
           behavior: "smooth",
         });
       }
-    }, 100);
+    }, SHOW_LOADER_TIMEOUT);
     setTimeout(() => {
       if (chatBodyRef.current) {
         chatBodyRef.current.scrollTo({
@@ -36,7 +39,7 @@ function ChatBody() {
           behavior: "smooth",
         });
       }
-    }, 1600);
+    }, SHOW_MSG_TIMEOUT);
   };
 
   if (error) {
