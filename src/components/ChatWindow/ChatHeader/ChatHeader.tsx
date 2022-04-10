@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useContext } from "react";
 
 import { AppContext } from "../../../data/AppContext";
@@ -12,11 +13,11 @@ import {
 } from "./ChatHeader.styles";
 
 function ChatHeader() {
-  const { showChat, setShowChat, fetchResults } = useContext(AppContext);
+  const { showChat, setShowChat, introductionData } = useContext(AppContext);
   return (
     <StyledChatHeaderContainer>
-      {!isEmpty(fetchResults.data) && (
-        <StyledChatHeader>{fetchResults.data.cta}</StyledChatHeader>
+      {!isEmpty(introductionData.data) && (
+        <StyledChatHeader>{introductionData.data.cta}</StyledChatHeader>
       )}
       <StyledCloseButton
         onClick={() => setShowChat(!showChat)}

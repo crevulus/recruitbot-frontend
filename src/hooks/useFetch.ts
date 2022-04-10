@@ -12,7 +12,7 @@ const ERROR_MESSAGE_COPY =
 
 export const ROOT_API_URL =
   process.env.NODE_ENV === Environments.Dev
-    ? "http://localhost:8000"
+    ? "http://0.0.0.0:8080"
     : "https://my-json-server.typicode.com/crevulus/recruitbot-frontend";
 
 function useFetch({ url, type }: FetchPropsType) {
@@ -33,7 +33,7 @@ function useFetch({ url, type }: FetchPropsType) {
         setIsLoading(false);
         return response.json();
       })
-      .catch((error) => {
+      .catch(() => {
         setData({} as RootDataType);
         setIsLoading(false);
         setError(true);

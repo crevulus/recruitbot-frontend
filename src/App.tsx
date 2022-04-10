@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
@@ -27,12 +28,15 @@ function App({ domElement }: AppPropsType) {
     new URLSearchParams(window.location.search)
       .get("openWidget")
       ?.toLowerCase() === "true";
-  const response = useFetch({
-    url: `${ROOT_API_URL}/${Endpoints.Accounts}/${accountNumber}`,
+
+  const introResponse = useFetch({
+    url: `${ROOT_API_URL}/${Endpoints.Introduction}/${accountNumber}`,
     type: FetchTypes.Get,
   });
-
-  const { data, error, errorMsg, isLoading } = response;
+  const conversationResponse = useFetch({
+    url: `${ROOT_API_URL}/${Endpoints.Conversation}/${accountNumber}`,
+    type: FetchTypes.Get,
+  });
 
   const [showChat, setShowChat] = useState(openWidget);
   const [isLoadingMessage, setIsLoadingMessage] = useState(false);
@@ -40,13 +44,13 @@ function App({ domElement }: AppPropsType) {
   const [replies, setReplies] = useState<string[]>([]);
   const [payload, setPayload] = useState<{ [key: string]: unknown }>({});
   const [needsInputIndexes, setNeedsInputIndexes] = useState<number[]>([]);
-  const [fetchResults, setFetchResults] = useState({} as FetchResultsType);
+  const [introductionData, setIntroductionData] = useState({});
+  const [conversationData, setConversationData] = useState({});
 
   useEffect(() => {
-    setFetchResults(response);
-    // using a primitive (cta) to use as a flag to check for the whole data changing.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, error, errorMsg, isLoading]);
+    setIntroductionData(introResponse);
+    setConversationData(conversationResponse);
+  }, [introResponse.data, conversationResponse.data]);
 
   return (
     <StyledApplication>
@@ -66,8 +70,8 @@ function App({ domElement }: AppPropsType) {
             setPayload,
             needsInputIndexes,
             setNeedsInputIndexes,
-            fetchResults,
-            setFetchResults,
+            introductionData,
+            conversationData,
           }}
         >
           <FAB />

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useContext, useRef } from "react";
 
 import { AppContext } from "../../../data/AppContext";
@@ -14,10 +15,8 @@ const SHOW_LOADER_TIMEOUT = 100;
 const SHOW_MSG_TIMEOUT = 1600;
 
 function ChatBody() {
-  const { fetchResults } = useContext(AppContext);
+  const { introductionData, conversationData } = useContext(AppContext);
   const chatBodyRef = useRef<HTMLDivElement>(null);
-
-  const { data, isLoading, error, errorMsg } = fetchResults;
 
   const { visibilityTree, showNextMessage } = useShowMessages();
 
@@ -42,18 +41,20 @@ function ChatBody() {
     }, SHOW_MSG_TIMEOUT);
   };
 
-  if (error) {
+  if (introductionData.error || conversationData.error) {
     return (
       <StyledChatBody>
         <StyledWarningContainer>
           {/* @ts-ignore */}
-          <ErrorPanel>{errorMsg}</ErrorPanel>
+          <ErrorPanel>
+            {introductionData.errorMsg || conversationData.errorMsg}
+          </ErrorPanel>
         </StyledWarningContainer>
       </StyledChatBody>
     );
   }
 
-  if (isLoading) {
+  if (introductionData.isLoading || conversationData.isLoading) {
     return (
       <StyledChatBody>
         <StyledWarningContainer>
@@ -63,15 +64,13 @@ function ChatBody() {
     );
   }
 
-  if (error) {
-    return <StyledChatBody>{errorMsg}</StyledChatBody>;
-  }
-
   return (
     <StyledChatBody ref={chatBodyRef}>
-      {!isEmpty(fetchResults) && <Perks perks={data.perks} />}
-      {!isEmpty(data) &&
-        data.conversation.map((item: ConversationType, index) => {
+      {!isEmpty(introductionData.data) && (
+        <Perks perks={introductionData.data.perks} />
+      )}
+      {!isEmpty(conversationData.data) &&
+        conversationData.data.map((item: ConversationType, index: number) => {
           return (
             visibilityTree[`msg${index}`] && (
               <Message

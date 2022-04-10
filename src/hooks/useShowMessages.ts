@@ -1,10 +1,11 @@
+//@ts-nocheck
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../data/AppContext";
 import isEmpty from "../utils/isEmpty";
 
 export const useShowMessages = () => {
   const {
-    fetchResults: { data },
+    conversationData: { data },
     setNeedsInputIndexes,
     showChat,
     setCurrentStep,
@@ -22,16 +23,13 @@ export const useShowMessages = () => {
     if (showChat && isEmpty(visibilityTree)) {
       const needsInput: number[] = [];
       // iterate over conversation; reduce to object; set to true if msg0, else false.
-      const messageVisibilityTree = data.conversation.reduce(
-        (acc, item, index) => {
-          if (typeof item.answers === "string") {
-            needsInput.push(index);
-          }
-          const key = `msg${index}`;
-          return { ...acc, [key]: index ? false : true };
-        },
-        {}
-      );
+      const messageVisibilityTree = data.reduce((acc, item, index) => {
+        if (typeof item.answers === "string") {
+          needsInput.push(index);
+        }
+        const key = `msg${index}`;
+        return { ...acc, [key]: index ? false : true };
+      }, {});
       setNeedsInputIndexes(needsInput);
       setVisibilityTree(messageVisibilityTree);
     }
