@@ -78,7 +78,6 @@ function ChatFooter() {
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
       <StyledInput
-        autoFocus={!isMobile}
         required
         name="chatFooter"
         id="chat-footer"
@@ -86,6 +85,7 @@ function ChatFooter() {
         value={value}
         disabled={disabled}
         onChange={(event) => setValue(event.target.value)}
+        autoFocus={!isMobile}
       />
       <StyledButtonsContainer $disabled={disabled}>
         <StyledButton type="submit" disabled={disabled} aria-label="Submit">

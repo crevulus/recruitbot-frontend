@@ -1,5 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from "react";
-import { FetchResultsType } from "./types";
+import {
+  ConversationType,
+  FetchResultsType,
+  IntroductionDataType,
+} from "./types";
 
 export type AppContextType = {
   accountNumber: string;
@@ -15,8 +19,8 @@ export type AppContextType = {
   setPayload: Dispatch<SetStateAction<{ [key: string]: unknown }>>;
   needsInputIndexes: number[];
   setNeedsInputIndexes: Dispatch<SetStateAction<number[]>>;
-  fetchResults: FetchResultsType;
-  setFetchResults: Dispatch<SetStateAction<FetchResultsType>>;
+  introductionData: FetchResultsType<IntroductionDataType>;
+  conversationData: FetchResultsType<ConversationType[]>;
 };
 
 export const AppContext = createContext({} as AppContextType);
