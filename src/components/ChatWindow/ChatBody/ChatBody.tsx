@@ -1,8 +1,6 @@
-//@ts-nocheck
-import React, { useContext, useRef } from "react";
+import { useContext, useRef } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import { ConversationType } from "../../../data/types";
 import isEmpty from "../../../utils/isEmpty";
 
 import { Perks, Message, LoadingSpinner, ErrorPanel } from "../../";
@@ -10,6 +8,7 @@ import { Perks, Message, LoadingSpinner, ErrorPanel } from "../../";
 import { StyledChatBody, StyledWarningContainer } from "./ChatBody.styles";
 import { LoadingSpinnerTypes } from "../../../data/enums";
 import { useShowMessages } from "../../../hooks/useShowMessages";
+import { ConversationDataType } from "../../../data/types";
 
 const SHOW_LOADER_TIMEOUT = 100;
 const SHOW_MSG_TIMEOUT = 1600;
@@ -69,19 +68,22 @@ function ChatBody() {
       {!isEmpty(introductionData.data) && (
         <Perks perks={introductionData.data.perks} />
       )}
-      {!isEmpty(conversationData.data) &&
-        conversationData.data.map((item: ConversationType, index: number) => {
-          return (
-            visibilityTree[`msg${index}`] && (
-              <Message
-                key={`message-${item.id}`}
-                showNext={renderNextMessage}
-                message={item}
-                index={index}
-              />
-            )
-          );
-        })}
+      {conversationData.data &&
+        conversationData.data.length > 0 &&
+        conversationData.data.map(
+          (item: ConversationDataType, index: number) => {
+            return (
+              visibilityTree[`msg${index}`] && (
+                <Message
+                  key={`message-${item.id}`}
+                  showNext={renderNextMessage}
+                  message={item}
+                  index={index}
+                />
+              )
+            );
+          }
+        )}
     </StyledChatBody>
   );
 }

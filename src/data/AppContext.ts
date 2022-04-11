@@ -1,6 +1,6 @@
 import { createContext, Dispatch, SetStateAction } from "react";
 import {
-  ConversationType,
+  ConversationDataType,
   FetchResultsType,
   IntroductionDataType,
 } from "./types";
@@ -20,7 +20,7 @@ export type AppContextType = {
   needsInputIndexes: number[];
   setNeedsInputIndexes: Dispatch<SetStateAction<number[]>>;
   introductionData: FetchResultsType<IntroductionDataType>;
-  conversationData: FetchResultsType<ConversationType[]>;
+  conversationData: FetchResultsType<ConversationDataType[]>;
 };
 
 export const AppContext = createContext({} as AppContextType);

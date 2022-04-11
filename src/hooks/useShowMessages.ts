@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../data/AppContext";
 import isEmpty from "../utils/isEmpty";
@@ -16,7 +15,7 @@ export const useShowMessages = () => {
   }>({});
 
   useEffect(() => {
-    if (isEmpty(data)) {
+    if (data && data.length < 1) {
       return;
     }
     // check if chat is open and if showMessages has already been calc'd; if not, run the operation

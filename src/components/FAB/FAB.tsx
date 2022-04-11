@@ -21,7 +21,6 @@ const CTA_REVEAL_TIME = 2500;
 export default function FAB() {
   const [showCTA, setShowCTA] = useState(false);
   const [mountCTA, setMountCTA] = useState(false);
-  //@ts-ignore
   const { showChat, setShowChat, introductionData } = useContext(AppContext);
 
   useEffect(() => {

@@ -14,7 +14,7 @@ export type AnswersType = {
   text: string;
 };
 
-export type ConversationType = {
+export type ConversationDataType = {
   _id: IdType;
   id: number;
   key: string;

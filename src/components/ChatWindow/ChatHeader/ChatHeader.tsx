@@ -1,5 +1,4 @@
-//@ts-nocheck
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { AppContext } from "../../../data/AppContext";
 import isEmpty from "../../../utils/isEmpty";

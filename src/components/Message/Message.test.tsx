@@ -1,4 +1,3 @@
-import React from "react";
 import { act, fireEvent, screen } from "@testing-library/react";
 import Message from "./Message";
 import { customRender } from "../../utils/test-utils";

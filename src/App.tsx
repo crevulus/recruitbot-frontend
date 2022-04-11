@@ -1,10 +1,8 @@
-//@ts-nocheck
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { AppContext } from "./data/AppContext";
 import useFetch, { ROOT_API_URL } from "./hooks/useFetch";
-import { FetchResultsType } from "./data/types";
 import { Endpoints, FetchTypes } from "./data/enums";
 
 import { FAB, ChatWindow } from "./components";
@@ -14,26 +12,30 @@ import {
   StyledApplication,
   GlobalStyles,
 } from "./styles/styledComponentUtilities";
+import {
+  IntroductionDataType,
+  ConversationDataType,
+  FetchResultsType,
+} from "./data/types";
 
 type AppPropsType = {
   domElement?: Element;
 };
 
 function App({ domElement }: AppPropsType) {
-  const accountNumber = domElement?.getAttribute(
-    "data-recruitbot-account-number"
-  );
+  const accountNumber =
+    domElement?.getAttribute("data-recruitbot-account-number") ?? "";
 
   const openWidget =
     new URLSearchParams(window.location.search)
       .get("openWidget")
       ?.toLowerCase() === "true";
 
-  const introResponse = useFetch({
+  const introResponse = useFetch<IntroductionDataType>({
     url: `${ROOT_API_URL}/${Endpoints.Introduction}/${accountNumber}`,
     type: FetchTypes.Get,
   });
-  const conversationResponse = useFetch({
+  const conversationResponse = useFetch<ConversationDataType[]>({
     url: `${ROOT_API_URL}/${Endpoints.Conversation}/${accountNumber}`,
     type: FetchTypes.Get,
   });
@@ -44,12 +46,17 @@ function App({ domElement }: AppPropsType) {
   const [replies, setReplies] = useState<string[]>([]);
   const [payload, setPayload] = useState<{ [key: string]: unknown }>({});
   const [needsInputIndexes, setNeedsInputIndexes] = useState<number[]>([]);
-  const [introductionData, setIntroductionData] = useState({});
-  const [conversationData, setConversationData] = useState({});
+  const [introductionData, setIntroductionData] = useState(
+    {} as FetchResultsType<IntroductionDataType>
+  );
+  const [conversationData, setConversationData] = useState(
+    {} as FetchResultsType<ConversationDataType[]>
+  );
 
   useEffect(() => {
     setIntroductionData(introResponse);
     setConversationData(conversationResponse);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [introResponse.data, conversationResponse.data]);
 
   return (

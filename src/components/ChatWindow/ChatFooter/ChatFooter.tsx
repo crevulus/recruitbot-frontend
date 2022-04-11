@@ -1,5 +1,4 @@
-//@ts-nocheck
-import React, { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
 import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
@@ -54,6 +53,7 @@ function ChatFooter() {
       setReplies((prevState) => [...prevState, value]);
       setValue("");
       if (currentStep === conversationData.data.length - 2) {
+        // @ts-ignore
         executeFetch({
           method: FetchTypes.Post,
           headers: { "Content-Type": "application/json" },
