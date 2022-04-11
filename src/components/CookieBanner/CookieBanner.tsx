@@ -13,7 +13,7 @@ import {
 } from "./CookieBanner.styles";
 
 export default function CookieBanner() {
-  const { valueIsPresent, handleAddBooleanToLocalStorage } = useLocalStorage(
+  const { isValuePresent, handleAddBooleanToLocalStorage } = useLocalStorage(
     LocalStorageKeys.Cookies
   );
 
@@ -26,7 +26,7 @@ export default function CookieBanner() {
   };
 
   return (
-    <StyledCookieBanner $showBanner={!valueIsPresent}>
+    <StyledCookieBanner $showBanner={!isValuePresent}>
       <StyledCookieText>
         This chatbot uses cookies to improve your experience.
       </StyledCookieText>

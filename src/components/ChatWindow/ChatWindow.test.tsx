@@ -6,19 +6,23 @@ import { baseMockContext, customRender } from "../../utils/test-utils";
 describe("ChatWindow", () => {
   const amendedMockContext = {
     ...baseMockContext,
-    fetchResults: {
+    introductionData: {
       isLoading: true,
       error: false,
       data: {
         cta: "this is a trick",
-        conversation: [
-          {
-            id: 7,
-            text: "Thanks for your response! We will get back to you shortly.",
-            answers: [],
-          },
-        ],
       },
+    },
+    conversationData: {
+      isLoading: true,
+      error: false,
+      data: [
+        {
+          id: 7,
+          text: "Thanks for your response! We will get back to you shortly.",
+          answers: [],
+        },
+      ],
     },
   };
 
@@ -26,7 +30,7 @@ describe("ChatWindow", () => {
     let mockFetch: jest.SpyInstance<Promise<Response>>;
 
     beforeEach(async () => {
-      const mockResponse = amendedMockContext.fetchResults;
+      const mockResponse = amendedMockContext.conversationData;
       mockFetch = jest.spyOn(global, "fetch");
       // @ts-ignore
       mockFetch.mockImplementation(() => {
@@ -40,13 +44,13 @@ describe("ChatWindow", () => {
       mockFetch.mockRestore();
     });
 
-    it("should make a fetch call", async () => {
+    it("should make two fetch calls on load", async () => {
       const element = document.createElement("div");
       await customRender(<App domElement={element} />, {});
-      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(1));
+      await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(2));
     });
 
-    it("should show loading before fetchResults are made", async () => {
+    it("should show loading before fetching is complete", async () => {
       const element = document.createElement("div");
       await customRender(<App domElement={element} />, {});
       const loadingSpinner = screen.getByTestId(/loading/i);

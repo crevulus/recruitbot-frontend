@@ -3,7 +3,11 @@ import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/styledComponentUtilities";
 import { AppContext } from "../data/AppContext";
-import { FetchResultsType } from "../data/types";
+import {
+  ConversationDataType,
+  FetchResultsType,
+  IntroductionDataType,
+} from "../data/types";
 
 export const baseMockContext = {
   showChat: false,
@@ -18,8 +22,8 @@ export const baseMockContext = {
   setPayload: jest.fn(),
   needsInputIndexes: [1, 2],
   setNeedsInputIndexes: jest.fn(),
-  fetchResults: {} as FetchResultsType,
-  setFetchResults: jest.fn(),
+  introductionData: {} as FetchResultsType<IntroductionDataType>,
+  conversationData: {} as FetchResultsType<ConversationDataType[]>,
 };
 
 export const customRender = (

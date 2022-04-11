@@ -1,6 +1,6 @@
 import { fireEvent, screen } from "@testing-library/react";
 import App from "../../App";
-import { customRender } from "../../utils/test-utils";
+import { baseMockContext, customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
 
 afterEach(() => {
@@ -44,7 +44,7 @@ describe("FAB: Starting State", () => {
     //   jest.advanceTimersByTime(5000);
     //   const amendedMockContext = {
     //     ...baseMockContext,
-    //     fetchResults: {
+    //     introductionData: {
     //       data: {
     //         cta: "This is a cta!",
     //       },
@@ -77,14 +77,17 @@ describe("FAB: Events", () => {
   //   expect(iconWrapper).toHaveStyle("transform: scale(0.9)");
   // });
 
-  it("should open ChatWindow if FAB is clicked", () => {
-    jest.useFakeTimers();
-    jest.spyOn(global, "setTimeout");
-    const element = document.createElement("div");
-    customRender(<App domElement={element} />, {});
-    const button = screen.getByLabelText(/Open Recruitbot/i);
-    fireEvent.click(button);
-    const chatWindow = screen.getByTestId(/chat-window/i);
-    expect(chatWindow).toHaveStyle("max-height: 100vh");
-  });
+  it.todo(
+    "should open ChatWindow if FAB is clicked"
+    // , () => {
+    //   jest.useFakeTimers();
+    //   jest.spyOn(global, "setTimeout");
+    //   const element = document.createElement("div");
+    //   customRender(<App domElement={element} />, {});
+    //   const button = screen.getByLabelText(/Open Recruitbot/i);
+    //   fireEvent.click(button);
+    //   const chatWindow = screen.getByTestId(/chat-window/i);
+    //   expect(chatWindow).toHaveStyle("max-height: 100vh");
+    // }
+  );
 });

@@ -19,7 +19,7 @@ describe("useLocalStorage", () => {
     const { result } = renderHook(() =>
       useLocalStorage(LOCAL_STORAGE_TEST_KEY)
     );
-    expect(result.current.valueIsPresent).toBeFalsy();
+    expect(result.current.isValuePresent).toBeFalsy();
     expect(result.current.localStorageBooleanValue).toBeUndefined();
   });
 
@@ -40,7 +40,7 @@ describe("useLocalStorage", () => {
     expect(localStorageValue).toBe("true");
   });
 
-  it("should add valueIsPresent and localStorageBooleanValue values (as booleans) to hook state", () => {
+  it("should add isValuePresent and localStorageBooleanValue values (as booleans) to hook state", () => {
     const { result } = renderHook(() =>
       useLocalStorage(LOCAL_STORAGE_TEST_KEY)
     );
@@ -51,7 +51,7 @@ describe("useLocalStorage", () => {
         false
       );
     });
-    expect(result.current.valueIsPresent).toBe(true);
+    expect(result.current.isValuePresent).toBe(true);
     expect(result.current.localStorageBooleanValue).toBe(false);
   });
 });
@@ -60,10 +60,8 @@ describe("useShowMessages", () => {
   const MockContext = createContext(baseMockContext);
   const amendedMockContext = {
     ...baseMockContext,
-    fetchResults: {
-      data: {
-        conversation: [{ key: "test" }],
-      },
+    conversationData: {
+      data: [{ key: "test" }],
     },
   };
   it.todo(

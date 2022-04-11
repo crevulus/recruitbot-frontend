@@ -41,7 +41,7 @@ function ChatFooter() {
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");
-  const { valueIsPresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { isValuePresent } = useLocalStorage(LocalStorageKeys.Cookies);
   const { isMobile } = useDeviceSize();
 
   const submitAnswer = (event: FormEvent) => {
@@ -73,7 +73,7 @@ function ChatFooter() {
   const disabled =
     isLoadingMessage ||
     !needsInputIndexes.includes(currentStep) ||
-    !valueIsPresent;
+    !isValuePresent;
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
@@ -101,7 +101,7 @@ function ChatFooter() {
           </StyledLogoWrapper>
         </StyledLink>
       </StyledButtonsContainer>
-      {!valueIsPresent && <CookieBanner />}
+      {!isValuePresent && <CookieBanner />}
     </StyledChatFooter>
   );
 }
