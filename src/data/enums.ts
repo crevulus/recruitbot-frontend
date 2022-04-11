@@ -28,5 +28,5 @@ export enum Environments {
 export enum Endpoints {
   Introduction = "introduction",
   Conversation = "conversation",
-  Submissions = "submissions",
+  Submissions = "response",
 }

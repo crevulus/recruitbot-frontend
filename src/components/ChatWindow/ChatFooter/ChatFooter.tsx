@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
@@ -23,33 +24,36 @@ import {
 } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import useDeviceSize from "../../../hooks/useDeviceSize";
 
 function ChatFooter() {
   const {
+    accountNumber,
     setReplies,
     currentStep,
     needsInputIndexes,
     isLoadingMessage,
     setPayload,
     payload,
-    fetchResults,
+    conversationData,
   } = useContext(AppContext);
   const { executeFetch } = useFetch({
-    url: `${ROOT_API_URL}/${Endpoints.Submissions}`,
+    url: `${ROOT_API_URL}/${Endpoints.Submissions}/${accountNumber}`,
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");
   const { valueIsPresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { isMobile } = useDeviceSize();
 
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
     if (validateInput()) {
-      const key = fetchResults.data.conversation[currentStep].key;
+      const key = conversationData.data[currentStep].key;
       const data = { ...payload, [key]: value };
       setPayload(data);
       setReplies((prevState) => [...prevState, value]);
       setValue("");
-      if (currentStep === fetchResults.data.conversation.length - 2) {
+      if (currentStep === conversationData.data.length - 2) {
         executeFetch({
           method: FetchTypes.Post,
           headers: { "Content-Type": "application/json" },
@@ -74,6 +78,7 @@ function ChatFooter() {
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
       <StyledInput
+        autoFocus={!isMobile}
         required
         name="chatFooter"
         id="chat-footer"

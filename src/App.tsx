@@ -58,6 +58,7 @@ function App({ domElement }: AppPropsType) {
       <ThemeProvider theme={theme}>
         <AppContext.Provider
           value={{
+            accountNumber,
             showChat,
             setShowChat,
             isLoadingMessage,
