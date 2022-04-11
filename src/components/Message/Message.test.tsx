@@ -1,8 +1,7 @@
-import React from "react";
 import { act, fireEvent, screen } from "@testing-library/react";
 import Message from "./Message";
 import { customRender } from "../../utils/test-utils";
-import { ConversationType } from "../../data/types";
+import { ConversationDataType } from "../../data/types";
 import * as hooks from "../../hooks/useLocalStorage";
 
 const mockMessage = {
@@ -10,6 +9,9 @@ const mockMessage = {
   text: "this is a message",
   answers: [],
   id: 1,
+  _id: {
+    $oid: "fake-uuid",
+  },
 };
 
 afterEach(() => {
@@ -114,7 +116,7 @@ describe("Message: Starting state", () => {
 
 describe("Message: Events", () => {
   let mockShowNext: jest.Mock;
-  let amendedMockMessage: ConversationType;
+  let amendedMockMessage: ConversationDataType;
 
   beforeEach(() => {
     mockShowNext = jest.fn();
@@ -145,7 +147,7 @@ describe("Message: Events", () => {
     it("should not allow users to click buttons if cookie banner is visible", () => {
       jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
         localStorageBooleanValue: undefined,
-        valueIsPresent: false,
+        isValuePresent: false,
         handleAddBooleanToLocalStorage: () => jest.fn(),
       }));
       customRender(
@@ -168,7 +170,7 @@ describe("Message: Events", () => {
     beforeEach(() => {
       jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
         localStorageBooleanValue: true,
-        valueIsPresent: true,
+        isValuePresent: true,
         handleAddBooleanToLocalStorage: () => jest.fn(),
       }));
     });

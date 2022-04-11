@@ -25,7 +25,7 @@ describe("ChatFooter: Starting state", () => {
   it("should disable the input box if cookie banner is visible", () => {
     jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
       localStorageBooleanValue: undefined,
-      valueIsPresent: false,
+      isValuePresent: false,
       handleAddBooleanToLocalStorage: () => jest.fn(),
     }));
     customRender(<ChatFooter />, {});
@@ -74,7 +74,7 @@ describe("Chat Footer: Events", () => {
     beforeEach(() => {
       jest.spyOn(hooks, "useLocalStorage").mockImplementation(() => ({
         localStorageBooleanValue: true,
-        valueIsPresent: true,
+        isValuePresent: true,
         handleAddBooleanToLocalStorage: () => jest.fn(),
       }));
     });
@@ -99,10 +99,8 @@ describe("Chat Footer: Events", () => {
         isLoadingMessage: false,
         needsInputIndexes: [0, 2],
         currentStep: 0,
-        fetchResults: {
-          data: {
-            conversation: [{ key: "test" }],
-          },
+        conversationData: {
+          data: [{ key: "test" }],
         },
       };
       customRender(<ChatFooter />, { contextProps: amendedMockContext });

@@ -13,7 +13,7 @@ describe("ChatHeader: Starting state", () => {
   it("should render chat header cta", () => {
     const amendedMockContext = {
       ...baseMockContext,
-      fetchResults: {
+      introductionData: {
         data: {
           cta: "This is a CTA",
         },

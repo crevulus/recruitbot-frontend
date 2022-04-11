@@ -4,7 +4,7 @@ import isEmpty from "../utils/isEmpty";
 
 export const useShowMessages = () => {
   const {
-    fetchResults: { data },
+    conversationData: { data },
     setNeedsInputIndexes,
     showChat,
     setCurrentStep,
@@ -15,23 +15,20 @@ export const useShowMessages = () => {
   }>({});
 
   useEffect(() => {
-    if (isEmpty(data)) {
+    if (!data || data.length < 1) {
       return;
     }
     // check if chat is open and if showMessages has already been calc'd; if not, run the operation
     if (showChat && isEmpty(visibilityTree)) {
       const needsInput: number[] = [];
       // iterate over conversation; reduce to object; set to true if msg0, else false.
-      const messageVisibilityTree = data.conversation.reduce(
-        (acc, item, index) => {
-          if (typeof item.answers === "string") {
-            needsInput.push(index);
-          }
-          const key = `msg${index}`;
-          return { ...acc, [key]: index ? false : true };
-        },
-        {}
-      );
+      const messageVisibilityTree = data.reduce((acc, item, index) => {
+        if (typeof item.answers === "string") {
+          needsInput.push(index);
+        }
+        const key = `msg${index}`;
+        return { ...acc, [key]: index ? false : true };
+      }, {});
       setNeedsInputIndexes(needsInput);
       setVisibilityTree(messageVisibilityTree);
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useLocalStorage = (key: string) => {
-  const [valueIsPresent, setValueIsPresent] = useState(false);
+  const [isValuePresent, setIsValuePresent] = useState(false);
   const [localStorageBooleanValue, setLocalStorageBooleanValue] = useState<
     boolean | undefined
   >();
@@ -19,9 +19,9 @@ export const useLocalStorage = (key: string) => {
 
   useEffect(() => {
     if (window.localStorage.getItem(key) === null) {
-      setValueIsPresent(false);
+      setIsValuePresent(false);
     } else {
-      setValueIsPresent(true);
+      setIsValuePresent(true);
     }
   }, [key, localStorageBooleanValue]);
 
@@ -33,7 +33,7 @@ export const useLocalStorage = (key: string) => {
   }, [key]);
 
   return {
-    valueIsPresent,
+    isValuePresent,
     localStorageBooleanValue,
     handleAddBooleanToLocalStorage,
   };

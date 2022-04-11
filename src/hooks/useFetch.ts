@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Environments, FetchTypes } from "../data/enums";
-import { RootDataType } from "../data/types";
+import { FetchResultsType } from "../data/types";
 
 type FetchPropsType = {
   url: string;
@@ -12,18 +12,18 @@ const ERROR_MESSAGE_COPY =
 
 export const ROOT_API_URL =
   process.env.NODE_ENV === Environments.Dev
-    ? "http://localhost:8000"
+    ? "http://0.0.0.0:8080"
     : "https://my-json-server.typicode.com/crevulus/recruitbot-frontend";
 
-function useFetch({ url, type }: FetchPropsType) {
-  const [data, setData] = useState<RootDataType>({} as RootDataType);
+function useFetch<T>({ url, type }: FetchPropsType): FetchResultsType<T> {
+  const [data, setData] = useState<T>({} as T);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const executeFetch = async (options?: any) => {
     setIsLoading(true);
-    setData({} as RootDataType);
+    setData({} as T);
     setError(false);
     const res = await fetch(url, options)
       .then((response) => {
@@ -33,8 +33,8 @@ function useFetch({ url, type }: FetchPropsType) {
         setIsLoading(false);
         return response.json();
       })
-      .catch((error) => {
-        setData({} as RootDataType);
+      .catch(() => {
+        setData({} as T);
         setIsLoading(false);
         setError(true);
         setErrorMsg(ERROR_MESSAGE_COPY);

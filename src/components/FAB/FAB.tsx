@@ -21,7 +21,7 @@ const CTA_REVEAL_TIME = 2500;
 export default function FAB() {
   const [showCTA, setShowCTA] = useState(false);
   const [mountCTA, setMountCTA] = useState(false);
-  const { showChat, setShowChat, fetchResults } = useContext(AppContext);
+  const { showChat, setShowChat, introductionData } = useContext(AppContext);
 
   useEffect(() => {
     const CTATimer = setTimeout(
@@ -67,14 +67,14 @@ export default function FAB() {
 
   return (
     <StyledFABContainer $hidden={showChat} $ctaVisible={showCTA}>
-      {!isEmpty(fetchResults.data) && mountCTA && (
+      {!isEmpty(introductionData.data) && mountCTA && (
         <StyledFABMessageWrapper
           $visible={showCTA}
           data-testid="fab-message-wrapper"
         >
           <StyledFABMessageContents $visible={showCTA}>
             <StyledFABMessage $visible={showCTA}>
-              {fetchResults.data.cta}
+              {introductionData.data.cta}
             </StyledFABMessage>
           </StyledFABMessageContents>
         </StyledFABMessageWrapper>

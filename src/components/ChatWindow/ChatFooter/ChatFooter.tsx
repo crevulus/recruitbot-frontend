@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
 import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
@@ -23,33 +23,37 @@ import {
 } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import useDeviceSize from "../../../hooks/useDeviceSize";
 
 function ChatFooter() {
   const {
+    accountNumber,
     setReplies,
     currentStep,
     needsInputIndexes,
     isLoadingMessage,
     setPayload,
     payload,
-    fetchResults,
+    conversationData,
   } = useContext(AppContext);
   const { executeFetch } = useFetch({
-    url: `${ROOT_API_URL}/${Endpoints.Submissions}`,
+    url: `${ROOT_API_URL}/${Endpoints.Submissions}/${accountNumber}`,
     type: FetchTypes.Post,
   });
   const [value, setValue] = useState("");
-  const { valueIsPresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { isValuePresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { isMobile } = useDeviceSize();
 
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
     if (validateInput()) {
-      const key = fetchResults.data.conversation[currentStep].key;
+      const key = conversationData.data[currentStep].key;
       const data = { ...payload, [key]: value };
       setPayload(data);
       setReplies((prevState) => [...prevState, value]);
       setValue("");
-      if (currentStep === fetchResults.data.conversation.length - 2) {
+      if (currentStep === conversationData.data.length - 2) {
+        // @ts-ignore
         executeFetch({
           method: FetchTypes.Post,
           headers: { "Content-Type": "application/json" },
@@ -69,7 +73,7 @@ function ChatFooter() {
   const disabled =
     isLoadingMessage ||
     !needsInputIndexes.includes(currentStep) ||
-    !valueIsPresent;
+    !isValuePresent;
 
   return (
     <StyledChatFooter onSubmit={submitAnswer}>
@@ -81,6 +85,7 @@ function ChatFooter() {
         value={value}
         disabled={disabled}
         onChange={(event) => setValue(event.target.value)}
+        autoFocus={!isMobile}
       />
       <StyledButtonsContainer $disabled={disabled}>
         <StyledButton type="submit" disabled={disabled} aria-label="Submit">
@@ -96,7 +101,7 @@ function ChatFooter() {
           </StyledLogoWrapper>
         </StyledLink>
       </StyledButtonsContainer>
-      {!valueIsPresent && <CookieBanner />}
+      {!isValuePresent && <CookieBanner />}
     </StyledChatFooter>
   );
 }

@@ -7,7 +7,7 @@ import {
   LoadingSpinnerTypes,
   LocalStorageKeys,
 } from "../../data/enums";
-import { AnswersType, ConversationType } from "../../data/types";
+import { AnswersType, ConversationDataType } from "../../data/types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import isEmpty from "../../utils/isEmpty";
 
@@ -22,7 +22,7 @@ import {
 
 type MessagePropsType = {
   showNext: (index: number) => void;
-  message: ConversationType;
+  message: ConversationDataType;
   index: number;
 };
 
@@ -36,7 +36,7 @@ function Message({ showNext, message, index }: MessagePropsType) {
   } = useContext(AppContext);
   const [showMessage, setShowMessage] = useState(false);
   const [answer, setAnswer] = useState<AnswersType>({} as AnswersType);
-  const { valueIsPresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { isValuePresent } = useLocalStorage(LocalStorageKeys.Cookies);
 
   const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
@@ -91,7 +91,7 @@ function Message({ showNext, message, index }: MessagePropsType) {
               <StyledAnswerButton
                 key={`button-${answer.id}`}
                 onClick={() => handleNext(answer)}
-                disabled={!valueIsPresent}
+                disabled={!isValuePresent}
               >
                 {answer.text}
               </StyledAnswerButton>
