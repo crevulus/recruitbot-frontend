@@ -23,7 +23,7 @@ import {
 } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import useDeviceSize from "../../../hooks/useDeviceSize";
+import { useDeviceSize } from "../../../hooks/useDeviceSize";
 
 function ChatFooter() {
   const {

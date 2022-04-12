@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { createContext } from "react";
 import { AppContext } from "../data/AppContext";
 import { baseMockContext } from "../utils/test-utils";
-import useDeviceSize from "./useDeviceSize";
+import { useDeviceSize } from "./useDeviceSize";
 import { useLocalStorage } from "./useLocalStorage";
 import { useShowMessages } from "./useShowMessages";
 

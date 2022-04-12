@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 // Define general type for useWindowSize hook, which includes width and height
-interface WindowSizeType {
+type WindowSizeType = {
   width: number | undefined;
   height: number | undefined;
-}
+};
 
-// Hook
-function useDeviceSize() {
+export const useDeviceSize = () => {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState<WindowSizeType>({
@@ -34,6 +33,4 @@ function useDeviceSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
   return { windowSize, isMobile };
-}
-
-export default useDeviceSize;
+};
