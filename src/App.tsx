@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { AppContext } from "./data/AppContext";
-import useFetch, { ROOT_API_URL } from "./hooks/useFetch";
+import { useFetch, ROOT_API_URL } from "./hooks/useFetch";
 import { Endpoints, FetchTypes } from "./data/enums";
 
 import { FAB, ChatWindow } from "./components";

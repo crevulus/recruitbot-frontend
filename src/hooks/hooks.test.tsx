@@ -3,6 +3,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { createContext } from "react";
 import { AppContext } from "../data/AppContext";
 import { baseMockContext } from "../utils/test-utils";
+import { useDeviceSize } from "./useDeviceSize";
 import { useLocalStorage } from "./useLocalStorage";
 import { useShowMessages } from "./useShowMessages";
 
@@ -76,4 +77,26 @@ describe("useShowMessages", () => {
     //   console.log(result.current);
     // }
   );
+});
+
+describe("useWindowSize", () => {
+  beforeEach(() => jest.resetModules());
+
+  it("should return the window size", () => {
+    const { result } = renderHook(() => useDeviceSize());
+    expect(result.current.windowSize.width).not.toBeUndefined();
+    expect(result.current.windowSize.height).not.toBeUndefined();
+  });
+
+  it("should return isMobile false by default when using JSDOM's default window dimensions", () => {
+    // default global window dimensions = 768px & 1024px: https://stackoverflow.com/a/46256392/13063136
+    const { result } = renderHook(() => useDeviceSize());
+    expect(result.current.isMobile).toBe(false);
+  });
+
+  it("should return isMobile true if window is smaller than 768px", () => {
+    global.innerWidth = 767;
+    const { result } = renderHook(() => useDeviceSize());
+    expect(result.current.isMobile).toBe(true);
+  });
 });

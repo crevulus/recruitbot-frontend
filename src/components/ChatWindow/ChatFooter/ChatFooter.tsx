@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
+import { useFetch, ROOT_API_URL } from "../../../hooks/useFetch";
 
 import { SendIcon } from "../../Icons";
 import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";
@@ -23,7 +23,7 @@ import {
 } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
-import useDeviceSize from "../../../hooks/useDeviceSize";
+import { useDeviceSize } from "../../../hooks/useDeviceSize";
 
 function ChatFooter() {
   const {
