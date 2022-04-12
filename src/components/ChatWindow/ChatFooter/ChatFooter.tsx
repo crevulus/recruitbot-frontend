@@ -1,7 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 
 import { AppContext } from "../../../data/AppContext";
-import useFetch, { ROOT_API_URL } from "../../../hooks/useFetch";
+import { useFetch, ROOT_API_URL } from "../../../hooks/useFetch";
 
 import { SendIcon } from "../../Icons";
 import RecruitbotLogoPng from "../../../assets/RecruitbotLogo.png";

@@ -15,7 +15,10 @@ export const ROOT_API_URL =
     ? "http://0.0.0.0:8080"
     : "https://my-json-server.typicode.com/crevulus/recruitbot-frontend";
 
-function useFetch<T>({ url, type }: FetchPropsType): FetchResultsType<T> {
+export const useFetch = <T>({
+  url,
+  type,
+}: FetchPropsType): FetchResultsType<T> => {
   const [data, setData] = useState<T>({} as T);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -50,6 +53,4 @@ function useFetch<T>({ url, type }: FetchPropsType): FetchResultsType<T> {
   }, []);
 
   return { data, isLoading, error, errorMsg, executeFetch };
-}
-
-export default useFetch;
+};
