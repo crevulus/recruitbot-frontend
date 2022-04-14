@@ -5,6 +5,10 @@ export const StyledChatBody = styled.div`
     padding: 15px 10px;
     background: ${(props) => props.theme.grey};
     overflow: scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 

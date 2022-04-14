@@ -3,19 +3,18 @@ import { AppContext } from "../data/AppContext";
 import isEmpty from "../utils/isEmpty";
 
 export const useShowMessages = () => {
-  const {
-    conversationData: { data },
-    setNeedsInputIndexes,
-    showChat,
-    setCurrentStep,
-  } = useContext(AppContext);
+  const { conversationData, setNeedsInputIndexes, showChat, setCurrentStep } =
+    useContext(AppContext);
+
+  const { data } = conversationData;
 
   const [visibilityTree, setVisibilityTree] = useState<{
     [key: string]: boolean;
   }>({});
 
   useEffect(() => {
-    if (!data || data.length < 1) {
+    // TODO: I should be able to use an empty array as a type, not jsut an object. Because this is very dumb.
+    if ((!Array.isArray(data) && isEmpty(data)) || !data || data.length < 1) {
       return;
     }
     // check if chat is open and if showMessages has already been calc'd; if not, run the operation

@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import App from "../../App";
 import { baseMockContext, customRender } from "../../utils/test-utils";
 import FAB from "./FAB";
@@ -37,24 +37,21 @@ describe("FAB: Starting State", () => {
     expect(message).toBeNull();
   });
 
-  it.todo(
-    "should show message after setTimeout"
-    // async () => {
-    //   jest.useFakeTimers();
-    //   jest.advanceTimersByTime(5000);
-    //   const amendedMockContext = {
-    //     ...baseMockContext,
-    //     introductionData: {
-    //       data: {
-    //         cta: "This is a cta!",
-    //       },
-    //     },
-    //   };
-    //   customRender(<FAB />, { contextProps: amendedMockContext });
-    //   const message = screen.queryByTestId("fab-message-wrapper");
-    //   await waitFor(() => expect(message).toBeInTheDocument());
-    // }
-  );
+  it("should show message after setTimeout", async () => {
+    jest.useFakeTimers();
+    jest.advanceTimersByTime(5000);
+    const amendedMockContext = {
+      ...baseMockContext,
+      introductionData: {
+        data: {
+          cta: "This is a cta!",
+        },
+      },
+    };
+    customRender(<FAB />, { contextProps: amendedMockContext });
+    const message = screen.queryByText(/this/i);
+    await waitFor(() => expect(message).toBeInTheDocument());
+  });
 });
 
 describe("FAB: Events", () => {
