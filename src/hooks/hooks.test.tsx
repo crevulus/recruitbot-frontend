@@ -57,27 +57,35 @@ describe("useLocalStorage", () => {
   });
 });
 
-describe("useShowMessages", () => {
-  const MockContext = createContext(baseMockContext);
-  const amendedMockContext = {
-    ...baseMockContext,
-    conversationData: {
-      data: [{ key: "test" }],
-    },
-  };
-  it.todo(
-    "should return a full visibility tree on first call"
-    // , () => {
-    //   const wrapper = ({ children }: any) => (
-    //     <MockContext.Provider value={amendedMockContext}>
-    //       {children}
-    //     </MockContext.Provider>
-    //   );
-    //   const { result } = renderHook(() => useShowMessages(), { wrapper });
-    //   console.log(result.current);
-    // }
-  );
-});
+// describe("useShowMessages", () => {
+//   const amendedMockContext = {
+//     ...baseMockContext,
+//     conversationData: {
+//       data: [
+//         {
+//           key: "test",
+//           _id: {
+//             $oid: "test",
+//           },
+//           answers: [],
+//           id: "test",
+//           text: "this is a test",
+//         },
+//       ],
+//     },
+//   };
+//   const MockContext = createContext(amendedMockContext);
+//   it("should return a full visibility tree on first call", () => {
+//     const wrapper = ({ children }: any) => (
+//       // @ts-ignore
+//       <MockContext.Provider value={amendedMockContext}>
+//         {children}
+//       </MockContext.Provider>
+//     );
+//     const { result } = renderHook(() => useShowMessages(), { wrapper });
+//     console.log(result.current);
+//   });
+// });
 
 describe("useWindowSize", () => {
   beforeEach(() => jest.resetModules());
