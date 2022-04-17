@@ -54,6 +54,7 @@ function App({ domElement }: AppPropsType) {
   );
 
   useEffect(() => {
+    console.log("Running the app...");
     setIntroductionData(introResponse);
     setConversationData(conversationResponse);
     // eslint-disable-next-line react-hooks/exhaustive-deps
