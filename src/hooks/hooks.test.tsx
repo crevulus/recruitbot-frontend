@@ -87,7 +87,7 @@ describe("useLocalStorage", () => {
 //   });
 // });
 
-describe("useWindowSize", () => {
+describe("useDeviceSize", () => {
   beforeEach(() => jest.resetModules());
 
   it("should return the window size", () => {

@@ -3,10 +3,12 @@ import { AppContext } from "../data/AppContext";
 import isEmpty from "../utils/isEmpty";
 
 export const useShowMessages = () => {
-  const { conversationData, setNeedsInputIndexes, showChat, setCurrentStep } =
-    useContext(AppContext);
-
-  const { data } = conversationData;
+  const {
+    conversationData: { data },
+    setNeedsInputIndexes,
+    showChat,
+    setCurrentStep,
+  } = useContext(AppContext);
 
   const [visibilityTree, setVisibilityTree] = useState<{
     [key: string]: boolean;
