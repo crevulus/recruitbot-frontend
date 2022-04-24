@@ -7,3 +7,4 @@
 - [ ] Check why setTimeout is called in 1001 secs on FAB (check unit test)
 - [x] Prevent call being made in ChatWindow test that renders App
 - [ ] Reduce image size/increase performance (dev env) from lighthouse report: https://gist.github.com/crevulus/85bec5d1789f08f677d5746cc518b807
+- [ ] Set up two pipelines: Heroku for dev and GCP for prod
