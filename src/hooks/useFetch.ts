@@ -11,10 +11,9 @@ const ERROR_MESSAGE_COPY =
   "Oops! Something went wrong. Hit the refresh button to try that again.";
 
 export const ROOT_API_URL =
-  // process.env.NODE_ENV === Environments.Prod
-  //   ? process.env.REACT_APP_PROD_URL
-  //   : process.env.REACT_APP_DEV_URL;
-  process.env.REACT_APP_PROD_URL;
+  process.env.NODE_ENV === Environments.Prod
+    ? process.env.REACT_APP_PROD_URL
+    : process.env.REACT_APP_DEV_URL;
 
 export const useFetch = <T>({
   url,
