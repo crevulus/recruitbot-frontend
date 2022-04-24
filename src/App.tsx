@@ -36,7 +36,7 @@ function App({ domElement }: AppPropsType) {
     type: FetchTypes.Get,
   });
   const conversationResponse = useFetch<ConversationDataType[]>({
-    url: `${ROOT_API_URL}/${Endpoints.Conversation}/${accountNumber}`,
+    url: `${ROOT_API_URL}/${Endpoints.Conversation}`,
     type: FetchTypes.Get,
   });
 
