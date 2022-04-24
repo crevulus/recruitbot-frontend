@@ -1,3 +1,4 @@
+import mixpanel from "mixpanel-browser";
 import React from "react";
 import { LocalStorageKeys } from "../../data/enums";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
@@ -19,6 +20,7 @@ export default function CookieBanner() {
 
   const handleAccept = () => {
     handleAddBooleanToLocalStorage(LocalStorageKeys.Cookies, true);
+    mixpanel.opt_in_tracking();
   };
 
   const handleReject = () => {
