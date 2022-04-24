@@ -51,5 +51,6 @@ export enum PropertyNames {
   ClientURL = "Client_URL",
   ClientID = "Client_ID",
   Answer = "Answer",
-  Step = "Step",
+  ConversationStep = "Conversation_Step",
+  KPI = "KPI",
 }

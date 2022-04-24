@@ -35,14 +35,14 @@ const mixpanelInitOptions = {
   },
 };
 
+const openWidget =
+  new URLSearchParams(window.location.search)
+    .get("openWidget")
+    ?.toLowerCase() === "true";
+
 function App({ domElement }: AppPropsType) {
   const accountNumber =
     domElement?.getAttribute("data-recruitbot-account-number") ?? "";
-
-  const openWidget =
-    new URLSearchParams(window.location.search)
-      .get("openWidget")
-      ?.toLowerCase() === "true";
 
   const introResponse = useFetch<IntroductionDataType>({
     url: `${ROOT_API_URL}/${Endpoints.Introduction}/${accountNumber}`,

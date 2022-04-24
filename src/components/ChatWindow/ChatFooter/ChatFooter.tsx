@@ -17,13 +17,17 @@ import {
 } from "./ChatFooter.styles";
 import {
   Endpoints,
+  EventNames,
   FetchTypes,
   Hyperlinks,
+  KPIs,
   LocalStorageKeys,
+  PropertyNames,
 } from "../../../data/enums";
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useDeviceSize } from "../../../hooks/useDeviceSize";
+import { useTrackAnalytics } from "../../../hooks/useTrackAnalytics";
 
 function ChatFooter() {
   const {
@@ -43,6 +47,7 @@ function ChatFooter() {
   const [value, setValue] = useState("");
   const { isValuePresent } = useLocalStorage(LocalStorageKeys.Cookies);
   const { isMobile } = useDeviceSize();
+  const { trackAnalytics } = useTrackAnalytics();
 
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
@@ -52,7 +57,15 @@ function ChatFooter() {
       setPayload(data);
       setReplies((prevState) => [...prevState, value]);
       setValue("");
+      trackAnalytics(EventNames.SubmitFreeFormAnswer, {
+        [PropertyNames.KPI]: KPIs.Engagement,
+        [PropertyNames.Answer]: value,
+        [PropertyNames.ConversationStep]: currentStep,
+      });
       if (currentStep === conversationData.data.length - 2) {
+        trackAnalytics(EventNames.SubmitForm, {
+          [PropertyNames.KPI]: KPIs.Submissions,
+        });
         // @ts-ignore
         executeFetch({
           method: FetchTypes.Post,

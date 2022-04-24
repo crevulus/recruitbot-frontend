@@ -4,11 +4,15 @@ import { LoadingSpinner } from "..";
 import { AppContext } from "../../data/AppContext";
 import {
   AnswerEntryTypes,
+  EventNames,
+  KPIs,
   LoadingSpinnerTypes,
   LocalStorageKeys,
+  PropertyNames,
 } from "../../data/enums";
 import { AnswersType, ConversationDataType } from "../../data/types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useTrackAnalytics } from "../../hooks/useTrackAnalytics";
 import isEmpty from "../../utils/isEmpty";
 
 import {
@@ -33,10 +37,12 @@ function Message({ showNext, message, index }: MessagePropsType) {
     setIsLoadingMessage,
     setPayload,
     payload,
+    currentStep,
   } = useContext(AppContext);
   const [showMessage, setShowMessage] = useState(false);
   const [answer, setAnswer] = useState<AnswersType>({} as AnswersType);
   const { isValuePresent } = useLocalStorage(LocalStorageKeys.Cookies);
+  const { trackAnalytics } = useTrackAnalytics();
 
   const isMultipleChoice =
     Array.isArray(message.answers) && message.answers.length > 0;
@@ -66,6 +72,11 @@ function Message({ showNext, message, index }: MessagePropsType) {
     showNext(index);
     if (answer) {
       setAnswer(answer);
+      trackAnalytics(EventNames.ClickAnswerButton, {
+        [PropertyNames.KPI]: KPIs.Engagement,
+        [PropertyNames.Answer]: answer.key,
+        [PropertyNames.ConversationStep]: currentStep,
+      });
       setPayload({
         ...payload,
         [message.key]: answer.key,
