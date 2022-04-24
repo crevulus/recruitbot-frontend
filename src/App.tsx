@@ -32,7 +32,7 @@ function App({ domElement }: AppPropsType) {
       ?.toLowerCase() === "true";
 
   const introResponse = useFetch<IntroductionDataType>({
-    url: `${ROOT_API_URL}/${Endpoints.Introduction}/${accountNumber}`,
+    url: `${ROOT_API_URL}/${Endpoints.Introduction}`,
     type: FetchTypes.Get,
   });
   const conversationResponse = useFetch<ConversationDataType[]>({
