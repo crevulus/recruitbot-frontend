@@ -24,6 +24,7 @@ import {
 import CookieBanner from "../../CookieBanner";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useDeviceSize } from "../../../hooks/useDeviceSize";
+import { sanitize } from "../../../utils/sanitize";
 
 function ChatFooter() {
   const {
@@ -47,10 +48,11 @@ function ChatFooter() {
   const submitAnswer = (event: FormEvent) => {
     event.preventDefault();
     if (validateInput()) {
+      const sanitizedValue = sanitize(value);
       const key = conversationData.data[currentStep].key;
-      const data = { ...payload, [key]: value };
+      const data = { ...payload, [key]: sanitizedValue };
       setPayload(data);
-      setReplies((prevState) => [...prevState, value]);
+      setReplies((prevState) => [...prevState, sanitizedValue]);
       setValue("");
       if (currentStep === conversationData.data.length - 2) {
         // @ts-ignore
