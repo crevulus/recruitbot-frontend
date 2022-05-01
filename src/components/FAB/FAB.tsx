@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { AppContext } from "../../data/AppContext";
+import { EventNames, KPIs, PropertyNames } from "../../data/enums";
+import { useTrackAnalytics } from "../../hooks/useTrackAnalytics";
 import isEmpty from "../../utils/isEmpty";
 
 import { BriefcaseIcon } from "../Icons";
@@ -21,7 +23,10 @@ const CTA_REVEAL_TIME = 5000;
 export default function FAB() {
   const [showCTA, setShowCTA] = useState(false);
   const [mountCTA, setMountCTA] = useState(false);
-  const { showChat, setShowChat, introductionData } = useContext(AppContext);
+  const { accountNumber, showChat, setShowChat, introductionData } =
+    useContext(AppContext);
+
+  const { trackAnalytics } = useTrackAnalytics();
 
   useEffect(() => {
     const CTATimer = setTimeout(
@@ -58,11 +63,15 @@ export default function FAB() {
         clearTimeout(unmountCTATimer);
       };
     }
-  }, [showChat, showCTA]);
+  }, [showChat, showCTA, accountNumber]);
 
   const handleClickFAB = () => {
     setShowCTA(false);
     setShowChat(!showChat);
+    trackAnalytics(EventNames.OpenRecruitbot, {
+      [PropertyNames.KPI]: KPIs.Views,
+      [PropertyNames.Time]: Date.now(),
+    });
   };
 
   return (

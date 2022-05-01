@@ -14,6 +14,8 @@ const mockMessage = {
   },
 };
 
+jest.mock("mixpanel-browser");
+
 afterEach(() => {
   jest.useRealTimers();
 });

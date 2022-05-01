@@ -30,3 +30,27 @@ export enum Endpoints {
   Conversation = "conversation",
   Submissions = "response",
 }
+
+// Tracking Enums
+export enum EventNames {
+  OpenRecruitbot = "Open_Recruitbot",
+  ClickAnswerButton = "Click_Answer_Button",
+  SubmitFreeFormAnswer = "Submit_Free_Form_Answer",
+  SubmitForm = "Submit_Form",
+}
+
+export enum KPIs {
+  Views = "Views",
+  Redirects = "Redirects",
+  Engagement = "Engagement",
+  Submissions = "Submissions",
+}
+
+export enum PropertyNames {
+  Time = "Time",
+  ClientURL = "Client_URL",
+  ClientID = "Client_ID",
+  Answer = "Answer",
+  ConversationStep = "Conversation_Step",
+  KPI = "KPI",
+}

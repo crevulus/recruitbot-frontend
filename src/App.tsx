@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import { AppContext } from "./data/AppContext";
 import { useFetch, ROOT_API_URL } from "./hooks/useFetch";
-import { Endpoints, FetchTypes } from "./data/enums";
+import { Endpoints, Environments, FetchTypes } from "./data/enums";
 
 import { FAB, ChatWindow } from "./components";
 
@@ -17,19 +17,32 @@ import {
   ConversationDataType,
   FetchResultsType,
 } from "./data/types";
+import mixpanel from "mixpanel-browser";
 
 type AppPropsType = {
   domElement?: Element;
 };
 
+const mixpanelInitOptions = {
+  token:
+    process.env.NODE_ENV === Environments.Prod
+      ? process.env.REACT_APP_MP_PROD_PROJECT_TOKEN
+      : process.env.REACT_APP_MP_DEV_PROJECT_TOKEN,
+  options: {
+    debug: process.env.NODE_ENV === Environments.Dev,
+    opt_out_tracking_by_default: true,
+    api_host: "https://api-eu.mixpanel.com",
+  },
+};
+
+const openWidget =
+  new URLSearchParams(window.location.search)
+    .get("openWidget")
+    ?.toLowerCase() === "true";
+
 function App({ domElement }: AppPropsType) {
   const accountNumber =
     domElement?.getAttribute("data-recruitbot-account-number") ?? "";
-
-  const openWidget =
-    new URLSearchParams(window.location.search)
-      .get("openWidget")
-      ?.toLowerCase() === "true";
 
   const introResponse = useFetch<IntroductionDataType>({
     url: `${ROOT_API_URL}/${Endpoints.Introduction}/${accountNumber}`,
@@ -58,6 +71,10 @@ function App({ domElement }: AppPropsType) {
     setConversationData(conversationResponse);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [introResponse.data, conversationResponse.data]);
+
+  useEffect(() => {
+    mixpanel.init(mixpanelInitOptions.token!, mixpanelInitOptions.options);
+  }, []);
 
   return (
     <StyledApplication>
