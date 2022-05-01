@@ -13,7 +13,6 @@ export const useTrackAnalytics = () => {
 
   const trackAnalytics = (event: string, data?: any) => {
     if (hasOptedInTracking) {
-      console.log("here");
       mixpanel.track(event, {
         ...data,
         [PropertyNames.ClientID]: accountNumber,

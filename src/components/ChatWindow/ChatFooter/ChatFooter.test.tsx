@@ -1,9 +1,10 @@
-import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
 import { customRender, baseMockContext } from "../../../utils/test-utils";
 import ChatFooter from "./ChatFooter";
 import * as hooks from "../../../hooks/useLocalStorage";
 import { Hyperlinks } from "../../../data/enums";
+
+jest.mock("mixpanel-browser");
 
 describe("ChatFooter: Starting state", () => {
   afterEach(() => {

@@ -4,6 +4,8 @@ import { customRender } from "../../utils/test-utils";
 import CookieBanner from "./CookieBanner";
 import ChatFooter from "../ChatWindow/ChatFooter";
 
+jest.mock("mixpanel-browser");
+
 describe("CookieBanner", () => {
   it("should render CookieBanner without error", () => {
     customRender(<CookieBanner />, {});
