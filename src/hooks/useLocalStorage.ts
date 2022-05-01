@@ -11,18 +11,22 @@ export const useLocalStorage = (key: string) => {
     window.dispatchEvent(new Event("storage"));
   };
 
+  const value = window.localStorage.getItem(key);
+
   const handleStorageBooleanListener = () => {
-    const value = window.localStorage.getItem(key);
     const booleanValue = value === "true";
     setLocalStorageBooleanValue(booleanValue);
   };
 
   useEffect(() => {
-    if (window.localStorage.getItem(key) === null) {
+    if (value === null) {
       setIsValuePresent(false);
+      setLocalStorageBooleanValue(undefined);
     } else {
       setIsValuePresent(true);
+      setLocalStorageBooleanValue(value === "true");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, localStorageBooleanValue]);
 
   useEffect(() => {

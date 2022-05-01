@@ -10,6 +10,7 @@ export const theme = {
   grey: "#EBEBEB",
   darkGrey: "#A1A1A1",
 
+  fontSmall: "14px",
   fontRegular: "16px",
   fontLarge: "20px",
 

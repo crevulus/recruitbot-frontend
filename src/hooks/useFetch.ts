@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Environments, FetchTypes } from "../data/enums";
+import { FetchTypes } from "../data/enums";
 import { FetchResultsType } from "../data/types";
 
 type FetchPropsType = {
@@ -10,16 +10,13 @@ type FetchPropsType = {
 const ERROR_MESSAGE_COPY =
   "Oops! Something went wrong. Hit the refresh button to try that again.";
 
-export const ROOT_API_URL =
-  process.env.NODE_ENV === Environments.Prod
-    ? process.env.REACT_APP_PROD_URL
-    : process.env.REACT_APP_DEV_URL;
+export const ROOT_API_URL = process.env.REACT_APP_FETCH_URL;
 
 export const useFetch = <T>({
   url,
   type,
 }: FetchPropsType): FetchResultsType<T> => {
-  const [data, setData] = useState<T>({} as T);
+  const [data, setData] = useState<T>({} as T); // TODO: Allow for array type.
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
