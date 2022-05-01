@@ -1,6 +1,6 @@
 import mixpanel from "mixpanel-browser";
 import React from "react";
-import { LocalStorageKeys } from "../../data/enums";
+import { Hyperlinks, LocalStorageKeys } from "../../data/enums";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import { CrossIcon } from "../Icons";
@@ -8,6 +8,7 @@ import { CrossIcon } from "../Icons";
 import {
   StyledCookieBanner,
   StyledCookieText,
+  StyledCookieLink,
   StyledButtonsContainer,
   StyledCookieAccept,
   StyledCookieReject,
@@ -30,7 +31,14 @@ export default function CookieBanner() {
   return (
     <StyledCookieBanner $showBanner={!isValuePresent}>
       <StyledCookieText>
-        This chatbot uses cookies to improve your experience.
+        This chatbot uses cookies to improve your experience. Click accept to
+        agree to our use of cookies.{" "}
+        <StyledCookieLink
+          href={`${Hyperlinks.RecruitbotHome}?page_id=962`}
+          target="_blank"
+        >
+          Privacy policy.
+        </StyledCookieLink>
       </StyledCookieText>
       <StyledButtonsContainer>
         <StyledCookieReject onClick={handleReject}>

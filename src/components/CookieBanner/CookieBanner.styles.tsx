@@ -32,6 +32,13 @@ export const StyledCookieBanner = styled.div<{ $showBanner: boolean }>`
 export const StyledCookieText = styled.p`
   &&& {
     margin: 10px;
+    font-size: ${(props) => props.theme.fontSmall};
+  }
+`;
+
+export const StyledCookieLink = styled.a`
+  &&& {
+    color: ${(props) => props.theme.primary};
   }
 `;
 
